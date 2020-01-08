@@ -13,6 +13,7 @@
     "@capacitor/core": "^1.4.0",
     "@capacitor/ios": "^1.4.0",
     "core-js": "^3.4.4",
+    "leaflet": "^1.6.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },
