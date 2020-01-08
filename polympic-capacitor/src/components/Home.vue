@@ -12,8 +12,10 @@
       The world is your oyster.
       <p>If you get lost, the <a href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
       <ion-button @click="goToAbout" full>Go to About</ion-button>
-      
+      <ion-button @click="goToMap" full>Go to Map</ion-button>
+      <ion-button @click="goToTabs" full>Go to Tabs</ion-button>
     </ion-content>
+
   </ion-app>
 </template>
 
@@ -23,7 +25,17 @@
     methods: {
       goToAbout() {
         this.$router.push('about')
+      },
+      goToMap() {
+        this.$router.push('mappy')
+      },
+      goToTabs() {
+        this.$router.push('tabs')
       }
     }
   }
 </script>
+
+<style>
+
+</style>
