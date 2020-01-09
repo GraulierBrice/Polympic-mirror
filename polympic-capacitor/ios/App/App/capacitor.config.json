@@ -1,8 +1,0 @@
-{
-  "appId": "com.polytech.polympic",
-  "appName": "polympic-capacitor",
-  "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "dist",
-  "cordova": {}
-}
