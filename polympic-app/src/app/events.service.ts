@@ -15,7 +15,7 @@ export class EventsService {
       place: 'Piscine Olympique',
       beginDate: '09-01-2020',
       beginHour: '15h25',
-      participants: [1, 0],
+      participants: [1, 0, 3],
       ended: true,
       winner: '0'
     },
@@ -27,7 +27,7 @@ export class EventsService {
       place: 'Stade Olympique',
       beginDate: '09-01-2020',
       beginHour: '17h10',
-      participants: [0, 1],
+      participants: [4, 1, 2],
       ended: false,
       winner: undefined
     }

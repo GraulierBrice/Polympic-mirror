@@ -62,8 +62,61 @@ export class AthletesService {
           {
             name: 'Belgium',
             flag: 'be'
+          }    
+      },
+      {
+        id: '3',
+        image: '../assets/athletes/meuf.jpg',
+        name: 'Isabel Quartier',
+        sport: 'Athlète',
+        Victory: '11',
+        Defeat: '15',
+        Medals: [
+          {
+            type: 'Bronze',
+            quantity: 7
+          },
+          {
+            type: 'Argent',
+            quantity: 3
+          },
+          {
+            type: 'Or',
+            quantity: 0
           }
-        
+        ],
+        Country: 
+          {
+            name: 'Switzerland',
+            flag: 'sz'
+          }    
+      },
+      {
+        id: '4',
+        image: '../assets/athletes/barbu.jpg',
+        name: 'Robert lacroix',
+        sport: 'Athlète',
+        Victory: '12',
+        Defeat: '7',
+        Medals: [
+          {
+            type: 'Bronze',
+            quantity: 5
+          },
+          {
+            type: 'Argent',
+            quantity: 3
+          },
+          {
+            type: 'Or',
+            quantity: 1
+          }
+        ],
+        Country: 
+          {
+            name: 'Belgium',
+            flag: 'be'
+          }    
       }
     ]
    }
