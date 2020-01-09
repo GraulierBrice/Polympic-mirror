@@ -1,15 +1,40 @@
 # PNS-PS7-19-20-pns-ps7-19-20-ihm
 
-### Setting workspace
+## Installation
 
-1. Clone repository and open a terminal in *polympic-capacitor*
-2. run ```yarn global add vue-native-cli```
-3. run ```yarn global add ionic```
-4. run ```yarn install```
-5. run ```yarn run build```
+To run this example in production or development mode you have to make sure, `ionic` and `cordova` are installed globally on your machine. After that you can install all necessary dependencies for running this example.
 
-### Using application
+0. Check if `npm` is installed. Otherwise please [install `node.js` and `npm`](https://nodejs.org/en/download/package-manager/).
+```bash
+npm -v
+```
 
-To test the application either run ```yarn serve``` and load the localhost page. Use responsive design mode (Toggle Device Toolbar on Chrom | Develop > Enter Responsive Design Mode or ^⌘R on Safari) to view different screen sizes)
+1. Install ionic and cordova command line interface globally.
+```bash
+npm install -g cordova ionic
+```
 
-Otherwise run ```npx cap copy``` followed by ```npx open android``` or ```npx open ios``` to open android studio or XCode respectively. From those programs you can run an emulator or transfer to your phone
+2. Install all dependencies listed in [`package.json`](/package.json).
+```bash
+npm install
+```
+
+### Running the example in your browser
+```bash
+ionic serve
+```
+
+### Running the example on your device
+3. Add an iOS or Android to the project.
+```bash
+ionic cordova platform add ios 
+# or 
+ionic cordova platform add android
+```
+
+4. Run the app on your device.
+```bash
+ionic cordova run ios
+# or
+ionic cordova run android
+```
