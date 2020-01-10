@@ -22,7 +22,7 @@ export class Tab2Page {
 
 
     // In setView add latLng and zoom
-    this.map = new Map(mapId).setView([48.9244592, 2.3601645], 15)
+    this.map = new Map(mapId,{minZoom:10,maxZoom:17}).setView([48.9244592, 2.3601645], 13)
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
     {
@@ -32,12 +32,18 @@ export class Tab2Page {
     EVENTS_MOCKED.forEach(e => {
       this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.start.toLocaleString());
     });
+    var map = this.map;
+    map
+    .on('mouseup',function(){
+      console.log("dragend");
+      map.dragging.enable();
+    })
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
     
   }
 
   //var x = 48.9244592, y = 2.3601645
-  setMarker(x, y, iconImage, popupText){
+  setMarker(x=0, y=0, iconImage, popupText){
     var mapIcon = icon({
       iconUrl: '../assets/icon/map-marker.png',
       shadowUrl: '../assets/icon/'+iconImage,
@@ -51,19 +57,19 @@ export class Tab2Page {
 
     console.log(this.map);
     var map = this.map;
-    var markerPopup = popup({autoPanPadding:[150,75],closeButton:false,autoClose:false,closeOnEscapeKey:false})
     var eventMarker = marker([y, x], {icon:mapIcon})
       .addTo(this.map)
-      .bindPopup(popupText,markerPopup)
+      .bindPopup(popupText,{autoPanPadding:[50,75],closeButton:false,autoClose:false})
       .on('mousedown', function () {
-        map.dragging.disable();
-        map
-        .on('mouseup',function(){
-          console.log("dragend");
-          map.dragging.enable();
-        });
+        
+        map.flyTo(eventMarker.getLatLng(),Math.max(15,map.getZoom()))
+        map.dragging.disable()
         eventMarker.openPopup();
         console.log("mousedown! ");
+      })
+      .on('click',function () {
+        eventMarker.openPopup();
+        console.log("clicked! ");
       })
       ;
   }
