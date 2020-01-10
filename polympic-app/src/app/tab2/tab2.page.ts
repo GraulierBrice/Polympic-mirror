@@ -62,7 +62,6 @@ export class Tab2Page {
       popupAnchor:  [0, -45] // point from which the popup should open relative to the iconAnchor
     });
 
-    console.log(this.map);
     var map = this.map;
     var eventMarker = marker([y, x], {icon:mapIcon})
       .addTo(this.map)
