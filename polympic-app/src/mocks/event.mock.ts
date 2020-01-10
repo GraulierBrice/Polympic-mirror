@@ -124,7 +124,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         id: '0',
         name: 'FINALE - 100m Nage libre M',
-        image: './assets/natation.jpg',
+        image: 'swimming.png',
         type: 'Natation',
         place: 'Piscine Olympique',
         address: '7 Avenue des Castelans, 98000 Paris',
