@@ -2,7 +2,16 @@
 
 
 <ion-content>
-  <ion-img width = "640" height = "426" [src]="athlete.image"></ion-img>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="unfavoriteAthlete()" *ngIf="isFavorite">
+      <ion-icon name="star"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button size="small" color="warning" (click)="favoriteAthlete()" *ngIf="!isFavorite">
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-img width="640" height="426" [src]="athlete.image"></ion-img>
   <ion-card>
     <ion-card-header>
       <ion-card-title>
@@ -13,66 +22,67 @@
     </ion-card-header>
   </ion-card>
 
-<ion-grid>
-  <ion-row>
-    <ion-col  class="ion-text-center">
-      <strong>Victoires</strong>
-    </ion-col >
-    <ion-col>
-      <div class="verticalLine"> </div>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <strong>Défaites</strong>
-    </ion-col>
-  </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <strong>Victoires</strong>
+      </ion-col>
+      <ion-col>
+        <div class="verticalLine"> </div>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <strong>Défaites</strong>
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col  class="ion-text-center">
-      {{athlete.Victory}}
-    </ion-col >
-    <ion-col class="ion-text-center">
-      
-    </ion-col>
-    <ion-col class="ion-text-center">
-      {{athlete.Defeat}}
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        {{athlete.Victory}}
+      </ion-col>
+      <ion-col class="ion-text-center">
 
-  <ion-row>
-    <ion-col  class="ion-text-center">
-      <div class="col" ></div>
-    </ion-col >
-    <ion-col class="ion-text-center image">
-      {{athlete.sport}}
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <div class="col" ></div>
-    </ion-col>
-  </ion-row>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        {{athlete.Defeat}}
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col  class="ion-text-center">
-      <strong>Médailles</strong>
-    </ion-col >
-    <ion-col>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <strong>Nationalité</strong>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <div class="col"></div>
+      </ion-col>
+      <ion-col class="ion-text-center image">
+        <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>
+        {{athlete.sport}}
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <div class="col"></div>
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col  class="ion-text-center">
-      {{medalsNumber}}
-    </ion-col >
-    <ion-col>
-      <div class="verticalLine"> </div>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      {{athlete.Country.name}}
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <strong>Médailles</strong>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <strong>Nationalité</strong>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        {{medalsNumber}}
+      </ion-col>
+      <ion-col>
+        <div class="verticalLine"> </div>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-      <canvas #pieCanvas></canvas>
+  <canvas #pieCanvas></canvas>
 
 </ion-content>

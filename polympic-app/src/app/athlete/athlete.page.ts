@@ -1,8 +1,12 @@
+import { SPORTS_MOCKED } from './../../mocks/sport.mock';
 import { AthletesService } from './../athletes.service';
+import { FavoriteService } from './../favorite.service';
 import { Athlete } from './../athlete.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
+import { faSwimmer, faFutbol, faRunning, faBicycle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-athlete',
@@ -10,7 +14,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./athlete.page.scss'],
 })
 export class AthletePage implements OnInit {
-
+  faRunning = faRunning;
   @ViewChild("pieCanvas", {static: false}) barCanvas : ElementRef;
 
   private barChart: Chart;
@@ -20,8 +24,24 @@ export class AthletePage implements OnInit {
   bronzeNumber : Number;
   silverNumber: Number;
   goldNumber : Number;
+  isFavorite : boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private athletesService: AthletesService) { }
+  constructor(private activatedRoute: ActivatedRoute, 
+              private athletesService: AthletesService,
+              private favoriteService: FavoriteService) 
+  {}
+
+  favoriteAthlete() {
+    this.favoriteService.favoriteAthlete(this.athlete.id).then(() => {
+      this.isFavorite = true;
+    });
+  }
+ 
+  unfavoriteAthlete() {
+    this.favoriteService.unfavoriteAthlete(this.athlete.id).then(() => {
+      this.isFavorite = false;
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -32,6 +52,10 @@ export class AthletePage implements OnInit {
       
       const athleteId = paramMap.get('athleteId');
       this.athlete = this.athletesService.getAthlete(athleteId);
+      this.favoriteService.isFavoriteAthlete(athleteId).then(isFav => {
+        this.isFavorite = isFav;
+      })
+      console.log(this.isFavorite);
     })
 
     setTimeout( () => {
@@ -95,6 +119,14 @@ export class AthletePage implements OnInit {
     console.log(number)
     return number;
   }
+
+
+  getAthleteCountryFlag(flag) {
+    return 'flag-icon flag-icon-' + flag;
+  }
   
+  getSportIcon(sport) {
+    return SPORTS_MOCKED[sport];
+  }
 
 }

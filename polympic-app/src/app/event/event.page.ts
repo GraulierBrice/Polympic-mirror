@@ -35,8 +35,8 @@ export class EventPage implements OnInit {
     })
   }
 
-  countryFlag(flag) {
-    return `https://lipis.github.io/flag-icon-css/flags/1x1/${flag}.svg`;
+  getAthleteCountryFlag(flag) {
+    return 'flag-icon flag-icon-' + flag;
   }
 
 }

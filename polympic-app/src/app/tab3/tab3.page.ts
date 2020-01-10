@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FavoriteService } from './../favorite.service';
+import { AthletesService } from './../athletes.service';
+import { Athlete } from '../athlete.model';
 
 @Component({
   selector: 'app-tab3',
@@ -8,8 +11,22 @@ import { Component } from '@angular/core';
 export class Tab3Page {
   private editButtonColor: string = "warning";
   private isEditing: boolean = false;
+  private athleteItems : any;
 
-  constructor() {}
+  constructor(private athletesService: AthletesService, private favoriteService: FavoriteService) {}
+
+  ionViewDidEnter() { 
+    this.athleteItems = [];
+    this.favoriteService.getAllAthleteFavorite().then(results => {
+      console.log('result')
+      console.log(results)
+      results.forEach(id => {
+        this.athleteItems.push(this.athletesService.getAthlete(id)); 
+      });
+      console.log('athletes : ');
+      console.log(this.athleteItems);
+    });;
+  }
 
   getEditButtonColor() {
     return this.editButtonColor;
@@ -25,6 +42,6 @@ export class Tab3Page {
     }
   }
 
-  ionview
+  
 
 }

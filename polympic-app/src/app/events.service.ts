@@ -1,39 +1,18 @@
+import { Event } from 'src/app/event.model';
+
 import { AthletesService } from './athletes.service';
 import { Injectable } from '@angular/core';
+import { EVENTS_MOCKED } from './../mocks/event.mock'
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
+  
 
-  events = [
-    {
-      id: '0',
-      name: 'FINALE - 100m Nage libre M',
-      image: './assets/natation.jpg',
-      type: 'Natation',
-      place: 'Piscine Olympique',
-      beginDate: '09-01-2020',
-      beginHour: '15h25',
-      participants: [1, 0, 3],
-      ended: true,
-      winner: '0'
-    },
-    {
-      id: '1',
-      name: 'FINALE - 200m Athlétisme F',
-      image: './assets/athletic.jpg',
-      type: 'Athlétisme',
-      place: 'Stade Olympique',
-      beginDate: '09-01-2020',
-      beginHour: '17h10',
-      participants: [4, 1, 2],
-      ended: false,
-      winner: undefined
-    }
-  ]
-
+  events: Event[];
   constructor(private athletesService : AthletesService) { 
+    this.events = EVENTS_MOCKED;
   }
 
 
@@ -62,6 +41,5 @@ export class EventsService {
       return athlete.id === winnerId;
     })
   }
-
 
 }
