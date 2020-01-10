@@ -1,5 +1,6 @@
 
 import { HeaderComponent } from './../header/header.component';
+import { HeaderTabsComponent } from './../header-tabs/header-tabs.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         FormsModule,
         FontAwesomeModule
     ],
-    declarations: [HeaderComponent],
-    exports: [HeaderComponent]
+    declarations: [HeaderComponent, HeaderTabsComponent],
+    exports: [HeaderComponent, HeaderTabsComponent]
 })
 export class ComponentsModule {}
