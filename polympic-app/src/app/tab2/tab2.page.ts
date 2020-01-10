@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Map, latLng, tileLayer, Layer, marker, icon, Util } from 'leaflet';
+import { Map, latLng, tileLayer, Layer, marker, icon, Util, popup } from 'leaflet';
+import { EVENTS_MOCKED } from 'src/mocks/event.mock';
 
 @Component({
   selector: 'app-tab2',
@@ -17,20 +18,21 @@ export class Tab2Page {
     this.leafletMap('mapId');
   }
   
-  leafletMap(mapId,drag=true) {
+  leafletMap(mapId,) {
 
 
     // In setView add latLng and zoom
-    this.map = new Map(mapId,{dragging:drag}).setView([48.9244592, 2.3601645], 15)
+    this.map = new Map(mapId).setView([48.9244592, 2.3601645], 15)
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
     {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
   
-
+    EVENTS_MOCKED.forEach(e => {
+      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.start.toLocaleString());
+    });
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
-    this.setMarker(48.9244592,2.3601645, 'football.png','Stade de France<br>');
     
   }
 
@@ -49,16 +51,18 @@ export class Tab2Page {
 
     console.log(this.map);
     var map = this.map;
-    marker([x, y], {icon:mapIcon})
+    var markerPopup = popup({autoPanPadding:[150,75],closeButton:false,autoClose:false,closeOnEscapeKey:false})
+    var eventMarker = marker([y, x], {icon:mapIcon})
       .addTo(this.map)
-      .bindPopup(popupText,{autoPanPadding:[150,75],closeButton:false,autoClose:false,closeOnEscapeKey:false})
+      .bindPopup(popupText,markerPopup)
       .on('mousedown', function () {
         map.dragging.disable();
         map
         .on('mouseup',function(){
           console.log("dragend");
           map.dragging.enable();
-        })
+        });
+        eventMarker.openPopup();
         console.log("mousedown! ");
       })
       ;
