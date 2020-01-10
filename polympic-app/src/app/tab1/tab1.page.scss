@@ -6,3 +6,10 @@
 .mainTitle {
   font-size: large;
 }
+
+.noEventsAvailable {
+  display: flex!important;
+  align-content: center!important;
+  align-items: center!important;
+  background-color: #000;
+}

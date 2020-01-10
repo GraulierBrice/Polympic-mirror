@@ -53,6 +53,10 @@
       </ion-card>
 
     </ion-item>
+    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="events.length <= 0 || !events">
+        Pas d'événement disponible.
+    </ion-item>
+
   </ion-list>
- 
+
 </ion-content>
