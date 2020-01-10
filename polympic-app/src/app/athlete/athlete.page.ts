@@ -1,8 +1,11 @@
+import { SPORTS_MOCKED } from './../../mocks/sport.mock';
 import { AthletesService } from './../athletes.service';
 import { Athlete } from './../athlete.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
+import { faSwimmer, faFutbol, faRunning, faBicycle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-athlete',
@@ -10,7 +13,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./athlete.page.scss'],
 })
 export class AthletePage implements OnInit {
-
+  faRunning = faRunning;
   @ViewChild("pieCanvas", {static: false}) barCanvas : ElementRef;
 
   private barChart: Chart;
@@ -100,4 +103,9 @@ export class AthletePage implements OnInit {
   getAthleteCountryFlag(flag) {
     return 'flag-icon flag-icon-' + flag;
   }
+  
+  getSportIcon(sport) {
+    return SPORTS_MOCKED[sport];
+  }
+
 }

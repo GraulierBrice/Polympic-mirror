@@ -4,7 +4,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '0',
         image: '../assets/athletes/mbappe.jpg',
         name: 'Christophe Lemaire',
-        sport: 'Athlète',
+        sport: 'Athlétisme',
         Victory: '15',
         Defeat: '9',
         Medals: [
@@ -32,7 +32,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '1',
         image: '../assets/athletes/jonas.jpg',
         name: 'Mathieu Legrand',
-        sport: 'Athlète',
+        sport: 'Athlétisme',
         Victory: '7',
         Defeat: '11',
         Medals: [
@@ -59,7 +59,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '3',
         image: '../assets/athletes/meuf.jpg',
         name: 'Isabel Quartier',
-        sport: 'Athlète',
+        sport: 'Athlétisme',
         Victory: '11',
         Defeat: '15',
         Medals: [
@@ -86,7 +86,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '4',
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
-        sport: 'Athlète',
+        sport: 'Athlétisme',
         Victory: '12',
         Defeat: '7',
         Medals: [
