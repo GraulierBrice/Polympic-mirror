@@ -14,6 +14,8 @@ import { SPORTS_MOCKED } from './../../mocks/sport.mock'
 export class Tab1Page {
 
   events: Event[];
+  selected_event;
+  
   constructor(service: EventsService, private navCtrl: NavController) {
     this.events = service.events;
   }

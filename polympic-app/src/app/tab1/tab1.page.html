@@ -2,7 +2,12 @@
 
 
 <ion-content>
+    
   <ion-list>
+      <!-- <ion-searchbar animated placeholder="Cherchez par nom d'événement ou sport..."></ion-searchbar> -->
+      <ionic-selectable
+      canSearch]="true"
+      ></ionic-selectable>
     <ion-item class="eventItem" *ngFor = "let event of events" >
       <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
         
