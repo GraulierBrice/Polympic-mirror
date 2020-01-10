@@ -24,8 +24,8 @@
             <ion-row class="ion-no-padding">
               <ion-col>
                   <h3>
-                      <fa-icon [icon]="getSportIcon(event.type)"></fa-icon>
-                       <strong>{{event.place}}</strong>
+                      <img [src]="event.icon" style="width: 35px; height: 35px; float:left ;"/>
+                       <strong>{{event.place.name}}</strong>
                   </h3>
                  
               </ion-col>
@@ -33,7 +33,7 @@
 
             <ion-row class="ion-no-padding">
               <ion-col size="auto">
-                {{event.beginDate}} - {{event.beginHour}}
+                {{event.beginDate.toLocaleString()}}
                 
               </ion-col >
   

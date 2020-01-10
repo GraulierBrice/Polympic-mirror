@@ -54,7 +54,7 @@ export class Tab2Page {
   setMarker(x=0, y=0, iconImage, popupText){
     var mapIcon = icon({
       iconUrl: '../assets/icon/map-marker.png',
-      shadowUrl: '../assets/icon/'+iconImage,
+      shadowUrl:iconImage,
   
       iconSize:     [48, 48], // size of the icon
       shadowSize:   [24, 24], // size of the shadow
