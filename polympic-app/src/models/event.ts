@@ -7,7 +7,7 @@ export interface Event {
     type: string,
     place: Place,
     beginDate: Date,
-    participants: [1, 0, 3],
-    ended: true,
-    winner: '0'
+    participants: Number[],
+    ended: boolean,
+    winner: Number
 }
