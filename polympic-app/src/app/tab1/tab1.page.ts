@@ -3,6 +3,7 @@ import { Athlete } from '../athlete.model';
 import { Component } from '@angular/core';
 import { Event } from '../event.model';
 import { NavController } from '@ionic/angular';
+import { SPORTS_MOCKED } from './../../mocks/sport.mock'
 
 
 @Component({
@@ -15,7 +16,9 @@ export class Tab1Page {
   events: Event[];
   constructor(service: EventsService, private navCtrl: NavController) {
     this.events = service.events;
-    
   }
 
+  getSportIcon(sport) {
+    return SPORTS_MOCKED[sport];
+  }
 }

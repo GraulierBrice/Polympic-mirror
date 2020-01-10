@@ -14,11 +14,15 @@
         </ion-card-header>
         <img [src]="event.image"/>
           <ion-grid>
-              <ion-item>
-                  <ion-icon name="football" item-start large></ion-icon>
-                  <h2>{{event.place}}</h2>
-                  <p>{{event.address}}</p>
-                </ion-item>
+            <ion-row class="ion-no-padding">
+              <ion-col>
+                  <h3>
+                      <ion-icon [name]="getSportIcon(event.type)"></ion-icon>
+                       <strong>{{event.place}}</strong>
+                  </h3>
+                 
+              </ion-col>
+            </ion-row>
 
             <ion-row class="ion-no-padding">
               <ion-col size="auto">
