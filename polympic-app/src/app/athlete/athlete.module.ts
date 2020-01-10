@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { AthletePageRoutingModule } from './athlete-routing.module';
 
 import { AthletePage } from './athlete.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AthletePage } from './athlete.page';
     FormsModule,
     IonicModule,
     ComponentsModule,
+    FontAwesomeModule,
     AthletePageRoutingModule
   ],
   declarations: [AthletePage]

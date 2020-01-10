@@ -2,16 +2,36 @@
 
 
 <ion-content>
+    
   <ion-list>
+      <ion-searchbar
+       animated placeholder="Cherchez par nom ou sport favori..."
+       (ionInput) = "filterEvents($event)"
+       >
+      </ion-searchbar>
+
     <ion-item class="eventItem" *ngFor = "let event of events" >
       <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
-        <img [src]="event.image"/>
+        
         <ion-card-header>
-          <ion-card-subtitle>{{event.type}}</ion-card-subtitle>
-          <ion-card-title>{{event.name}}</ion-card-title>
+            <ion-card-title class="mainTitle">{{event.name}}</ion-card-title>
+          <ion-card-subtitle>
+            {{event.type}}
+          </ion-card-subtitle>
+          
         </ion-card-header>
-        <ion-card-content>
+        <img [src]="event.image"/>
           <ion-grid>
+            <ion-row class="ion-no-padding">
+              <ion-col>
+                  <h3>
+                      <fa-icon [icon]="getSportIcon(event.type)"></fa-icon>
+                       <strong>{{event.place}}</strong>
+                  </h3>
+                 
+              </ion-col>
+            </ion-row>
+
             <ion-row class="ion-no-padding">
               <ion-col size="auto">
                 {{event.beginDate}} - {{event.beginHour}}
@@ -28,12 +48,15 @@
           </ion-grid>
 
 
-        </ion-card-content>
         <ion-button  [routerLink] = "['/athletes/', 1]" expand="block" size="large">Go 
           <ion-icon name="navigate"></ion-icon></ion-button> 
       </ion-card>
 
     </ion-item>
+    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="events.length <= 0 || !events">
+        Pas d'événement disponible.
+    </ion-item>
+
   </ion-list>
- 
+
 </ion-content>

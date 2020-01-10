@@ -52,6 +52,7 @@
         <div class="col"></div>
       </ion-col>
       <ion-col class="ion-text-center image">
+        <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>
         {{athlete.sport}}
       </ion-col>
       <ion-col class="ion-text-center">
@@ -78,7 +79,7 @@
         <div class="verticalLine"> </div>
       </ion-col>
       <ion-col class="ion-text-center">
-        {{athlete.Country.name}}
+        <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
       </ion-col>
     </ion-row>
   </ion-grid>
