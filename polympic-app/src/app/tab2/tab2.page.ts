@@ -18,7 +18,7 @@ export class Tab2Page {
     this.leafletMap('mapId');
   }
   
-  leafletMap(mapId,) {
+  leafletMap(mapId) {
 
 
     // In setView add latLng and zoom
@@ -30,7 +30,7 @@ export class Tab2Page {
     }).addTo(this.map);
   
     EVENTS_MOCKED.forEach(e => {
-      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.start.toLocaleString());
+      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString());
     });
     var map = this.map;
     var zoom = map.getZoom();
