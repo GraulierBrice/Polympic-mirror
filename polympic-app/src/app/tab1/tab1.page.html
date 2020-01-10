@@ -5,9 +5,7 @@
     
   <ion-list>
       <!-- <ion-searchbar animated placeholder="Cherchez par nom d'événement ou sport..."></ion-searchbar> -->
-      <ionic-selectable
-      canSearch]="true"
-      ></ionic-selectable>
+
     <ion-item class="eventItem" *ngFor = "let event of events" >
       <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
         
@@ -22,7 +20,7 @@
             <ion-row class="ion-no-padding">
               <ion-col>
                   <h3>
-                      <ion-icon [name]="getSportIcon(event.type)"></ion-icon>
+                      <fa-icon [icon]="getSportIcon(event.type)"></fa-icon>
                        <strong>{{event.place}}</strong>
                   </h3>
                  

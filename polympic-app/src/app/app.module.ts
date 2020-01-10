@@ -9,11 +9,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicSelectableModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicSelectableModule, FontAwesomeModule],
   providers: [
     StatusBar,
     SplashScreen,
