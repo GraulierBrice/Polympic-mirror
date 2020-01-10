@@ -5,13 +5,21 @@
   <ion-list>
     <ion-item class="eventItem" *ngFor = "let event of events" >
       <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
-        <img [src]="event.image"/>
+        
         <ion-card-header>
-          <ion-card-subtitle>{{event.type}}</ion-card-subtitle>
-          <ion-card-title>{{event.name}}</ion-card-title>
+            <ion-card-title class="ion-text-center mainTitle">{{event.name}}</ion-card-title>
+          <ion-card-subtitle>
+            {{event.type}}</ion-card-subtitle>
+          
         </ion-card-header>
-        <ion-card-content>
+        <img [src]="event.image"/>
           <ion-grid>
+              <ion-item>
+                  <ion-icon name="football" item-start large></ion-icon>
+                  <h2>{{event.place}}</h2>
+                  <p>{{event.address}}</p>
+                </ion-item>
+
             <ion-row class="ion-no-padding">
               <ion-col size="auto">
                 {{event.beginDate}} - {{event.beginHour}}
@@ -28,7 +36,6 @@
           </ion-grid>
 
 
-        </ion-card-content>
         <ion-button  [routerLink] = "['/athletes/', 1]" expand="block" size="large">Go 
           <ion-icon name="navigate"></ion-icon></ion-button> 
       </ion-card>

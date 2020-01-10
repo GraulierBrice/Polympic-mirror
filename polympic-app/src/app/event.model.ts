@@ -6,6 +6,7 @@ export interface Event {
     name: String;
     type: String;
     place: String;
+    address: String;
     beginDate: String;
     beginHour: String;
     participants: Number[];
