@@ -14,20 +14,17 @@ import { SPORTS_MOCKED } from './../../mocks/sport.mock'
 export class Tab1Page {
 
   events: Event[];
-  eventsService: EventsService;
-  selected_event;
   
-  constructor(service: EventsService, private navCtrl: NavController) {
-    this.eventsService = service;
-    this.events = this.eventsService.events;
+  constructor(private service: EventsService, private navCtrl: NavController) {
+    this.events = this.service.events;
   }
 
   getSportIcon(sport) {
     return SPORTS_MOCKED[sport];
   }
 
-  filterEvents(e) {
-    this.events = this.eventsService.events;
+   filterEvents(e) {
+    this.events = this.service.events;
     const val = e.target.value;
     if(val && val.trim() != '') {
       this.events = this.events.filter( event => {

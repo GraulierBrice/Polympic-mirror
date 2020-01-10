@@ -47,7 +47,7 @@
           </ion-grid>
 
 
-        <ion-button  [routerLink] = "['/athletes/', 1]" expand="block" size="large">Go 
+        <ion-button *ngIf="!event.ended" [routerLink] = "['/athletes/', 1]" expand="block" size="large">Je veux m'y rendre 
           <ion-icon name="navigate"></ion-icon></ion-button> 
       </ion-card>
 
