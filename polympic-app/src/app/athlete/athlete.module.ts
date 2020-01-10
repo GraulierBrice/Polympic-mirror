@@ -1,19 +1,22 @@
 import { ComponentsModule } from './../components/components.module';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
+
+import { IonicModule } from '@ionic/angular';
+
+import { AthletePageRoutingModule } from './athlete-routing.module';
+
+import { AthletePage } from './athlete.page';
 
 @NgModule({
   imports: [
-    IonicModule,
     CommonModule,
     FormsModule,
+    IonicModule,
     ComponentsModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    AthletePageRoutingModule
   ],
-  declarations: [Tab1Page]
+  declarations: [AthletePage]
 })
-export class Tab1PageModule {}
+export class AthletePageModule {}
