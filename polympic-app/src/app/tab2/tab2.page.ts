@@ -33,11 +33,18 @@ export class Tab2Page {
       this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.start.toLocaleString());
     });
     var map = this.map;
+    var zoom = map.getZoom();
     map
+    .on('mousedown',function(){
+      zoom = map.getZoom();
+    })
     .on('mouseup',function(){
       console.log("dragend");
       map.dragging.enable();
+      map.setZoom(zoom);
     })
+    .on('popupclose',function(){
+    });
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
     
   }
@@ -59,15 +66,14 @@ export class Tab2Page {
     var map = this.map;
     var eventMarker = marker([y, x], {icon:mapIcon})
       .addTo(this.map)
-      .bindPopup(popupText,{autoPanPadding:[50,75],closeButton:false,autoClose:false})
+      .bindPopup(popupText,{autoPanPadding:[50,75],closeButton:false})
       .on('mousedown', function () {
-        
-        map.flyTo(eventMarker.getLatLng(),Math.max(15,map.getZoom()))
-        map.dragging.disable()
-        eventMarker.openPopup();
+        map.flyTo(eventMarker.getLatLng(),map.getZoom()+1)
+        .dragging.disable();
         console.log("mousedown! ");
       })
       .on('click',function () {
+        map.flyTo(eventMarker.getLatLng())
         eventMarker.openPopup();
         console.log("clicked! ");
       })
