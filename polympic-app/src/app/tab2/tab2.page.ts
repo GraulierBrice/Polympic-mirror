@@ -37,6 +37,7 @@ export class Tab2Page {
     map
     .on('mousedown',function(){
       zoom = map.getZoom();
+      map.closePopup();
     })
     .on('mouseup',function(){
       console.log("dragend");
@@ -63,16 +64,18 @@ export class Tab2Page {
     });
 
     var map = this.map;
+    var zoom = map.getZoom();
     var eventMarker = marker([y, x], {icon:mapIcon})
       .addTo(this.map)
-      .bindPopup(popupText,{autoPanPadding:[50,75],closeButton:false})
+      .bindPopup(popupText,{closeButton:false})
       .on('mousedown', function () {
+        zoom = map.getZoom();
         map.flyTo(eventMarker.getLatLng(),map.getZoom()+1)
         .dragging.disable();
         console.log("mousedown! ");
       })
       .on('click',function () {
-        map.flyTo(eventMarker.getLatLng())
+        map.flyTo(eventMarker.getLatLng(),zoom)
         eventMarker.openPopup();
         console.log("clicked! ");
       })
