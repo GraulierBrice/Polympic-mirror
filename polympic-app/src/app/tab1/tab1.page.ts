@@ -1,4 +1,8 @@
+import { EventsService } from './../events.service';
+import { Athlete } from '../athlete.model';
 import { Component } from '@angular/core';
+import { Event } from '../event.model';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +11,12 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+
+  events: Event[];
+
+  constructor(service: EventsService, private navCtrl: NavController) {
+    this.events = service.events;
+    
+  }
 
 }

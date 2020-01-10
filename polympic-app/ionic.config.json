@@ -1,5 +1,7 @@
 {
   "name": "polympic-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

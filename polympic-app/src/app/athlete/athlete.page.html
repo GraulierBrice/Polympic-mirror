@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+
+<ion-content>
+  <ion-img width = "640" height = "426" [src]="athlete.image"></ion-img>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <div class="ion-text-center eventHeader">
+          <h3>{{athlete.name}}</h3>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+<ion-grid>
+  <ion-row>
+    <ion-col  class="ion-text-center">
+      <strong>Victoires</strong>
+    </ion-col >
+    <ion-col>
+      <div class="verticalLine"> </div>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <strong>Défaites</strong>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col  class="ion-text-center">
+      {{athlete.Victory}}
+    </ion-col >
+    <ion-col class="ion-text-center">
+      
+    </ion-col>
+    <ion-col class="ion-text-center">
+      {{athlete.Defeat}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col  class="ion-text-center">
+      <div class="col" ></div>
+    </ion-col >
+    <ion-col class="ion-text-center image">
+      {{athlete.sport}}
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <div class="col" ></div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col  class="ion-text-center">
+      <strong>Médailles</strong>
+    </ion-col >
+    <ion-col>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <strong>Nationalité</strong>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col  class="ion-text-center">
+      {{medalsNumber}}
+    </ion-col >
+    <ion-col>
+      <div class="verticalLine"> </div>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      {{athlete.Country.name}}
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+      <canvas #pieCanvas></canvas>
+
+</ion-content>
