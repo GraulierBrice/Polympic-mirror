@@ -10,23 +10,19 @@ export class Tab2Page {
   
   map: Map;
   // Before map is being initialized.
-  mapsPlaceholder: any[] = [];
 
   constructor() {}
 
   ionViewDidEnter() { 
-    this.leafletMap();
+    this.leafletMap('mapId');
   }
   
-  leafletMap() {
+  leafletMap(mapId,drag=true) {
 
 
-    this.mapsPlaceholder.push(this.map); // Use whatever global scope variable you like.
     // In setView add latLng and zoom
-    this.map = new Map('mapId').setView([48.9244592, 2.3601645], 15)
-    .on('popupopen', function (popup) {
-      console.log("popup opened !", popup);
-    })
+    this.map = new Map(mapId,{dragging:drag}).setView([48.9244592, 2.3601645], 15)
+
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
     {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -35,6 +31,7 @@ export class Tab2Page {
 
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
     this.setMarker(48.9244592,2.3601645, 'football.png','Stade de France<br>');
+    
   }
 
   //var x = 48.9244592, y = 2.3601645
@@ -51,18 +48,18 @@ export class Tab2Page {
     });
 
     console.log(this.map);
-    console.log(this.mapsPlaceholder.pop())
+    var map = this.map;
     marker([x, y], {icon:mapIcon})
       .addTo(this.map)
       .bindPopup(popupText,{autoPanPadding:[150,75],closeButton:false,autoClose:false,closeOnEscapeKey:false})
       .on('mousedown', function () {
-        this.map=this.mapsPlaceholder.pop();
-        //.dragging.disable();
+        map.dragging.disable();
+        map
+        .on('mouseup',function(){
+          console.log("dragend");
+          map.dragging.enable();
+        })
         console.log("mousedown! ");
-      })
-
-      .on('mouseup',function (){
-        console.log("mouseup! ");
       })
       ;
   }
