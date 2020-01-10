@@ -6,7 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  private editButtonColor: string = "warning";
+  private isEditing: boolean = false;
 
   constructor() {}
+
+  getEditButtonColor() {
+    return this.editButtonColor;
+  }
+
+  toggleEdit(){
+    if (this.isEditing){
+      this.isEditing = false;
+      this.editButtonColor = "warning";
+    } else {
+      this.isEditing = true;
+      this.editButtonColor = "danger";
+    }
+  }
+
+  ionview
 
 }
