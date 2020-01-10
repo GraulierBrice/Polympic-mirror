@@ -1,4 +1,5 @@
 import { AthletesService } from './../athletes.service';
+import { FavoriteService } from './../favorite.service';
 import { Athlete } from './../athlete.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -20,8 +21,24 @@ export class AthletePage implements OnInit {
   bronzeNumber : Number;
   silverNumber: Number;
   goldNumber : Number;
+  isFavorite : boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private athletesService: AthletesService) { }
+  constructor(private activatedRoute: ActivatedRoute, 
+              private athletesService: AthletesService,
+              private favoriteService: FavoriteService) 
+  {}
+
+  favoriteAthlete() {
+    this.favoriteService.favoriteAthlete(this.athlete.id).then(() => {
+      this.isFavorite = true;
+    });
+  }
+ 
+  unfavoriteAthlete() {
+    this.favoriteService.unfavoriteAthlete(this.athlete.id).then(() => {
+      this.isFavorite = false;
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -32,6 +49,10 @@ export class AthletePage implements OnInit {
       
       const athleteId = paramMap.get('athleteId');
       this.athlete = this.athletesService.getAthlete(athleteId);
+      this.favoriteService.isFavoriteAthlete(athleteId).then(isFav => {
+        this.isFavorite = isFav;
+      })
+      console.log(this.isFavorite);
     })
 
     setTimeout( () => {
