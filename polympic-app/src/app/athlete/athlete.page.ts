@@ -95,6 +95,9 @@ export class AthletePage implements OnInit {
     console.log(number)
     return number;
   }
-  
 
+
+  getAthleteCountryFlag(flag) {
+    return 'flag-icon flag-icon-' + flag;
+  }
 }

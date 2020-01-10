@@ -17,7 +17,7 @@
     <ion-label>
       {{winner.name}}
       </ion-label>
-      <span class="flag-icon flag-icon-fr"></span>
+      <span [class]="getAthleteCountryFlag(winner.Country.flag)"></span>
   </ion-item>
 </div>
   
@@ -31,8 +31,9 @@
       </ion-avatar >
       <ion-label>
         {{participant.name}}
-        <span class="flag-icon flag-icon-fr"></span>
       </ion-label>
+        <span [class]="getAthleteCountryFlag(participant.Country.flag)"></span>
+      
     </ion-item>
   </ion-list>
 

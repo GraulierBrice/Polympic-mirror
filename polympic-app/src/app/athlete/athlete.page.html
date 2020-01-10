@@ -69,7 +69,7 @@
       <div class="verticalLine"> </div>
     </ion-col>
     <ion-col class="ion-text-center">
-      {{athlete.Country.name}}
+        <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
     </ion-col>
   </ion-row>
   </ion-grid>
