@@ -1,7 +1,7 @@
 import { EventsService } from './../events.service';
 import { Athlete } from '../athlete.model';
 import { Component } from '@angular/core';
-import { Event } from '../event.model';
+import { Event } from '../../models/event';
 import { NavController } from '@ionic/angular';
 import { SPORTS_MOCKED } from './../../mocks/sport.mock'
 

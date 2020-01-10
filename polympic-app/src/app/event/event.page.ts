@@ -3,7 +3,7 @@ import { Athlete } from '../athlete.model';
 import { EventsService } from './../events.service';
 
 import { Component, OnInit } from '@angular/core';
-import { Event } from 'src/app/event.model';
+import { Event } from '../../models/event';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,7 +31,7 @@ export class EventPage implements OnInit {
       const eventId = paramMap.get('eventId');
       this.event = this.eventsService.getEvent(eventId);
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
-      this.winner = this.eventsService.getWinner(this.event.winner);
+      this.winner = this.eventsService.getWinner(String(this.event.winner));
     })
   }
 

@@ -1,4 +1,4 @@
-import { Event } from 'src/app/event.model';
+import { Event } from '../models/event';
 
 import { AthletesService } from './athletes.service';
 import { Injectable } from '@angular/core';
@@ -22,7 +22,7 @@ export class EventsService {
 
   getEvent(eventId: String) {
     return {...this.events.find(event => {
-      return event.id === eventId;
+      return event.id === Number(eventId);
     })}
   }
 
