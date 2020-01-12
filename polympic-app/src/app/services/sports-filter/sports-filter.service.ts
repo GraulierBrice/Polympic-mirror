@@ -91,8 +91,15 @@ export class SportsFilterService {
     }
 
     else {
-
+      this.eventsTypeSelected.forEach( (item, index) => {
+        if (item === eventType) this.eventsTypeSelected.splice(index, 1);
+      } )
+      if(this.sportsSelected.length === 0 && this.eventsTypeSelected.length === 0) {
+        this.eventsService.initializeEvents();
+      }
+      else this.launchFilter();
     }
+    eventType.clicked = !eventType.clicked;
   }
 
   getEventsTypes() {

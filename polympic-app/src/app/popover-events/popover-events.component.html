@@ -19,7 +19,7 @@
   <ion-grid>
     <ion-row class="row" responsive-sm wrap>
       <ion-col *ngFor="let eventType of  getAllEventsTypes()" size="6" (click)="filterByEventType(eventType)">
-          <div  class="img-wrapper">
+          <div [ngStyle]="{'filter': getSportContrast(eventType)}" class="img-wrapper">
             <!-- [ngStyle]="{'filter': getSportContrast(sport)}" // <img (click)="filterBySport(sport)"  [src]="eventType.image" /> -->
             <fa-icon  [icon]="eventType.image"></fa-icon>
             {{eventType.name}}
