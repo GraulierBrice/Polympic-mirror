@@ -17,6 +17,7 @@ export class EventPage implements OnInit {
   event : Event;
   participants : Athlete[];
   winner: Athlete;
+  pathOnClick = '/athletes/';
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {
     
    }
@@ -30,8 +31,12 @@ export class EventPage implements OnInit {
 
       const eventId = paramMap.get('eventId');
       this.event = this.eventsService.getEvent(eventId);
+      
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
       this.winner = this.eventsService.getWinner(this.event.winner);
+
+      if(!this.event.teamEvent) this.pathOnClick = '/athletes';
+      else this.pathOnClick = '/teams';
     })
   }
 

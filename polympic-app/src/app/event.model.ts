@@ -9,6 +9,7 @@ export interface Event {
     address: String;
     beginDate: String;
     beginHour: String;
+    teamEvent: boolean;
     participants: Number[];
     ended: boolean;
     winner: String;

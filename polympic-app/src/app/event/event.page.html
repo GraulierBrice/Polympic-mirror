@@ -25,7 +25,7 @@
 <ion-content>
   <span class="participantsText">Participants :</span>
   <ion-list>
-    <ion-item *ngFor="let participant of participants" [routerLink] = "['/athletes/', participant.id]">
+    <ion-item *ngFor="let participant of participants" [routerLink] = "[pathOnClick, participant.id]">
       <ion-avatar slot="start">
         <ion-img [src]="participant.image"> </ion-img>
       </ion-avatar >
