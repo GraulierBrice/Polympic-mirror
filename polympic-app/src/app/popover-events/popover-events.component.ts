@@ -32,38 +32,11 @@ export class PopoverEventsComponent implements OnInit {
     this.sportsFilterService.resetFilters();
   }
 
-
-/*   filterBySport(sport) {
-    
-    if(!sport.clicked) {
-      this.sportsSelected.push(sport);
-      console.log(`Sports Selected : ${this.sportsSelected}`);
-      this.launchFilter();
-    }
-    else {
-      this.sportsSelected.forEach( (item, index) => {
-        if (item === sport) this.sportsSelected.splice(index, 1);
-      } )
-      if(this.sportsSelected.length === 0) {
-        this.eventsService.initializeEvents();
-      }
-      else this.launchFilter();
-    }
-    sport.clicked = !sport.clicked;
+  filterByEventType(eventType) {
+    this.sportsFilterService.filterEventType(eventType);
   }
 
-  launchFilter() {
-    let selectedValues = this.sportsSelected.map(sport => { return sport.name; })
-    this.eventsService.initializeEvents();
-    console.log(selectedValues);
-    this.eventsService.events = this.eventsService.events.filter( event => {
-      console.log(event.type);
-      return selectedValues.includes(event.type);
-    } )
+  getAllEventsTypes() {
+    return this.sportsFilterService.getEventsTypes();
   }
-
-  getSportContrast(sport) {
-    if(sport.clicked) return 'contrast(0.5)';
-    else return 'contrast(1)';
-  } */
 }

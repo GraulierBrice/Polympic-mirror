@@ -1,22 +1,25 @@
+
+import { SPORTS_ICONS_MOCKED } from './sportIcons.mock';
+
 export const SPORTS_FILTERS_MOCKED = [
     {
         name: 'Natation',
-        image: './assets/natation.jpg',
+        image: SPORTS_ICONS_MOCKED['Natation'],
         clicked: false
     },
     {
         name: 'Athlétisme',
-        image: './assets/athletic.jpg',
+        image: SPORTS_ICONS_MOCKED['Athlétisme'],
         clicked: false
     },
     {
         name: 'Football',
-        image: './assets/football.jpg',
+        image: SPORTS_ICONS_MOCKED['Football'],
         clicked: false
     },
     {
         name: 'Basketball',
-        image: './assets/basketball.jpg',
+        image: SPORTS_ICONS_MOCKED['Basketball'],
         clicked: false
     }
 ]

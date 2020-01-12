@@ -1,4 +1,6 @@
+import { EventType } from './../app/eventType.model';
 import { Event } from './../app/event.model';
+import { EVENTSTYPES_MOCKED } from './eventType.mock';
 
 export const EVENTS_MOCKED: Event[] = [
     {
@@ -10,7 +12,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '7 Avenue des Castelans, 98000 Paris',
         beginDate: '09-01-2020',
         beginHour: '15h25',
-        teamEvent: false,
+        eventType: EVENTSTYPES_MOCKED[1],
         participants: [1, 0, 3],
         ended: true,
         winner: '0'
@@ -24,7 +26,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '2 Rue Amador Lopez, 06150 Paris',
         beginDate: '14-01-2020',
         beginHour: '17h10',
-        teamEvent: false,
+        eventType: EVENTSTYPES_MOCKED[1],
         participants: [4, 1, 2],
         ended: false,
         winner: undefined
@@ -38,7 +40,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '2 Rue Amador Lopez, 06150 Paris',
         beginDate: '20-01-2020',
         beginHour: '11h00',
-        teamEvent: true,
+        eventType: EVENTSTYPES_MOCKED[0],
         participants: [0, 1],
         ended: false,
         winner: undefined
@@ -52,7 +54,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '2 Rue Amador Lopez, 06150 Paris',
         beginDate: '13-01-2020',
         beginHour: '15h40',
-        teamEvent: true,
+        eventType: EVENTSTYPES_MOCKED[0],
         participants: [0, 1],
         ended: false,
         winner: undefined
@@ -66,7 +68,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '2 Rue Amador Lopez, 06150 Paris',
         beginDate: '12-01-2020',
         beginHour: '11h35',
-        teamEvent: false,
+        eventType: EVENTSTYPES_MOCKED[1],
         participants: [4, 1, 2],
         ended: false,
         winner: undefined

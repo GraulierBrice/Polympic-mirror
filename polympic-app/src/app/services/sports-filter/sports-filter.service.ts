@@ -1,6 +1,8 @@
+import { EventType } from './../../eventType.model';
 import { EventsService } from './../events/events.service';
 import { SPORTS_FILTERS_MOCKED } from './../../../mocks/sportFilter.mock';
 import { Injectable } from '@angular/core';
+import { EVENTSTYPES_MOCKED } from 'src/mocks/eventType.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +12,14 @@ export class SportsFilterService {
   private sportsFilter;
   private sportsSelected;
 
+  private eventsTypes : EventType[];
+  private eventsTypeSelected;
+
   constructor(private eventsService: EventsService) {
     this.sportsFilter = SPORTS_FILTERS_MOCKED;
     this.sportsSelected = [];
+    this.eventsTypeSelected = [];
+    this.initialiseEventsTypes();
    }
 
    getSportsFilters() {
@@ -30,7 +37,7 @@ export class SportsFilterService {
       this.sportsSelected.forEach( (item, index) => {
         if (item === sport) this.sportsSelected.splice(index, 1);
       } )
-      if(this.sportsSelected.length === 0) {
+      if(this.sportsSelected.length === 0 && this.eventsTypeSelected.length === 0) {
         this.eventsService.initializeEvents();
       }
       else this.launchFilter();
@@ -40,12 +47,24 @@ export class SportsFilterService {
 
   launchFilter() {
     let selectedValues = this.sportsSelected.map(sport => { return sport.name; })
+    let selectedTypes = this.eventsTypeSelected.map( eventType => { return eventType.name; })
+
     this.eventsService.initializeEvents();
     console.log(selectedValues);
-    this.eventsService.events = this.eventsService.events.filter( event => {
-      console.log(event.type);
-      return selectedValues.includes(event.type);
-    } )
+
+    if(selectedTypes.length) {
+      this.eventsService.events = this.eventsService.events.filter( event => {
+        return selectedTypes.includes(event.eventType.name);
+      } )
+    }
+
+    if(selectedValues.length) {
+      this.eventsService.events = this.eventsService.events.filter( event => {
+        console.log(event.type);
+        return selectedValues.includes(event.type);
+      } )
+    }
+
   }
 
   getSportContrast(sport) {
@@ -59,5 +78,24 @@ export class SportsFilterService {
     } )
     this.sportsSelected = [];
     this.eventsService.initializeEvents();
+  }
+
+  initialiseEventsTypes() {
+    this.eventsTypes = EVENTSTYPES_MOCKED;
+  }
+
+  filterEventType(eventType) {
+    if(!this.eventsTypeSelected.includes(eventType)) {
+      this.eventsTypeSelected.push(eventType);
+      this.launchFilter();
+    }
+
+    else {
+
+    }
+  }
+
+  getEventsTypes() {
+    return this.eventsTypes;
   }
 }

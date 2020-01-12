@@ -1,3 +1,4 @@
+
 import { TeamsService } from './../teams/teams.service';
 import { Event } from 'src/app/event.model';
 
@@ -12,6 +13,7 @@ export class EventsService {
   
 
   events: Event[];
+
   constructor(private athletesService : AthletesService, private teamsService : TeamsService) { 
     this.initializeEvents();
   }
@@ -30,12 +32,12 @@ export class EventsService {
   getParticipantsToEvent(eventId: String) {
     const event = this.getEvent(eventId);
     var arr;
-    if(event.teamEvent) {
+    if(event.eventType.name === 'Team') {
       arr = this.teamsService.getTeams().filter(function(team) {
         return event.participants.indexOf(Number(team.id)) !== -1;
       })
     }
-    else {
+    else if(event.eventType.name === 'Solo') {
       arr = this.athletesService.getAthletes().filter(function(athlete) {
         return event.participants.indexOf(Number(athlete.id)) !== -1;
       });
@@ -63,5 +65,4 @@ export class EventsService {
       } )
     }
   }
-
 }

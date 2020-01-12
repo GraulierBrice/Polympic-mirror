@@ -5,9 +5,25 @@
   </ion-content>
   <ion-grid>
     <ion-row class="row" responsive-sm wrap>
-      <ion-col *ngFor="let sport of getAllSportsFilters()" size="4">
-          <div class="img-wrapper">
-            <img (click)="filterBySport(sport)" [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" />
+      <ion-col *ngFor="let sport of getAllSportsFilters()" size="6" (click)="filterBySport(sport)"> 
+          <div [ngStyle]="{'filter': getSportContrast(sport)}" class="img-wrapper">
+            <fa-icon  [icon]="sport.image"></fa-icon>
+            {{sport.name}}
+            <!-- <img  [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" /> -->
+          </div>
+      </ion-col> 
+      </ion-row>
+  </ion-grid>
+
+  <div id="mainText">Filtrez par team/solo event !</div>
+  <ion-grid>
+    <ion-row class="row" responsive-sm wrap>
+      <ion-col *ngFor="let eventType of  getAllEventsTypes()" size="6" (click)="filterByEventType(eventType)">
+          <div  class="img-wrapper">
+            <!-- [ngStyle]="{'filter': getSportContrast(sport)}" // <img (click)="filterBySport(sport)"  [src]="eventType.image" /> -->
+            <fa-icon  [icon]="eventType.image"></fa-icon>
+            {{eventType.name}}
+             
           </div>
       </ion-col> 
       </ion-row>

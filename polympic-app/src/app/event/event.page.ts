@@ -35,8 +35,8 @@ export class EventPage implements OnInit {
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
       this.winner = this.eventsService.getWinner(this.event.winner);
 
-      if(!this.event.teamEvent) this.pathOnClick = '/athletes';
-      else this.pathOnClick = '/teams';
+      if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
+      else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
     })
   }
 
