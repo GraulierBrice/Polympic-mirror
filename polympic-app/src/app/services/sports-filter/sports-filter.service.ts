@@ -52,4 +52,12 @@ export class SportsFilterService {
     if(sport.clicked) return 'contrast(0.5)';
     else return 'contrast(1)';
   }
+
+  resetFilters() {
+    this.sportsFilter.forEach( sport => {
+      sport.clicked = false;
+    } )
+    this.sportsSelected = [];
+    this.eventsService.initializeEvents();
+  }
 }

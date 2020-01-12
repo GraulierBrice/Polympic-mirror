@@ -28,6 +28,9 @@ export class PopoverEventsComponent implements OnInit {
     return this.sportsFilterService.getSportContrast(sport);
   }
 
+  resetFilters() {
+    this.sportsFilterService.resetFilters();
+  }
 
 
 /*   filterBySport(sport) {

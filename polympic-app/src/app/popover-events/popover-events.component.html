@@ -1,5 +1,8 @@
 <ion-content>
   <div id="mainText">Filtrez par vos sports favoris !</div>
+  <ion-content id="resetFiltersbtn">
+    <a (click) = "resetFilters()" size="small" id="filterOptions">Annuler filtres</a>
+  </ion-content>
   <ion-grid>
     <ion-row class="row" responsive-sm wrap>
       <ion-col *ngFor="let sport of getAllSportsFilters()" size="4">
