@@ -1,6 +1,6 @@
 
 import { Athlete } from '../athlete.model';
-import { EventsService } from './../events.service';
+import { EventsService } from '../services/events/events.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/event.model';

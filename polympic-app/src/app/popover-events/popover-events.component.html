@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let sport of sportsFilter">
+        <ion-item   >
+          <img (click)="filterBySport(sport)" [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" />
+          </ion-item>
+      </ion-col> 
+      </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FavoriteService } from './../favorite.service';
-import { AthletesService } from './../athletes.service';
+import { AthletesService } from '../services/athletes/athletes.service';
 import { Athlete } from '../athlete.model';
 
 @Component({

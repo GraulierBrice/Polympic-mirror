@@ -1,6 +1,6 @@
-import { Athlete } from './athlete.model';
+import { Athlete } from '../../athlete.model';
 import { Injectable } from '@angular/core';
-import { ATHLETES_MOCKED } from './../mocks/athlete.mock';
+import { ATHLETES_MOCKED } from '../../../mocks/athlete.mock';
 
 @Injectable({
   providedIn: 'root'
