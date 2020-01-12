@@ -1,10 +1,10 @@
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let sport of sportsFilter">
-        <ion-item   >
-          <img (click)="filterBySport(sport)" [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" />
-          </ion-item>
+    <ion-row class="row" responsive-sm wrap>
+      <ion-col *ngFor="let sport of sportsFilter" size="4">
+          <div class="img-wrapper">
+            <img (click)="filterBySport(sport)" [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" />
+          </div>
       </ion-col> 
       </ion-row>
   </ion-grid>
