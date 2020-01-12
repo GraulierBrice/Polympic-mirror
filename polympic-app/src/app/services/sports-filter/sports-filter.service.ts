@@ -1,36 +1,25 @@
-import { SportsFilterService } from './../services/sports-filter/sports-filter.service';
-import { SPORTS_FILTERS_MOCKED } from './../../mocks/sportFilter.mock';
-import { EventsService } from '../services/events/events.service';
-import { Component, OnInit } from '@angular/core';
+import { EventsService } from './../events/events.service';
+import { SPORTS_FILTERS_MOCKED } from './../../../mocks/sportFilter.mock';
+import { Injectable } from '@angular/core';
 
-@Component({
-  selector: 'app-popover-events',
-  templateUrl: './popover-events.component.html',
-  styleUrls: ['./popover-events.component.scss'],
+@Injectable({
+  providedIn: 'root'
 })
-export class PopoverEventsComponent implements OnInit {
+export class SportsFilterService {
 
-  constructor(private sportsFilterService : SportsFilterService) {
+  private sportsFilter;
+  private sportsSelected;
+
+  constructor(private eventsService: EventsService) {
+    this.sportsFilter = SPORTS_FILTERS_MOCKED;
+    this.sportsSelected = [];
    }
 
-  ngOnInit() {}
-
+   getSportsFilters() {
+     return this.sportsFilter;
+   }
 
   filterBySport(sport) {
-    this.sportsFilterService.filterBySport(sport);
-  }
-
-  getAllSportsFilters() {
-    return this.sportsFilterService.getSportsFilters();
-  }
-
-  getSportContrast(sport) {
-    return this.sportsFilterService.getSportContrast(sport);
-  }
-
-
-
-/*   filterBySport(sport) {
     
     if(!sport.clicked) {
       this.sportsSelected.push(sport);
@@ -62,5 +51,5 @@ export class PopoverEventsComponent implements OnInit {
   getSportContrast(sport) {
     if(sport.clicked) return 'contrast(0.5)';
     else return 'contrast(1)';
-  } */
+  }
 }

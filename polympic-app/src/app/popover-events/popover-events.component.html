@@ -1,7 +1,7 @@
 <ion-content>
   <ion-grid>
     <ion-row class="row" responsive-sm wrap>
-      <ion-col *ngFor="let sport of sportsFilter" size="4">
+      <ion-col *ngFor="let sport of getAllSportsFilters()" size="4">
           <div class="img-wrapper">
             <img (click)="filterBySport(sport)" [ngStyle]="{'filter': getSportContrast(sport)}" [src]="sport.image" />
           </div>
