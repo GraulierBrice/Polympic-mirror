@@ -1,4 +1,4 @@
-import {Place} from '../models/place';
+import {Place} from '../models/place.model';
 
 export const PLACES_MOCKED: Place[] = [
     {

@@ -1,5 +1,5 @@
 
-import {Event} from '../models/event';
+import {Event} from '../models/event.model';
 import { PLACES_MOCKED } from './place.mock';
 
 const assets = "../assets/icon/";

@@ -1,6 +1,6 @@
 
 import { TeamsService } from './../teams/teams.service';
-import { Event } from 'src/models/event.model';
+import { Event } from '../../../models/event.model';
 
 import { AthletesService } from '../athletes/athletes.service';
 import { Injectable } from '@angular/core';
@@ -23,13 +23,13 @@ export class EventsService {
     return [...this.events];
   }
 
-  getEvent(eventId: String) {
+  getEvent(eventId: Number) {
     return {...this.events.find(event => {
       return event.id === eventId;
     })}
   }
 
-  getParticipantsToEvent(eventId: String) {
+  getParticipantsToEvent(eventId: Number) {
     const event = this.getEvent(eventId);
     var arr;
     if(event.eventType.name === 'Team') {
