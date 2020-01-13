@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EVENTS_MOCKED } from 'src/mocks/event.mock';
+import { Event } from '../../models/event.model'
 import { Map, latLng, tileLayer, Layer, marker, icon, Util, Routing } from 'leaflet';
 import 'leaflet-routing-machine';
 
@@ -11,16 +12,34 @@ import 'leaflet-routing-machine';
 export class Tab2Page {
   
   map: Map;
+  events: Event[] = [];
   // Before map is being initialized.
 
   constructor() {}
+
+  ngOnInit() {
+    for(var event of EVENTS_MOCKED) {
+      const found: Event = this.events.find(e => { 
+        return event.place === e.place;
+      });
+      //console.log(found);
+      if (found) {
+        if(found.beginDate > event.beginDate && !event.ended) {
+          const ind = this.events.indexOf(found);
+          this.events.splice(ind, 1, event); //replace element at index ind by the element event
+        }
+      }
+      else if (!event.ended)
+        this.events.push(event);
+    }
+    //console.log(this.events);
+  }
 
   ionViewDidEnter() { 
     this.leafletMap('mapId');
   }
   
   leafletMap(mapId) {
-
 
     // In setView add latLng and zoom
     this.map = new Map(mapId,{minZoom:10,maxZoom:17}).setView([48.9244592, 2.3601645], 13)
@@ -30,7 +49,7 @@ export class Tab2Page {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
   
-    EVENTS_MOCKED.forEach(e => {
+    this.events.forEach(e => {
       this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString());
     });
     var map = this.map;
