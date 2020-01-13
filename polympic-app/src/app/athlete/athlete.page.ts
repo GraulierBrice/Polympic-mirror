@@ -50,7 +50,7 @@ export class AthletePage implements OnInit {
         return;
       }
       
-      const athleteId = paramMap.get('athleteId');
+      const athleteId = Number(paramMap.get('athleteId'));
       this.athlete = this.athletesService.getAthlete(athleteId);
       this.favoriteService.isFavoriteAthlete(athleteId).then(isFav => {
         this.isFavorite = isFav;

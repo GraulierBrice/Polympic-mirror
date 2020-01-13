@@ -16,7 +16,7 @@ export class AthletesService {
      return [...this.athletes];
    }
 
-   getAthlete(athleteId: String) {
+   getAthlete(athleteId: Number) {
     return {...this.athletes.find(athlete => {
       return athlete.id === athleteId;
     })}

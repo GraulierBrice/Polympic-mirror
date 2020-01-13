@@ -29,7 +29,7 @@ export class EventPage implements OnInit {
         return;
       }
 
-      const eventId = paramMap.get('eventId');
+      const eventId = Number(paramMap.get('eventId'));
       this.event = this.eventsService.getEvent(eventId);
       
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
