@@ -1,3 +1,4 @@
+import { FavoriteService } from './../../favorite.service';
 
 import { TeamsService } from './../teams/teams.service';
 import { Event } from 'src/app/event.model';
@@ -14,7 +15,7 @@ export class EventsService {
 
   events: Event[];
 
-  constructor(private athletesService : AthletesService, private teamsService : TeamsService) { 
+  constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
   }
 
@@ -65,4 +66,21 @@ export class EventsService {
       } )
     }
   }
+
+  filterEventsByFavorites() {
+
+    this.favoriteService.getAllCompetFavorite().then ( compet => {
+      if(compet.length) {
+        console.log(compet);
+        this.events = this.events.filter( event => {
+          
+          return compet.includes(event.id);
+        } )
+      }
+    })
+/*         return compet.map(eventId => {
+          console.log(`event.id : ${event.id} // eventId : ${eventId}`);
+          return event.id === eventId;
+        }) */
+      } 
 }

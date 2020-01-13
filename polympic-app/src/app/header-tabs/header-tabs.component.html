@@ -1,5 +1,20 @@
 <ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-title>Polympic Paris 2024</ion-title>
+          <ion-title>Polympic Paris 2024</ion-title>
+
+
+      <ion-buttons slot="primary">
+          <ion-button (click) = "filterEventsByFavorites()">
+              <ion-icon *ngIf="!clicked" size="large" name="star-outline"></ion-icon>
+              <ion-icon *ngIf="clicked" size="large" name="star"></ion-icon>
+            </ion-button>
+
+            <ion-button (click) = "filterEventsByFavorites()">
+                <ion-icon  size="large" name="alarm"></ion-icon>
+              </ion-button>
+            
+      </ion-buttons>
+    
+    
   </ion-toolbar>
 </ion-header>

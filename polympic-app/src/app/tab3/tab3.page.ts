@@ -1,3 +1,4 @@
+import { EventsService } from './../services/events/events.service';
 import { Component } from '@angular/core';
 import { FavoriteService } from './../favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
@@ -13,20 +14,35 @@ export class Tab3Page {
   private editButtonColor: string = "warning";
   private isEditing: boolean = false;
   private athleteItems: any;
+  private eventItems: any;
 
-  constructor(private athletesService: AthletesService, private favoriteService: FavoriteService, private alertCtrl: AlertController) {}
+  constructor(private athletesService: AthletesService, private favoriteService: FavoriteService, private alertCtrl: AlertController,
+              private eventsService: EventsService) {}
 
   ionViewDidEnter() {
     this.athleteItems = [];
+    this.eventItems = [];
+
     this.favoriteService.getAllAthleteFavorite().then(results => {
       console.log('result')
       console.log(results)
       results.forEach(id => {
         this.athleteItems.push(this.athletesService.getAthlete(id));
-      });
+      })
+    });
+
+      this.favoriteService.getAllCompetFavorite().then(results => {
+        console.log('result')
+        console.log(results)
+        results.forEach(id => {
+          this.eventItems.push(this.eventsService.getEvent(id));
+        });
+      })
       console.log('athletes : ');
       console.log(this.athleteItems);
-    });;
+      console.log('events : ');
+      console.log(this.eventItems);
+    ;
   }
 
   async presentConfirm(athlete) {
