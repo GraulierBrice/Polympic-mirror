@@ -111,10 +111,16 @@
       <ion-list>
         <ion-item-sliding *ngFor="let athlete of athleteItems">
           <ion-item>
-            <ion-label>{{ athlete.name }}</ion-label>
+            <ion-avatar slot="start">
+              <img [src]="athlete.image">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ athlete.name }}</h2>
+              <p>{{ athlete.sport }}</p>
+            </ion-label>
           </ion-item>
           <ion-item-options side="end">
-            <ion-item-option color="danger">
+            <ion-item-option color="danger" (click)="presentConfirm(athlete.id)">
               <ion-icon slot="end" name="trash"></ion-icon>
               Delete
             </ion-item-option>
@@ -126,4 +132,7 @@
       </ion-button>
     </ion-col>
   </ion-row>
+
+  
+
 </ion-content>
