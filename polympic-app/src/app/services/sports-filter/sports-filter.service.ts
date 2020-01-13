@@ -68,7 +68,7 @@ export class SportsFilterService {
   }
 
   getSportContrast(sport) {
-    if(sport.clicked) return 'contrast(0.5)';
+    if(sport.clicked) return 'contrast(0.1)';
     else return 'contrast(1)';
   }
 
