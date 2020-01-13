@@ -3,12 +3,13 @@ import {Event} from '../models/event.model';
 import { PLACES_MOCKED } from './place.mock';
 import { EVENTSTYPES_MOCKED} from './eventType.mock';
 
-const assets = "../assets/icon/";
+const assets = "../assets/";
 
 export const EVENTS_MOCKED: Event[] = [
     {
         name:"Final de football",
-        icon:assets+"football.png",
+        icon:assets+"icon/football.png",
+        image:assets+"football.jpg",
         place:PLACES_MOCKED[5],
         beginDate:new Date(2020, 1, 11, 16, 45),
         type: 'Football',
@@ -20,7 +21,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name:"Pentathlon qualifications",
-        icon:assets+"pentathlon.png",
+        icon:assets+"icon/pentathlon.png",
+        image:assets+"pentathlon.jpg",
         place:PLACES_MOCKED[6],
         beginDate:new Date(2020, 1, 11, 12, 0),
         type: 'Pentathlon',
@@ -32,7 +34,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: '100 m',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 10, 9, 30),
         type: 'Athlétisme',
@@ -44,7 +47,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: '110m haie',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 10, 15, 0),
         type: 'Athlétisme',
@@ -56,7 +60,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Lancer de javelot',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[8],
         beginDate: new Date(2020, 1, 11, 13, 30),
         type: 'Athlétisme',
@@ -68,7 +73,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Lancer de disque',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[8],
         beginDate: new Date(2020, 1, 11, 15, 30),
         type: 'Athlétisme',
@@ -80,7 +86,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Saut en Hauteur',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[3],
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Athlétisme',
@@ -92,7 +99,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Saut à la perche',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[3],
         beginDate: new Date(2020, 1, 12, 10, 0),
         type: 'Athlétisme',
@@ -104,7 +112,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Relais 4*100m',
-        icon: assets+'athletics.png',
+        icon: assets+'icon/athletics.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 12, 14, 0),
         participants: [7,15,20,12],
@@ -116,7 +125,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: '50m nage libre',
-        icon: assets+'swimming.png',
+        icon: assets+'icon/swimming.png',
+        image:assets+"swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 12, 16, 30),
         type: 'Natation',
@@ -128,7 +138,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: '150m nage libre',
-        icon: assets+'swimming.png',
+        icon: assets+'icon/swimming.png',
+        image:assets+"swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 13, 9, 30),
         type: 'Natation',
@@ -140,7 +151,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: '100m dos',
-        icon: assets+'swimming.png',
+        icon: assets+'icon/swimming.png',
+        image:assets+"swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 13, 12, 30),
         type: 'Natation',
@@ -152,7 +164,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Natation Synchronisé',
-        icon: assets+'swimming.png',
+        icon: assets+'icon/swimming.png',
+        image:assets+"swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 30),
         type: 'Natation',
@@ -164,7 +177,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Taekwondo',
-        icon: assets+'taekwondo.png',
+        icon: assets+'icon/taekwondo.png',
+        image:assets+"athletic.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 11, 9, 0),
         type: 'Taekwondo',
@@ -176,7 +190,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Judo',
-        icon: assets+'judo.png',
+        icon: assets+'icon/judo.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 12, 9, 0),
         type: 'Judo',
@@ -188,7 +203,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Karaté-Combat',
-        icon: assets+'karatekumite.png',
+        icon: assets+'icon/karatekumite.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 9, 0),
         type: 'Karate',
@@ -200,7 +216,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Karate-Kata',
-        icon: assets+'karatekata.png',
+        icon: assets+'icon/karatekata.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 14, 0),
         type: 'Karate',
@@ -212,7 +229,8 @@ export const EVENTS_MOCKED: Event[] = [
     },
     {
         name: 'Escrime',
-        icon: assets+'fencing.png',
+        icon: assets+'icon/fencing.png',
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Escrime',

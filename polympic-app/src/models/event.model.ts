@@ -5,6 +5,7 @@ export interface Event {
     id: Number,
     name: string,
     icon: string,
+    image: string,
     type: string,
     place: Place,
     beginDate: Date,
