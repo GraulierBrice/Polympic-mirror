@@ -1,3 +1,5 @@
+import { Team } from './../team.model';
+import { TeamsService } from './../services/teams/teams.service';
 import { EventsService } from './../services/events/events.service';
 import { Component } from '@angular/core';
 import { FavoriteService } from './../favorite.service';
@@ -15,13 +17,15 @@ export class Tab3Page {
   private isEditing: boolean = false;
   private athleteItems: any;
   private eventItems: any;
+  private nationItems: Team[];
 
   constructor(private athletesService: AthletesService, private favoriteService: FavoriteService, private alertCtrl: AlertController,
-              private eventsService: EventsService) {}
+              private eventsService: EventsService, private teamsService: TeamsService) {}
 
   ionViewDidEnter() {
     this.athleteItems = [];
     this.eventItems = [];
+    this.nationItems = [];
 
     this.favoriteService.getAllAthleteFavorite().then(results => {
       console.log('result')
@@ -38,18 +42,28 @@ export class Tab3Page {
           this.eventItems.push(this.eventsService.getEvent(id));
         });
       })
+
+      this.favoriteService.getAllNationFavorite().then(results => {
+        console.log('result')
+        console.log(results)
+        results.forEach(id => {
+          this.nationItems.push(this.teamsService.getTeam(id));
+        });
+      } )
       console.log('athletes : ');
       console.log(this.athleteItems);
       console.log('events : ');
       console.log(this.eventItems);
+      console.log('teams : ');
+      console.log(this.nationItems);
     ;
   }
 
-  async presentConfirm(athlete) {
+  async presentConfirm(type, favoriteType: String) {
     const alert = await this.alertCtrl.create({
       header: 'Confirm suppresion',
       subHeader: 'Are you sure of this deletion',
-      message: athlete.name,
+      message: type.name,
       buttons: [
         {
           text: 'Cancel',
@@ -63,7 +77,12 @@ export class Tab3Page {
           role: 'okay',
           cssClass: 'warning',
           handler: () => {
-            this.unfavoriteAthlete(athlete.id)
+            switch(favoriteType) {
+              case 'Team': this.unfavoriteNation(type); break;
+              case 'Event': this.unfavoriteCompet(type); break;
+              case 'Athlete': this.unfavoriteAthlete(type); break;
+            }
+            
           }
         }
       ]
@@ -81,6 +100,20 @@ export class Tab3Page {
     console.log(this.athleteItems)
   }
 
+  unfavoriteCompet(id) {
+    this.favoriteService.unfavoriteCompet(id);
+    this.eventItems = this.eventItems.filter(item => item.id !== id);
+    console.log('after changes')
+    console.log(this.nationItems)
+  }
+
+  unfavoriteNation(id) {
+    this.favoriteService.unfavoriteNation(id);
+    this.nationItems = this.nationItems.filter(item => item.id !== id);
+    console.log('after changes')
+    console.log(this.nationItems)
+  }
+
   getEditButtonColor() {
     return this.editButtonColor;
   }
@@ -95,6 +128,7 @@ export class Tab3Page {
     }
   }
 
-
-
+  lengthOfItem(item) {
+    return item.length;
+  }
 }

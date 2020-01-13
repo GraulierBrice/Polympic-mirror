@@ -2,6 +2,17 @@
 
 
 <ion-content>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="unfavoriteTeam()" *ngIf="isFavorite">
+        <ion-icon name="star"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button size="small" color="warning" (click)="favoriteTeam()" *ngIf="!isFavorite">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+
     <ion-img width="640" height="426" [src]="getTeam().image"></ion-img>
     <ion-card>
       <ion-card-header>

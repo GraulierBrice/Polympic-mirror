@@ -11,7 +11,11 @@ const STORAGE_KEY_ATHLETE = 'favoriteAthlete';
 })
 export class FavoriteService {
 
-  constructor(public storage: Storage, private toastController : ToastController) { }
+  constructor(public storage: Storage, private toastController : ToastController) {
+    this.storage.set(STORAGE_KEY_COMPETITION, []);
+    this.storage.set(STORAGE_KEY_ATHLETE, []);
+    this.storage.set(STORAGE_KEY_NATION, []);
+   }
  
   isFavoriteCompet(itemId) {
     this.storage.remove("Christophe Lemaire");

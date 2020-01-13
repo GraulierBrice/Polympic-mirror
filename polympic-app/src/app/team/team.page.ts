@@ -1,3 +1,4 @@
+import { FavoriteService } from './../favorite.service';
 import { Chart } from 'chart.js';
 import { SPORTS_ICONS_MOCKED } from './../../mocks/sportIcons.mock';
 import { TeamsService } from './../services/teams/teams.service';
@@ -20,11 +21,24 @@ export class TeamPage implements OnInit {
   bronzeNumber : Number;
   silverNumber: Number;
   goldNumber : Number;
+  isFavorite: boolean;
   private barChart: Chart;
   pathOnClick = '/athletes/';
 
 
-  constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
+  constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService, private favoriteService: FavoriteService) { }
+
+  favoriteTeam() {
+    this.favoriteService.favoriteNation(this.teamId).then(() => {
+      this.isFavorite = true;
+    });
+  }
+ 
+  unfavoriteTeam() {
+    this.favoriteService.unfavoriteNation(this.teamId).then(() => {
+      this.isFavorite = false;
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -39,6 +53,10 @@ export class TeamPage implements OnInit {
 
   this.drawChart();
   this.calculateMedalsNumber();
+
+  this.favoriteService.isFavoriteNation(this.teamId).then(isFav => {
+    this.isFavorite = isFav;
+  })
 }
 
 calculateMedalsNumber() {
