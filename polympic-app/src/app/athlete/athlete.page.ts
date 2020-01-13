@@ -1,7 +1,7 @@
-import { SPORTS_MOCKED } from './../../mocks/sport.mock';
-import { AthletesService } from './../athletes.service';
-import { FavoriteService } from './../favorite.service';
-import { Athlete } from './../athlete.model';
+import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock';
+import { AthletesService } from '../services/athletes/athletes.service';
+import { FavoriteService } from '../services/favorite.service';
+import { Athlete } from '../../models/athlete.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
@@ -126,7 +126,7 @@ export class AthletePage implements OnInit {
   }
   
   getSportIcon(sport) {
-    return SPORTS_MOCKED[sport];
+    return SPORTS_ICONS_MOCKED[sport];
   }
 
 }

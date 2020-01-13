@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Map, latLng, tileLayer, Layer, marker, icon, Util, popup } from 'leaflet';
 import { EVENTS_MOCKED } from 'src/mocks/event.mock';
+import { Map, latLng, tileLayer, Layer, marker, icon, Util, Routing } from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-tab2',
@@ -47,6 +48,14 @@ export class Tab2Page {
     .on('popupclose',function(){
     });
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
+    this.setMarker(48.9244592,2.3601645, 'football.png','Stade de France<br>');
+
+    Routing.control({
+      waypoints: [
+        latLng(48.9244592, 2.3601645),
+        latLng(48.9226794, 2.3550183)
+      ]
+    }).addTo(this.map);
     
   }
 

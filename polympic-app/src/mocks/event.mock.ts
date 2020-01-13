@@ -98,8 +98,8 @@ export const EVENTS_MOCKED: Event[] = [
         icon: assets+'athletics.png',
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 12, 14, 0),
+        participants: [7,15,20,12],
         type: 'Athlétisme',
-        participants: [10,11,12,15,17],
         ended: false,
         winner: undefined,
         id: 8
