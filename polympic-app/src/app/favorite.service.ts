@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
 const STORAGE_KEY_NATION = 'favoriteCountry';
@@ -10,7 +11,7 @@ const STORAGE_KEY_ATHLETE = 'favoriteAthlete';
 })
 export class FavoriteService {
 
-  constructor(public storage: Storage) { }
+  constructor(public storage: Storage, private toastController : ToastController) { }
  
   isFavoriteCompet(itemId) {
     this.storage.remove("Christophe Lemaire");
@@ -35,8 +36,10 @@ export class FavoriteService {
     return this.getAllCompetFavorite().then(result => {
       if (result) {
         result.push(itemId);
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_COMPETITION, result);
       } else {
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_COMPETITION, [itemId]);
       }
     });
@@ -46,8 +49,10 @@ export class FavoriteService {
     return this.getAllNationFavorite().then(result => {
       if (result) {
         result.push(itemId);
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_NATION, result);
       } else {
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_NATION, [itemId]);
       }
     });
@@ -57,8 +62,10 @@ export class FavoriteService {
     return this.getAllAthleteFavorite().then(result => {
       if (result) {
         result.push(itemId);
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_ATHLETE, result);
       } else {
+        this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_ATHLETE, [itemId]);
       }
     });
@@ -69,6 +76,7 @@ export class FavoriteService {
       if (result) {
         var index = result.indexOf(itemId);
         result.splice(index, 1);
+        this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_COMPETITION, result);
       }
     });
@@ -79,6 +87,7 @@ export class FavoriteService {
       if (result) {
         var index = result.indexOf(itemId);
         result.splice(index, 1);
+        this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_NATION, result);
       }
     });
@@ -89,6 +98,7 @@ export class FavoriteService {
       if (result) {
         var index = result.indexOf(itemId);
         result.splice(index, 1);
+        this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_ATHLETE, result);
       }
     });
@@ -104,5 +114,21 @@ export class FavoriteService {
  
   getAllAthleteFavorite() {
     return this.storage.get(STORAGE_KEY_ATHLETE);
+  }
+
+  async favoriteAddedToast() {
+    const toast = await this.toastController.create({
+      message: 'Ajouté aux favoris avec succès',
+      duration: 1000
+    });
+    toast.present();
+  }
+
+  async unfavoriteAddedToast() {
+    const toast = await this.toastController.create({
+      message: 'Retiré des favoris avec succès',
+      duration: 1000
+    });
+    toast.present();
   }
 }

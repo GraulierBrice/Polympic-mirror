@@ -77,6 +77,7 @@ export class EventsService {
           return compet.includes(event.id);
         } )
       }
+      else this.events = [];
     })
 /*         return compet.map(eventId => {
           console.log(`event.id : ${event.id} // eventId : ${eventId}`);
