@@ -2,30 +2,32 @@
 
 
 <ion-content>
-    <ion-img width="640" height="426" [src]="team.image"></ion-img>
+    <ion-img width="640" height="426" [src]="getTeam().image"></ion-img>
     <ion-card>
       <ion-card-header>
         <ion-card-title>
           <div class="ion-text-center eventHeader">
-            <h3>{{team.name}}</h3>
+            <h3>{{getTeam().name}}</h3>
           </div>
         </ion-card-title>
       </ion-card-header>
     </ion-card>
-
-        <span class="participantsText">Membres :</span>
-        <ion-list>
-          <ion-item *ngFor="let member of getMembers(team.id)" [routerLink] = "[pathOnClick, member.id]">
-            <ion-avatar slot="start">
-              <ion-img [src]="member.image"> </ion-img>
-            </ion-avatar >
-            <ion-label>
-              {{member.name}}
-            </ion-label>
-              <span [class]="getAthleteCountryFlag(member.Country.flag)"></span>
-            
-          </ion-item>
-        </ion-list>
+    
+            <span class="participantsText" *ngFor = "let sport of getAllSports()">
+              {{sport}} : 
+              <ion-list>
+                  <ion-item *ngFor="let member of getMembersSports(sport)" [routerLink] = "[pathOnClick, member.id]">
+                    <ion-avatar slot="start">
+                      <ion-img [src]="member.image"> </ion-img>
+                    </ion-avatar >
+                    <ion-label>
+                      {{member.name}}
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </span>
         <canvas #pieCanvas></canvas>
+
+
         
 </ion-content>

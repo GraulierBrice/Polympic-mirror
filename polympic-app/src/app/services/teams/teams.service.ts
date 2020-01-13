@@ -3,6 +3,7 @@ import { AthletesService } from './../athletes/athletes.service';
 import { TEAMS_MOCKED } from './../../../mocks/team.mock';
 import { Team } from './../../team.model';
 import { Injectable, ElementRef } from '@angular/core';
+import { Athlete } from 'src/app/athlete.model';
 
 
 @Injectable({
@@ -11,9 +12,11 @@ import { Injectable, ElementRef } from '@angular/core';
 export class TeamsService {
 
   teams: Team[];
+  sports;
 
   constructor(private athletesService : AthletesService) {
     this.teams = TEAMS_MOCKED;
+    this.sports = [];
   }
 
   getTeams() {
@@ -26,7 +29,7 @@ export class TeamsService {
    })}
  }
 
- getMembers(teamId: String) {
+ getMembers(teamId: String): Athlete[] {
    const team = this.getTeam(teamId);
    var arr;
   arr = this.athletesService.getAthletes().filter(function(athlete) {
@@ -34,6 +37,14 @@ export class TeamsService {
   } )
 
   return arr;
+}
+
+getMembersSports(teamId: String, sport: String) {
+  var members = this.getMembers(teamId);
+
+  return members.filter( member => {
+    return member.sport === sport;
+  } )
 }
 
 calculateBronzeMedals(team: Team) {
@@ -57,13 +68,18 @@ calculateGoldMedals(team: Team) {
 calculateMedalsNumber(team: Team) {
   let number: any = 0;
   team.Medals.forEach(medal => {
-    console.log(medal.quantity)
     number += medal.quantity;
   })
   return number;
 }
 
+getAllSports(team: Team) {
+  let members = this.getMembers(team.id);
 
-
-
+  members.forEach( member => {
+    if(!this.sports.includes( member.sport )) this.sports.push( member.sport );
+  } )
+  
+  return this.sports;
+}
 }

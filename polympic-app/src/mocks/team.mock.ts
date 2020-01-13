@@ -3,9 +3,8 @@ import { Team } from './../app/team.model';
 export const TEAMS_MOCKED: Team[] = [
     {
         id: '0',
-        image: '../assets/teams/psg.jpg',
-        name: 'P.S.G.',
-        sport: 'Football',
+        image: '../assets/teams/france.png',
+        name: 'France',
         Victory: '15',
         Defeat: '7',
         Medals: [
@@ -23,6 +22,7 @@ export const TEAMS_MOCKED: Team[] = [
               }
         ],
         Country: {
+            id: '0',
             name: 'France',
             flag: 'fr'
         },
@@ -30,9 +30,8 @@ export const TEAMS_MOCKED: Team[] = [
     },
     {
         id: '1',
-        image: '../assets/teams/om.jpg',
-        name: 'O.M.',
-        sport: 'Football',
+        image: '../assets/teams/belgium.png',
+        name: 'Belgique',
         Victory: '18',
         Defeat: '8',
         Medals: [
@@ -50,8 +49,9 @@ export const TEAMS_MOCKED: Team[] = [
               }
         ],
         Country: {
-            name: 'France',
-            flag: 'fr'
+            id: '1',
+            name: 'Belgique',
+            flag: 'be'
         },
         Members: [0, 1]
     }

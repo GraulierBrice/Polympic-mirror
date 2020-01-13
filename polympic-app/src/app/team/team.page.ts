@@ -15,12 +15,11 @@ export class TeamPage implements OnInit {
 
   @ViewChild("pieCanvas", {static: false}) barCanvas : ElementRef;
 
-  team: Team;
+  teamId: String;
   medalsNumber : Number;
   bronzeNumber : Number;
   silverNumber: Number;
   goldNumber : Number;
-  Members: Athlete[];
   private barChart: Chart;
   pathOnClick = '/athletes/';
 
@@ -35,7 +34,7 @@ export class TeamPage implements OnInit {
       }
       
       const teamId = paramMap.get('teamId');
-      this.team = this.teamsService.getTeam(teamId);
+      this.teamId = teamId;
   })
 
   this.drawChart();
@@ -43,11 +42,13 @@ export class TeamPage implements OnInit {
 }
 
 calculateMedalsNumber() {
-  this.bronzeNumber = this.teamsService.calculateBronzeMedals(this.team);
-  this.silverNumber = this.teamsService.calculateSilverMedals(this.team);
-  this.goldNumber = this.teamsService.calculateGoldMedals(this.team);
+  const team = this.getTeam();
 
-  this.medalsNumber = this.teamsService.calculateMedalsNumber(this.team);
+  this.bronzeNumber = this.teamsService.calculateBronzeMedals(team);
+  this.silverNumber = this.teamsService.calculateSilverMedals(team);
+  this.goldNumber = this.teamsService.calculateGoldMedals(team);
+
+  this.medalsNumber = this.teamsService.calculateMedalsNumber(team);
 }
 
 
@@ -59,9 +60,8 @@ getSportIcon(sport) {
   return SPORTS_ICONS_MOCKED[sport];
 }
 
-getMembers(teamId: String) {
-  this.Members = this.teamsService.getMembers(this.team.id);
-  return this.Members;
+getMembers() {
+  return this.teamsService.getMembers(this.teamId);
 }
 
 drawChart() {
@@ -101,6 +101,18 @@ drawChart() {
       }
     });
   }, 1000 )
+}
+
+getAllSports() {
+  return this.teamsService.getAllSports(this.getTeam());
+}
+
+getTeam() {
+  return this.teamsService.getTeam(this.teamId);
+}
+
+getMembersSports(sport: String) {
+  return this.teamsService.getMembersSports(this.teamId, sport);
 }
 
 }

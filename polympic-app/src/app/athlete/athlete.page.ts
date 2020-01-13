@@ -25,6 +25,7 @@ export class AthletePage implements OnInit {
   silverNumber: Number;
   goldNumber : Number;
   isFavorite : boolean;
+  pathOnClick = '/teams/';
 
   constructor(private activatedRoute: ActivatedRoute, 
               private athletesService: AthletesService,

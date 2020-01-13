@@ -79,7 +79,7 @@
         <div class="verticalLine"> </div>
       </ion-col>
       <ion-col class="ion-text-center">
-        <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
+        <span [routerLink] = "[pathOnClick, athlete.Country.id]" [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
       </ion-col>
     </ion-row>
   </ion-grid>

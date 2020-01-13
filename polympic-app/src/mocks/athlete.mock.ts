@@ -23,6 +23,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '0',
             name: 'France',
             flag: 'fr'
           }
@@ -51,6 +52,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '1',
             name: 'Belgium',
             flag: 'be'
           }    
@@ -78,6 +80,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '2',
             name: 'Switzerland',
             flag: 'ch'
           }    
@@ -105,6 +108,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '1',
             name: 'Belgium',
             flag: 'be'
           }    
