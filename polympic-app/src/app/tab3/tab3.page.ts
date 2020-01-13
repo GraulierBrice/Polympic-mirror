@@ -1,13 +1,7 @@
-import {
-  Component
-} from '@angular/core';
-import {
-  FavoriteService
-} from './../favorite.service';
-import {
-  AthletesService
-} from './../athletes.service';
-
+import { Component } from '@angular/core';
+import { FavoriteService } from './../favorite.service';
+import { AthletesService } from '../services/athletes/athletes.service';
+import { Athlete } from '../athlete.model';
 import { AlertController } from '@ionic/angular';
 
 @Component({

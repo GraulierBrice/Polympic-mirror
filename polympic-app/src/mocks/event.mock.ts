@@ -1,4 +1,6 @@
+import { EventType } from './../app/eventType.model';
 import { Event } from './../app/event.model';
+import { EVENTSTYPES_MOCKED } from './eventType.mock';
 
 export const EVENTS_MOCKED: Event[] = [
     {
@@ -10,6 +12,7 @@ export const EVENTS_MOCKED: Event[] = [
         address: '7 Avenue des Castelans, 98000 Paris',
         beginDate: '09-01-2020',
         beginHour: '15h25',
+        eventType: EVENTSTYPES_MOCKED[1],
         participants: [1, 0, 3],
         ended: true,
         winner: '0'
@@ -21,8 +24,51 @@ export const EVENTS_MOCKED: Event[] = [
         type: 'Athlétisme',
         place: 'Stade Olympique',
         address: '2 Rue Amador Lopez, 06150 Paris',
-        beginDate: '09-01-2020',
+        beginDate: '14-01-2020',
         beginHour: '17h10',
+        eventType: EVENTSTYPES_MOCKED[1],
+        participants: [4, 1, 2],
+        ended: false,
+        winner: undefined
+      },
+      {
+        id: '2',
+        name: 'DEMI FINALE - Football',
+        image: './assets/football.jpg',
+        type: 'Football',
+        place: 'Stade Olympique',
+        address: '2 Rue Amador Lopez, 06150 Paris',
+        beginDate: '20-01-2020',
+        beginHour: '11h00',
+        eventType: EVENTSTYPES_MOCKED[0],
+        participants: [0, 1],
+        ended: false,
+        winner: undefined
+      },
+      {
+        id: '3',
+        name: 'FINALE - Basketball',
+        image: './assets/basketball.jpg',
+        type: 'Basketball',
+        place: 'Stade de Basket',
+        address: '2 Rue Amador Lopez, 06150 Paris',
+        beginDate: '13-01-2020',
+        beginHour: '15h40',
+        eventType: EVENTSTYPES_MOCKED[0],
+        participants: [0, 1],
+        ended: false,
+        winner: undefined
+      },
+      {
+        id: '4',
+        name: 'DEMI FINALE - 200m Natation F',
+        image: './assets/natation.jpg',
+        type: 'Natation',
+        place: 'Piscine Olympique',
+        address: '2 Rue Amador Lopez, 06150 Paris',
+        beginDate: '12-01-2020',
+        beginHour: '11h35',
+        eventType: EVENTSTYPES_MOCKED[1],
         participants: [4, 1, 2],
         ended: false,
         winner: undefined

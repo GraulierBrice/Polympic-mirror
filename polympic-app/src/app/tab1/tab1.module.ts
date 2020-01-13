@@ -1,3 +1,5 @@
+import { PopoverEventsComponent } from './../popover-events/popover-events.component';
+
 import { ComponentsModule } from './../components/components.module';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
@@ -18,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page]
+  entryComponents: [PopoverEventsComponent],
+  declarations: [Tab1Page, PopoverEventsComponent]
 })
 export class Tab1PageModule {}

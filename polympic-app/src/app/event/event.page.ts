@@ -1,6 +1,6 @@
 
 import { Athlete } from '../athlete.model';
-import { EventsService } from './../events.service';
+import { EventsService } from '../services/events/events.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/event.model';
@@ -17,6 +17,7 @@ export class EventPage implements OnInit {
   event : Event;
   participants : Athlete[];
   winner: Athlete;
+  pathOnClick = '/athletes/';
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {
     
    }
@@ -30,8 +31,12 @@ export class EventPage implements OnInit {
 
       const eventId = paramMap.get('eventId');
       this.event = this.eventsService.getEvent(eventId);
+      
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
       this.winner = this.eventsService.getWinner(this.event.winner);
+
+      if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
+      else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
     })
   }
 

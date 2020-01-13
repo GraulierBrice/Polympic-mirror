@@ -1,16 +1,25 @@
-<app-header></app-header>
-
+<app-header-tabs></app-header-tabs>
 
 <ion-content>
     
-  <ion-list>
+  <ion-row>
+    <ion-col size="10">
       <ion-searchbar
-       animated placeholder="Cherchez par nom ou sport favori..."
-       (ionInput) = "filterEvents($event)"
-       >
-      </ion-searchbar>
+      animated placeholder="Cherchez par nom ou sport favori..."
+      (ionInput) = "filterEvents($event)"
+      >
+     </ion-searchbar>
+    </ion-col>
 
-    <ion-item class="eventItem" *ngFor = "let event of events" >
+    <ion-col id="filterBtnColumn">
+      <a (click) = "presentPopover()" size="small" id="filterOptions">Filtrer</a>
+    </ion-col>
+    
+  </ion-row>
+
+  <ion-list>
+
+    <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" >
       <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
         
         <ion-card-header>
@@ -26,7 +35,7 @@
               <ion-col>
                   <h3>
                       <fa-icon [icon]="getSportIcon(event.type)"></fa-icon>
-                       <strong>{{event.place}}</strong>
+                       <strong id="eventPlace" >{{event.place}}</strong>
                   </h3>
                  
               </ion-col>
@@ -34,26 +43,31 @@
 
             <ion-row class="ion-no-padding">
               <ion-col size="auto">
-                {{event.beginDate}} - {{event.beginHour}}
-                
+                <ion-chip color="secondary">
+                  <ion-label color="dark">{{event.beginDate}} - {{event.beginHour}}</ion-label>
+                </ion-chip>
               </ion-col >
   
               <ion-col class="ion-text-right">
-                <strong *ngIf="event.ended; else notEnded">Terminé</strong>
+                <ion-chip color="danger" *ngIf="event.ended; else notEnded">
+                  <ion-label color="danger">Terminé</ion-label>
+                </ion-chip>
                 <ng-template #notEnded>
-                  <strong>En cours</strong>
+                  <ion-chip color="success">
+                    <ion-label color="success">En cours</ion-label>
+                  </ion-chip>
                 </ng-template>
               </ion-col>
             </ion-row>
           </ion-grid>
 
 
-        <ion-button  [routerLink] = "['/athletes/', 1]" expand="block" size="large">Go 
+        <ion-button *ngIf="!event.ended" [routerLink] = "['/athletes/', 1]" expand="block" size="large">Je veux m'y rendre 
           <ion-icon name="navigate"></ion-icon></ion-button> 
       </ion-card>
 
     </ion-item>
-    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="events.length <= 0 || !events">
+    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="getAllEvents().length <= 0 || !getAllEvents()">
         Pas d'événement disponible.
     </ion-item>
 

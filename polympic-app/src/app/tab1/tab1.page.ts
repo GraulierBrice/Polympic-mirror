@@ -1,9 +1,9 @@
-import { EventsService } from './../events.service';
-import { Athlete } from '../athlete.model';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { PopoverEventsComponent } from './../popover-events/popover-events.component';
+import { EventsService } from '../services/events/events.service';
 import { Component } from '@angular/core';
-import { Event } from '../event.model';
-import { NavController } from '@ionic/angular';
-import { SPORTS_MOCKED } from './../../mocks/sport.mock'
+import { NavController, PopoverController } from '@ionic/angular';
+import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
 
 
 @Component({
@@ -12,27 +12,44 @@ import { SPORTS_MOCKED } from './../../mocks/sport.mock'
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  events: Event[];
-  eventsService: EventsService;
-  selected_event;
   
-  constructor(service: EventsService, private navCtrl: NavController) {
-    this.eventsService = service;
-    this.events = this.eventsService.events;
+  constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
+  
+  }
+
+  ionViewWillEnter() {
+    this.getAllEvents();
   }
 
   getSportIcon(sport) {
-    return SPORTS_MOCKED[sport];
+    return SPORTS_ICONS_MOCKED[sport];
   }
 
-  filterEvents(e) {
-    this.events = this.eventsService.events;
+  getAllEvents() {
+    return this.service.getAllEvents();
+  }
+
+   filterEvents(e) {
+     this.service.initializeEvents();
     const val = e.target.value;
     if(val && val.trim() != '') {
-      this.events = this.events.filter( event => {
-        return (event.name.toLowerCase().indexOf(val.toLowerCase()) > -1) || (event.type.toLowerCase().indexOf(val.toLowerCase()) > -1); 
-      } )
+      this.service.filterEvents(val);
     }
+  }
+
+  registerNotification(ms) {
+    this.localNotifications.schedule( {
+      title: `my ${ms} notification`,
+      text: 'my detailed description',
+      trigger: { at: new Date(new Date().getTime() + ms ) }
+    } );
+  }
+  
+  async presentPopover() {
+    const popover = await this.popOverCtrl.create({
+      component: PopoverEventsComponent,
+      translucent: true
+    });
+    return await popover.present();
   }
 }
