@@ -17,9 +17,9 @@ export class SportsFilterService {
 
   constructor(private eventsService: EventsService) {
     this.sportsFilter = SPORTS_FILTERS_MOCKED;
+    this.eventsTypes = EVENTSTYPES_MOCKED;
     this.sportsSelected = [];
     this.eventsTypeSelected = [];
-    this.initialiseEventsTypes();
    }
 
    getSportsFilters() {
@@ -76,12 +76,13 @@ export class SportsFilterService {
     this.sportsFilter.forEach( sport => {
       sport.clicked = false;
     } )
-    this.sportsSelected = [];
-    this.eventsService.initializeEvents();
-  }
+    this.eventsTypes.forEach( event => {
+      event.clicked = false;
+    } )
 
-  initialiseEventsTypes() {
-    this.eventsTypes = EVENTSTYPES_MOCKED;
+    this.sportsSelected = [];
+    this.eventsTypeSelected = [];
+    this.eventsService.initializeEvents();
   }
 
   filterEventType(eventType) {
