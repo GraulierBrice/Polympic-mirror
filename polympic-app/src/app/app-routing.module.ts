@@ -19,6 +19,21 @@ const routes: Routes = [
         loadChildren: () => import('./athlete/athlete.module').then(m => m.AthletePageModule)
       }
     ]
+  },
+  {
+    path: 'teams',
+    children: [
+      {
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full'
+      },
+      {
+        path: ':teamId',
+        loadChildren: () => import('./team/team.module').then(m => m.TeamPageModule)
+      }
+    ]
+    
   }
 
 ];

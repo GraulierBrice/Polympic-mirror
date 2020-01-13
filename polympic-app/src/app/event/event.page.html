@@ -21,8 +21,6 @@
   </ion-item>
 </div>
   
-
-<ion-content>
   <span class="participantsText">Participants :</span>
   <ion-list>
     <ion-item *ngFor="let participant of participants" [routerLink] = "[pathOnClick, participant.id]">
@@ -40,9 +38,5 @@
 
   <ion-button *ngIf="!event.ended" expand="block" size="large">Je veux m'y rendre  
     <ion-icon name="navigate"></ion-icon></ion-button>
-
-
-
-</ion-content>
  
 </ion-content>
