@@ -12,9 +12,9 @@
         </ion-card-title>
       </ion-card-header>
     </ion-card>
-    
+
             <span class="participantsText" *ngFor = "let sport of getAllSports()">
-              {{sport}} : 
+                <fa-icon [icon]="getSportIcon(sport)"></fa-icon> {{sport}} : 
               <ion-list>
                   <ion-item *ngFor="let member of getMembersSports(sport)" [routerLink] = "[pathOnClick, member.id]">
                     <ion-avatar slot="start">

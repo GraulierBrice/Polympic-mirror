@@ -1,5 +1,16 @@
+import { ATHLETES_MOCKED } from './athlete.mock';
+import { AthletesService } from './../app/services/athletes/athletes.service';
 import { Country } from './../app/country.model';
 import { Team } from './../app/team.model';
+ 
+
+export const athletesPerCountry = (countryName: String) => {
+  const athletes = ATHLETES_MOCKED;
+  return athletes.filter( athlete => {
+    return athlete.Country.name === countryName;
+  } )
+}
+
 export const TEAMS_MOCKED: Team[] = [
     {
         id: '0',
@@ -26,7 +37,7 @@ export const TEAMS_MOCKED: Team[] = [
             name: 'France',
             flag: 'fr'
         },
-        Members: [0, 1]
+        Members: athletesPerCountry('France')
     },
     {
         id: '1',
@@ -53,6 +64,33 @@ export const TEAMS_MOCKED: Team[] = [
             name: 'Belgique',
             flag: 'be'
         },
-        Members: [0, 1]
-    }
+        Members: athletesPerCountry('Belgium')
+    },
+    {
+      id: '2',
+      image: '../assets/teams/switzerland.png',
+      name: 'Switzerland',
+      Victory: '18',
+      Defeat: '12',
+      Medals: [
+          {
+              type: 'Bronze',
+              quantity: 9
+            },
+            {
+              type: 'Argent',
+              quantity: 5
+            },
+            {
+              type: 'Or',
+              quantity: 3
+            }
+      ],
+      Country: {
+          id: '2',
+          name: 'Switzerland',
+          flag: 'ch'
+      },
+      Members: athletesPerCountry('Switzerland')
+  }
 ]

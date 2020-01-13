@@ -21,4 +21,10 @@ export class AthletesService {
       return athlete.id === athleteId;
     })}
   }
+
+  getAthletesPerCountry(country) {
+    return this.getAthletes().filter( athlete => {
+      return athlete.Country.name === country;
+    } )
+  }
 }

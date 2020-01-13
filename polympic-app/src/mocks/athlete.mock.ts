@@ -89,7 +89,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '4',
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
-        sport: 'Athlétisme',
+        sport: 'Football',
         Victory: '12',
         Defeat: '7',
         Medals: [

@@ -30,13 +30,7 @@ export class TeamsService {
  }
 
  getMembers(teamId: String): Athlete[] {
-   const team = this.getTeam(teamId);
-   var arr;
-  arr = this.athletesService.getAthletes().filter(function(athlete) {
-    return team.Members.indexOf(Number(athlete.id)) !== -1;
-  } )
-
-  return arr;
+   return this.getTeam(teamId).Members;
 }
 
 getMembersSports(teamId: String, sport: String) {

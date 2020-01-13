@@ -9,5 +9,5 @@ export interface Team {
     Defeat: String;
     Medals: Medal[];
     Country: Country;
-    Members: Number[];
+    Members: Athlete[];
 }
