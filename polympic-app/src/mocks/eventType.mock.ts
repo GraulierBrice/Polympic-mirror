@@ -1,4 +1,4 @@
-import { EventType } from './eventType.model';
+import { EventType } from '../models/eventType.model';
 import { faUsers, faUser} from '@fortawesome/free-solid-svg-icons';
 
 export const EVENTSTYPES_MOCKED : EventType[] = [

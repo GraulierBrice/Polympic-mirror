@@ -1,6 +1,6 @@
 
 import { TeamsService } from './../teams/teams.service';
-import { Event } from 'src/mocks/event.model';
+import { Event } from 'src/models/event.model';
 
 import { AthletesService } from '../athletes/athletes.service';
 import { Injectable } from '@angular/core';

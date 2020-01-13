@@ -1,4 +1,4 @@
-import { EventType } from '../../../mocks/eventType.model';
+import { EventType } from '../../../models/eventType.model';
 import { EventsService } from './../events/events.service';
 import { SPORTS_FILTERS_MOCKED } from './../../../mocks/sportFilter.mock';
 import { Injectable } from '@angular/core';

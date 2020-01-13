@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
-import { Athlete } from '../../mocks/athlete.model';
+import { Athlete } from '../../models/athlete.model';
 import { AlertController } from '@ionic/angular';
 
 @Component({
