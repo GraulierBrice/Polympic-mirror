@@ -1,4 +1,4 @@
-import { Athlete } from '../../athlete.model';
+import { Athlete } from '../../../mocks/athlete.model';
 import { Injectable } from '@angular/core';
 import { ATHLETES_MOCKED } from '../../../mocks/athlete.mock';
 

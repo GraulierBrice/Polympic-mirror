@@ -1,4 +1,4 @@
-import { Athlete } from './../app/athlete.model';
+import { Athlete } from './athlete.model';
 export const ATHLETES_MOCKED : Athlete[] = [
     {
         id: '0',

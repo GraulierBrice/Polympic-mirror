@@ -1,9 +1,9 @@
 
-import { Athlete } from '../athlete.model';
+import { Athlete } from '../../mocks/athlete.model';
 import { EventsService } from '../services/events/events.service';
 
 import { Component, OnInit } from '@angular/core';
-import { Event } from 'src/app/event.model';
+import { Event } from 'src/mocks/event.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

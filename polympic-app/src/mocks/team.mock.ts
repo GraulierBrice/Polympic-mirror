@@ -1,5 +1,5 @@
-import { Country } from './../app/country.model';
-import { Team } from './../app/team.model';
+import { Country } from './country.model';
+import { Team } from './team.model';
 export const TEAMS_MOCKED: Team[] = [
     {
         id: '0',

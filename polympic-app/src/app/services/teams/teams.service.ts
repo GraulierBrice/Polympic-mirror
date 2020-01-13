@@ -1,5 +1,5 @@
 import { TEAMS_MOCKED } from './../../../mocks/team.mock';
-import { Team } from './../../team.model';
+import { Team } from '../../../mocks/team.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
