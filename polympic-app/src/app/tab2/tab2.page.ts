@@ -43,19 +43,19 @@ export class Tab2Page {
     .on('mouseup',function(){
       console.log("dragend");
       map.dragging.enable();
-      map.setZoom(zoom);
+      map.setZoom(zoom,{duration:0.5});
     })
     .on('popupclose',function(){
     });
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
-    this.setMarker(48.9244592,2.3601645, 'football.png','Stade de France<br>');
 
     Routing.control({
       waypoints: [
         latLng(48.9244592, 2.3601645),
         latLng(48.9226794, 2.3550183)
       ]
-    }).addTo(this.map);
+    }).addTo(this.map)
+    .hide();
     
   }
 
@@ -79,12 +79,12 @@ export class Tab2Page {
       .bindPopup(popupText,{closeButton:false})
       .on('mousedown', function () {
         zoom = map.getZoom();
-        map.flyTo(eventMarker.getLatLng(),map.getZoom()+1)
+        map.flyTo(eventMarker.getLatLng(),Math.max(map.getZoom()+1,14),{duration:0.5})
         .dragging.disable();
         console.log("mousedown! ");
       })
       .on('click',function () {
-        map.flyTo(eventMarker.getLatLng(),zoom)
+        map.flyTo(eventMarker.getLatLng(),zoom,{duration:0.5})
         eventMarker.openPopup();
         console.log("clicked! ");
       })
