@@ -47,6 +47,17 @@ export class EventsService {
     return arr;
   }
 
+  getPodiumAthlete(eventId) {
+    const event = this.getEvent(eventId);
+    var res = [];
+    if(event.ended) {
+      for(var id of event.podium) {
+        res.push(this.athletesService.getAthlete(id));
+      }
+    }
+    return res;
+  }
+
   getWinner(winnerId: String) {
     return this.athletesService.getAthletes().find(athlete => {
       return athlete.id === winnerId;

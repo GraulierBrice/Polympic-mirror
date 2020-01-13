@@ -14,4 +14,5 @@ export interface Event {
     participants: Number[];
     ended: boolean;
     winner: String;
+    podium: String[];
 }

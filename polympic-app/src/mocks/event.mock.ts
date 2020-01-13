@@ -13,9 +13,10 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: '09-01-2020',
         beginHour: '15h25',
         eventType: EVENTSTYPES_MOCKED[1],
-        participants: [1, 0, 3],
+        participants: [1, 0, 3, 4],
         ended: true,
-        winner: '0'
+        winner: '0',
+        podium: ['1','3','4'],
       },
       {
         id: '1',
@@ -29,7 +30,8 @@ export const EVENTS_MOCKED: Event[] = [
         eventType: EVENTSTYPES_MOCKED[1],
         participants: [4, 1, 2],
         ended: false,
-        winner: undefined
+        winner: undefined,
+        podium: [],
       },
       {
         id: '2',
@@ -43,7 +45,8 @@ export const EVENTS_MOCKED: Event[] = [
         eventType: EVENTSTYPES_MOCKED[0],
         participants: [0, 1],
         ended: false,
-        winner: undefined
+        winner: undefined,
+        podium: [],
       },
       {
         id: '3',
@@ -57,7 +60,8 @@ export const EVENTS_MOCKED: Event[] = [
         eventType: EVENTSTYPES_MOCKED[0],
         participants: [0, 1],
         ended: false,
-        winner: undefined
+        winner: undefined,
+        podium: [],
       },
       {
         id: '4',
@@ -71,6 +75,7 @@ export const EVENTS_MOCKED: Event[] = [
         eventType: EVENTSTYPES_MOCKED[1],
         participants: [4, 1, 2],
         ended: false,
-        winner: undefined
+        winner: undefined,
+        podium: [],
       }
 ];
