@@ -1,6 +1,7 @@
 
 import {Event} from '../models/event.model';
 import { PLACES_MOCKED } from './place.mock';
+import { EVENTSTYPES_MOCKED} from './eventType.mock';
 
 const assets = "../assets/icon/";
 
@@ -14,6 +15,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [0, 1, 2],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 0
     },
     {
@@ -25,6 +27,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [4, 5, 12, 6, 10],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 1
     },
     {
@@ -36,6 +39,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [0, 1, 2, 5, 7],
         ended: true,
         winner: 5,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 2
     },
     {
@@ -47,6 +51,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [4, 8, 9],
         ended: true,
         winner: 9,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 3
     },
     {
@@ -58,6 +63,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [10, 15, 20],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 4
     },
     {
@@ -69,6 +75,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [2, 5, 8, 9],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 5
     },
     {
@@ -80,6 +87,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [2, 7, 8 ,9],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 6
     },
     {
@@ -91,6 +99,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [7,15,20,12],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 7
     },
     {
@@ -102,6 +111,7 @@ export const EVENTS_MOCKED: Event[] = [
         type: 'Athlétisme',
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 8
     },
     {
@@ -113,6 +123,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [1,4,3,6],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 9
     },
     {
@@ -124,6 +135,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [0, 1, 2, 7, 9],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 10
     },
     {
@@ -135,6 +147,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [0, 1, 8, 9, 10],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 11
     },
     {
@@ -146,6 +159,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [4,5,6,9],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[1],
         id: 12
     },
     {
@@ -157,6 +171,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [7, 6 ,3, 8],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 13
     },
     {
@@ -168,6 +183,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [1, 5, 4, 6],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 14
     },
     {
@@ -179,6 +195,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [4, 5, 6, 2, 0, 1],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 15
     },
     {
@@ -190,6 +207,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [0, 1, 3, 5, 7],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 16
     },
     {
@@ -201,6 +219,7 @@ export const EVENTS_MOCKED: Event[] = [
         participants: [7, 6, 17, 20, 21],
         ended: false,
         winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
         id: 17
     },
 ]
