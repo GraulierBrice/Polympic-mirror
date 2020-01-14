@@ -1,7 +1,7 @@
 import { Athlete } from '../models/athlete.model';
 export const ATHLETES_MOCKED : Athlete[] = [
     {
-        id: '0',
+        id: 1,
         image: '../assets/athletes/mbappe.jpg',
         name: 'Christophe Lemaire',
         sport: 'Athlétisme',
@@ -30,7 +30,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         
       },
       {
-        id: '1',
+        id: 2,
         image: '../assets/athletes/jonas.jpg',
         name: 'Mathieu Legrand',
         sport: 'Athlétisme',
@@ -58,7 +58,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }    
       },
       {
-        id: '3',
+        id: 3,
         image: '../assets/athletes/meuf.jpg',
         name: 'Isabel Quartier',
         sport: 'Athlétisme',
@@ -86,7 +86,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }    
       },
       {
-        id: '4',
+        id: 4,
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
         sport: 'Football',

@@ -34,17 +34,17 @@
             <ion-row class="ion-no-padding">
               <ion-col>
                   <h3>
-                      <fa-icon [icon]="getSportIcon(event.type)"></fa-icon>
-                       <strong id="eventPlace" >{{event.place}}</strong>
+                      <img [src]="event.icon" style="width: 35px; height: 35px; float:left ;"/>
+                       <strong id="eventPlace" >{{event.place.name}}</strong>
                   </h3>
                  
               </ion-col>
             </ion-row>
 
             <ion-row class="ion-no-padding">
-              <ion-col size="auto">
+              <ion-col size="auto">                
                 <ion-chip color="secondary">
-                  <ion-label color="dark">{{event.beginDate}} - {{event.beginHour}}</ion-label>
+                  <ion-label color="dark">{{event.beginDate.toLocaleString()}}</ion-label>
                 </ion-chip>
               </ion-col >
   
@@ -62,8 +62,10 @@
           </ion-grid>
 
 
-        <ion-button *ngIf="!event.ended" [routerLink] = "['/athletes/', 1]" expand="block" size="large">Je veux m'y rendre 
-          <ion-icon name="navigate"></ion-icon></ion-button> 
+        <ion-button *ngIf="!event.ended" [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
+          M'y rendre 
+          <ion-icon name="navigate"></ion-icon>
+        </ion-button> 
       </ion-card>
 
     </ion-item>
