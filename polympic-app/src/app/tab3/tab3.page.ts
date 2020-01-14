@@ -34,7 +34,7 @@ export class Tab3Page {
       console.log('result')
       console.log(results)
       results.forEach(id => {
-        this.sportItems.push(this.sportsFavoriteService.getSport(id));
+        this.sportItems.push(id);
       })
     });
 
@@ -105,9 +105,14 @@ export class Tab3Page {
     console.log(result);
   }
 
+  getSportItems() {
+    return this.favoriteService.getSportFavorites();
+  }
+
   unfavoriteSport(id) {
     this.favoriteService.unfavoriteSport(id);
     this.sportItems = this.sportItems.filter(item => item.id !== id);
+    this.sportsFavoriteService.unfavorite(id)
     console.log('after changes')
     console.log(this.sportItems)
   }

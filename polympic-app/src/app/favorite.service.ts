@@ -12,11 +12,15 @@ const STORAGE_KEY_SPORT = 'favoriteSport';
 })
 export class FavoriteService {
 
+  sportItems : any;
+
   constructor(public storage: Storage, private toastController : ToastController) {
     this.storage.set(STORAGE_KEY_COMPETITION, []);
     this.storage.set(STORAGE_KEY_ATHLETE, []);
     this.storage.set(STORAGE_KEY_NATION, []);
     this.storage.set(STORAGE_KEY_SPORT, []);
+
+    this.sportItems = [];
    }
 
   isFavoriteSport(itemId) {
@@ -43,15 +47,17 @@ export class FavoriteService {
     });
   }
 
-  favoriteSport(itemId) {
+  favoriteSport(item) {
     return this.getAllSportFavorite().then(result => {
       if (result) {
-        result.push(itemId);
+        this.sportItems.push(item);
+        result.push(item);
         this.favoriteAddedToast();
         return this.storage.set(STORAGE_KEY_SPORT, result);
       } else {
+        this.sportItems.push(item);
         this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_SPORT, [itemId]);
+        return this.storage.set(STORAGE_KEY_SPORT, [item]);
       }
     });
   }
@@ -117,11 +123,12 @@ export class FavoriteService {
     });
   }
  
-  unfavoriteSport(itemId) {
+  unfavoriteSport(item) {
     return this.getAllSportFavorite().then(result => {
       if (result) {
-        var index = result.indexOf(itemId);
+        var index = result.indexOf(item);
         result.splice(index, 1);
+        this.sportItems.splice(index, 1);
         this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_SPORT, result);
       }
@@ -154,6 +161,11 @@ export class FavoriteService {
   getAllSportFavorite() {
     return this.storage.get(STORAGE_KEY_SPORT);
   }
+
+  getSportFavorites() {
+    return this.sportItems;
+  }
+
 
   async favoriteAddedToast() {
     const toast = await this.toastController.create({

@@ -126,7 +126,7 @@
   <ion-row>
     <ion-col size="12">
       <ion-list>
-        <ion-item-sliding *ngFor="let sport of sportItems">
+        <ion-item-sliding *ngFor="let sport of getSportItems()">
           <ion-item >
             <ion-avatar slot="start">
               <img [src]="sport.image">
@@ -143,7 +143,7 @@
           </ion-item-options>
         </ion-item-sliding>
 
-        <span class="noFavoritesMsg" *ngIf = "!sportItems || sportItems.length <= 0">Pas de sport dans vos favoris</span> 
+        <span class="noFavoritesMsg" *ngIf = "!getSportItems() || getSportItems().length <= 0">Pas de sport dans vos favoris</span> 
       </ion-list>
       <ion-button [routerLink] = "['/sports-favorite']" class="ion-float-right">
         <ion-icon slot="icon-only" name="add"></ion-icon>
