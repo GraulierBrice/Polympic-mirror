@@ -4,13 +4,13 @@ export const SPORTS_FAVORITE_MOCKED : SportFavorite[] = [
     {
         id: '0',
         name: 'Natation',
-        image: '../assets/natation.jpg',
+        image: '../assets/swimming.jpg',
         clicked: false
     },
     {
         id: '1',
         name: 'Athlétisme',
-        image: '../assets/athletic.jpg',
+        image: '../assets/athletics.jpg',
         clicked: false
     },
     {
