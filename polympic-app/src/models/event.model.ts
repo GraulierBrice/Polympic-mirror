@@ -1,10 +1,12 @@
 import { Place } from './place.model';
 import { EventType } from './eventType.model';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export interface Event {
     id: Number,
     name: string,
-    icon: string,
+    icon: IconDefinition,
+    iconMap: String,
     image: string,
     type: string,
     place: Place,

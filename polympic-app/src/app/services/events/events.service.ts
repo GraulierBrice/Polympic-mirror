@@ -91,13 +91,16 @@ export class EventsService {
     } )
     console.log(arrayOfSports);
     this.favoriteService.getAllCompetFavorite().then ( compet => {
+      console.log(arrayOfSports);
       if(compet.length || arrayOfSports.length) {
         this.events = this.events.filter( event => {
           console.log(event.type);
           return compet.includes(event.id) || arrayOfSports.includes(event.type);
         } )
       }
-      else this.events = [];
+      else {
+        this.events = [];
+      } 
     })
 /*         return compet.map(eventId => {
           console.log(`event.id : ${event.id} // eventId : ${eventId}`);

@@ -115,7 +115,10 @@ export class FavoriteService {
   unfavoriteNation(itemId) {
     return this.getAllNationFavorite().then(result => {
       if (result) {
+        result.forEach(r => console.log(r));
         var index = result.indexOf(itemId);
+        console.log(`result : ${result}`);
+        console.log(`index 1 : ${index}`);
         result.splice(index, 1);
         this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_NATION, result);
@@ -126,13 +129,23 @@ export class FavoriteService {
   unfavoriteSport(item) {
     return this.getAllSportFavorite().then(result => {
       if (result) {
-        result.forEach( (object, index) => {
+         result.forEach(r => console.log(r));
+        var index = result.indexOf(item);
+        
+        console.log(`item : ${item}`);
+        console.log(`result : ${result}`);
+        console.log(`index 1 : ${index}`);
+        console.log(`index 2 : ${index2}`);
+        result.splice(index, 1); 
+        var index2 = this.sportItems.indexOf(item);
+        this.sportItems.splice(index2, 1);
+ /*        result.forEach( (object, index) => {
           if (object === item) result.splice(index, 1);
         } );
 
-        this.sportItems.forEach( (object, index) => {
+         this.sportItems.forEach( (object, index) => {
           if (object === item) this.sportItems.splice(index, 1);
-        } )
+        } ) */
         this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_SPORT, result);
       }

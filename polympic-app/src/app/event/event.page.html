@@ -15,7 +15,7 @@
   <ion-img [src]="event.image"></ion-img>
   <div class="ion-text-center eventHeader">
   <h3>{{event.name}}</h3>
-    {{event.beginDate}} - {{event.beginHour}}
+  {{event.beginDate.toLocaleString()}}
 </div>
 <div class="winnerDiv" *ngIf = "event.ended">
   <span class="participantsText">Vainqueur :</span>
