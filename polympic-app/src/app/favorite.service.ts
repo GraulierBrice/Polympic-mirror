@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
 const STORAGE_KEY_NATION = 'favoriteCountry';
 const STORAGE_KEY_ATHLETE = 'favoriteAthlete';
+const STORAGE_KEY_SPORT = 'favoriteSport';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,16 @@ export class FavoriteService {
     this.storage.set(STORAGE_KEY_COMPETITION, []);
     this.storage.set(STORAGE_KEY_ATHLETE, []);
     this.storage.set(STORAGE_KEY_NATION, []);
+    this.storage.set(STORAGE_KEY_SPORT, []);
    }
+
+  isFavoriteSport(itemId) {
+    return this.getAllSportFavorite().then(result => {
+      return result && result.indexOf(itemId) !== -1;
+    });
+  }
  
   isFavoriteCompet(itemId) {
-    this.storage.remove("Christophe Lemaire");
     return this.getAllCompetFavorite().then(result => {
       return result && result.indexOf(itemId) !== -1;
     });
@@ -33,6 +40,19 @@ export class FavoriteService {
   isFavoriteAthlete(itemId) {
     return this.getAllAthleteFavorite().then(result => {
       return result && result.indexOf(itemId) !== -1;
+    });
+  }
+
+  favoriteSport(itemId) {
+    return this.getAllSportFavorite().then(result => {
+      if (result) {
+        result.push(itemId);
+        this.favoriteAddedToast();
+        return this.storage.set(STORAGE_KEY_SPORT, result);
+      } else {
+        this.favoriteAddedToast();
+        return this.storage.set(STORAGE_KEY_SPORT, [itemId]);
+      }
     });
   }
  
@@ -97,6 +117,17 @@ export class FavoriteService {
     });
   }
  
+  unfavoriteSport(itemId) {
+    return this.getAllSportFavorite().then(result => {
+      if (result) {
+        var index = result.indexOf(itemId);
+        result.splice(index, 1);
+        this.unfavoriteAddedToast();
+        return this.storage.set(STORAGE_KEY_SPORT, result);
+      }
+    });
+  }
+
   unfavoriteAthlete(itemId) {
     return this.getAllAthleteFavorite().then(result => {
       if (result) {
@@ -118,6 +149,10 @@ export class FavoriteService {
  
   getAllAthleteFavorite() {
     return this.storage.get(STORAGE_KEY_ATHLETE);
+  }
+
+  getAllSportFavorite() {
+    return this.storage.get(STORAGE_KEY_SPORT);
   }
 
   async favoriteAddedToast() {

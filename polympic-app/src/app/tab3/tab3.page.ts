@@ -6,6 +6,7 @@ import { FavoriteService } from './../favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
 import { Athlete } from '../athlete.model';
 import { AlertController } from '@ionic/angular';
+import { SportsFavoriteService } from '../services/sports-favorite.service';
 
 @Component({
   selector: 'app-tab3',
@@ -18,14 +19,24 @@ export class Tab3Page {
   private athleteItems: any;
   private eventItems: any;
   private nationItems: Team[];
-
+  private sportItems: any;
+ 
   constructor(private athletesService: AthletesService, private favoriteService: FavoriteService, private alertCtrl: AlertController,
-              private eventsService: EventsService, private teamsService: TeamsService) {}
+              private eventsService: EventsService, private teamsService: TeamsService, private sportsFavoriteService: SportsFavoriteService) {}
 
   ionViewDidEnter() {
     this.athleteItems = [];
     this.eventItems = [];
     this.nationItems = [];
+    this.sportItems = [];
+
+    this.favoriteService.getAllSportFavorite().then(results => {
+      console.log('result')
+      console.log(results)
+      results.forEach(id => {
+        this.sportItems.push(this.sportsFavoriteService.getSport(id));
+      })
+    });
 
     this.favoriteService.getAllAthleteFavorite().then(results => {
       console.log('result')
@@ -81,6 +92,7 @@ export class Tab3Page {
               case 'Team': this.unfavoriteNation(type); break;
               case 'Event': this.unfavoriteCompet(type); break;
               case 'Athlete': this.unfavoriteAthlete(type); break;
+              case 'Sport': this.unfavoriteSport(type); break;
             }
             
           }
@@ -91,6 +103,13 @@ export class Tab3Page {
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result);
+  }
+
+  unfavoriteSport(id) {
+    this.favoriteService.unfavoriteSport(id);
+    this.sportItems = this.sportItems.filter(item => item.id !== id);
+    console.log('after changes')
+    console.log(this.sportItems)
   }
 
   unfavoriteAthlete(id) {

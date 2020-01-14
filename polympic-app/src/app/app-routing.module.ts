@@ -34,6 +34,10 @@ const routes: Routes = [
       }
     ]
     
+  },
+  {
+    path: 'sports-favorite',
+    loadChildren: () => import('./sports-favorite/sports-favorite.module').then( m => m.SportsFavoritePageModule)
   }
 
 ];
