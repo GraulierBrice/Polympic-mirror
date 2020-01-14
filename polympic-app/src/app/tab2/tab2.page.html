@@ -29,8 +29,11 @@
           <fa-icon [icon]="e.image"></fa-icon>
         </ion-fab-button>
       </ion-fab-list>
-      <ion-fab-list side="end">
-        <ion-fab-button><ion-icon name="star-outline"></ion-icon></ion-fab-button>
+      <ion-fab-list side="end" *ngIf="!this.showFav">
+        <ion-fab-button><ion-icon  color="warning" name="star-outline" (click)="toggleFavorites()"></ion-icon></ion-fab-button>
+      </ion-fab-list>
+      <ion-fab-list side="end" *ngIf="this.showFav">
+        <ion-fab-button color="warning" ><ion-icon name="star" (click)="toggleFavorites()"></ion-icon></ion-fab-button>
       </ion-fab-list>
     </ion-fab>
   </div>

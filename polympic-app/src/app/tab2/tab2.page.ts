@@ -34,11 +34,14 @@ export class Tab2Page {
 
   myPos = [];
   myPosMarker: any;
+  eventsMarkers = [];
   map: Map;
   posTo = [];
   routing: boolean;
   route: any;
   events: Event[] = [];
+  favEvents: Event[] = [];
+  showFav = false;
   // Before map is being initialized.
 
   constructor(private geolocation: Geolocation, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private service: SportsFilterService) {}
@@ -99,6 +102,7 @@ export class Tab2Page {
       }
       else if (!event.ended)
         this.events.push(event);
+        this.favEvents.push(event);
     }
     //console.log(this.events);
   }
@@ -123,7 +127,7 @@ export class Tab2Page {
       }).addTo(this.map);
       // console.log('still ok')
       this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
-      this.setViewMyPos();
+      //this.setViewMyPos();
       // console.log('not ok')
     }
 
@@ -153,7 +157,8 @@ export class Tab2Page {
     // });
   
     this.events.forEach(e => {
-      this.setMarker(e.place.longitude,e.place.latitude, e.iconMap,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
+      let marker = this.setMarker(e.place.longitude,e.place.latitude, e.iconMap,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
+      this.eventsMarkers.push(marker)
     });
     var map = this.map;
     var zoom = map.getZoom();
@@ -211,6 +216,17 @@ export class Tab2Page {
 
   setViewMyPos() {
     this.map.setView([this.myPos[0], this.myPos[1]], 15)
+  }
+
+  toggleFavorites() {
+    this.eventsMarkers.forEach( marker => {
+      if (this.showFav){
+        marker.addTo(this.map);
+    }else {
+        marker.remove();
+    }
+    })
+    this.showFav = !this.showFav
   }
 
   /** Remove map when we have multiple map object */
