@@ -29,11 +29,11 @@ export class EventPage implements OnInit {
         return;
       }
 
-      const eventId = paramMap.get('eventId');
+      const eventId = Number(paramMap.get('eventId'));
       this.event = this.eventsService.getEvent(eventId);
       
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
-      this.winner = this.eventsService.getWinner(this.event.winner);
+      this.winner = this.eventsService.getWinner(String(this.event.winner));
 
       if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
       else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
