@@ -14,7 +14,8 @@ import {
   icon,
   Util,
   Routing,
-  Control
+  Control,
+  LatLng
 } from 'leaflet';
 import 'leaflet-routing-machine';
 import {
@@ -58,7 +59,19 @@ export class Tab2Page {
         console.log(this.posTo)
       }
     });
-    this.leafletMap('mapId');
+    
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.myPos = [resp.coords.latitude, resp.coords.longitude]
+      console.log('place how i am: ')
+      console.log(this.myPos)
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    }).then(() => {
+      console.log('lauching mat init');
+      if (!this.map){
+        this.leafletMap('mapId');
+      }
+    });
   }
 
   ngOnInit() {
@@ -86,46 +99,36 @@ export class Tab2Page {
   
   leafletMap(mapId) {
     // In setView add latLng and zoom
-    this.map = new Map(mapId, {
-      minZoom: 5,
-      maxZoom: 17
-    }).setView([48.9244592, 2.3601645], 13)
+    if (!this.map){
+      //this.map.remove();
+      this.map = new Map(mapId, {
+        minZoom: 5,
+        maxZoom: 17
+      }).setView([48.9244592, 2.3601645], 13)
+    }
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+    
+    this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
 
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.myPos = [resp.coords.latitude, resp.coords.longitude]
-      this.myPosMarker = this.setMarker(this.myPos[0], this.myPos[1], 'football.png', 'My pos','myPos');
-      console.log('place how i am: ')
-      console.log(this.myPos)
-      this.setViewMyPos();
-      // resp.coords.latitude
-      // resp.coords.longitude
-      if (this.routing === true) {
-        this.route = Routing.control({
-          waypoints: [
-            latLng(this.myPos[0], this.myPos[1]),
-            latLng(this.posTo[0], this.posTo[1])
-          ]
-        }).addTo(this.map);
-        console.log('mode route activated')
-      } else {
-        this.route = Routing.control({
-          waypoints: []
-        }).addTo(this.map);
+    if (this.routing) {
+      console.log('trying to make route')
+      this.route = Routing.control({
+        waypoints: [
+          latLng(this.myPos[0], this.myPos[1]),
+          latLng(this.posTo[0], this.posTo[1])
+        ]
+      }).addTo(this.map);
+
+      console.log('route supposed to be made')
+    } else {
+      if (this.route){
         //this.route.spliceWaypoints(0, 2); // <-- removes your route
-        this.map.removeControl(this.route);
+        //this.map.removeControl(this.route);
       }
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    }).then(() => {
-      /*       this.route = Routing.control({
-              waypoints: []
-            }).addTo(this.map); */
-
-    });
+    }
 
 
     // let watch = this.geolocation.watchPosition();
@@ -203,8 +206,13 @@ export class Tab2Page {
   /** Remove map when we have multiple map object */
   ionViewWillLeave() {
     //this.routing = false;
-    //this.route.spliceWaypoints(0, 2); // <-- removes your route
-    this.map.removeControl(this.route);
-    this.map.remove();
+    // if (this.route){
+    //   this.route.spliceWaypoints(0, 2); // <-- removes your route
+    // }
+    // if (this.route){
+    //   this.map.removeControl(this.route);
+    //   console.log('route removed')
+    // }
+    //this.map.remove();
   }
 }
