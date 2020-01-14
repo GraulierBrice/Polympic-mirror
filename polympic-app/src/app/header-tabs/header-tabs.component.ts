@@ -1,3 +1,4 @@
+import { EventsService } from './../services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderTabsComponent implements OnInit {
 
-  constructor() { }
+  clicked: boolean;
+
+  constructor(private eventsService: EventsService) {
+    this.clicked = false;
+   }
 
   ngOnInit() {}
+
+
+  filterEventsByFavorites() {
+    if(!this.clicked) {
+      this.eventsService.filterEventsByFavorites();
+      this.clicked = true;
+    }
+
+    else {
+      this.eventsService.initializeEvents();
+      this.clicked = false;
+    }
+  }
 
 }

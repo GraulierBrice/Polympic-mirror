@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+
+<ion-content>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="unfavoriteTeam()" *ngIf="isFavorite">
+        <ion-icon name="star"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button size="small" color="warning" (click)="favoriteTeam()" *ngIf="!isFavorite">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+
+    <ion-img width="640" height="426" [src]="getTeam().image"></ion-img>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <div class="ion-text-center eventHeader">
+            <h3>{{getTeam().name}}</h3>
+          </div>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+            <span class="participantsText" *ngFor = "let sport of getAllSports()">
+                <fa-icon [icon]="getSportIcon(sport)"></fa-icon> {{sport}} : 
+              <ion-list>
+                  <ion-item *ngFor="let member of getMembersSports(sport)" [routerLink] = "[pathOnClick, member.id]">
+                    <ion-avatar slot="start">
+                      <ion-img [src]="member.image"> </ion-img>
+                    </ion-avatar >
+                    <ion-label>
+                      {{member.name}}
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </span>
+        <canvas #pieCanvas></canvas>
+
+
+        
+</ion-content>

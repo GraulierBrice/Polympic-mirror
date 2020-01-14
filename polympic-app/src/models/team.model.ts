@@ -5,10 +5,9 @@ export interface Team {
     id: String;
     image: String;
     name: String;
-    sport: String;
     Victory: String;
     Defeat: String;
     Medals: Medal[];
     Country: Country;
-    Members: Number[];
+    Members: Athlete[];
 }

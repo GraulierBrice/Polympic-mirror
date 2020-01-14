@@ -1,3 +1,4 @@
+import { FavoriteService } from '../services/favorite.service';
 
 import { Athlete } from '../../models/athlete.model';
 import { EventsService } from '../services/events/events.service';
@@ -18,10 +19,23 @@ export class EventPage implements OnInit {
   participants : Athlete[];
   winner: Athlete;
   podium: Athlete[];
+  isFavorite : boolean;
   pathOnClick = '/athletes/';
-  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {
+  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService, private favoriteService: FavoriteService) {
     
    }
+
+   favoriteEvent() {
+    this.favoriteService.favoriteCompet(this.event.id).then(() => {
+      this.isFavorite = true;
+    });
+  }
+ 
+  unfavoriteEvent() {
+    this.favoriteService.unfavoriteCompet(this.event.id).then(() => {
+      this.isFavorite = false;
+    });
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -40,6 +54,10 @@ export class EventPage implements OnInit {
 
       if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
       else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
+
+      this.favoriteService.isFavoriteCompet(eventId).then(isFav => {
+        this.isFavorite = isFav;
+      })
     })
   }
 

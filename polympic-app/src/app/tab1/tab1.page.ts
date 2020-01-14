@@ -52,4 +52,8 @@ export class Tab1Page {
     });
     return await popover.present();
   }
+
+  filterEventsByFavorites() {
+    this.service.filterEventsByFavorites();
+  }
 }

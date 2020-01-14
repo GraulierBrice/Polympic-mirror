@@ -1,5 +1,4 @@
-import { EventType } from './../app/eventType.model';
-import { Event } from './../app/event.model';
+import { Event } from '../models/event.model';
 import { EVENTSTYPES_MOCKED } from './eventType.mock';
 
 export const EVENTS_MOCKED: Event[] = [

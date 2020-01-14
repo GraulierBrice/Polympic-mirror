@@ -1,11 +1,19 @@
-import { Country } from '../models/country.model';
+import { ATHLETES_MOCKED } from './athlete.mock';
 import { Team } from '../models/team.model';
+ 
+
+export const athletesPerCountry = (countryName: String) => {
+  const athletes = ATHLETES_MOCKED;
+  return athletes.filter( athlete => {
+    return athlete.Country.name === countryName;
+  } )
+}
+
 export const TEAMS_MOCKED: Team[] = [
     {
         id: '0',
-        image: '../assets/teams/psg.jpg',
-        name: 'P.S.G.',
-        sport: 'Football',
+        image: '../assets/teams/france.png',
+        name: 'France',
         Victory: '15',
         Defeat: '7',
         Medals: [
@@ -23,16 +31,16 @@ export const TEAMS_MOCKED: Team[] = [
               }
         ],
         Country: {
+            id: '0',
             name: 'France',
             flag: 'fr'
         },
-        Members: [0, 1]
+        Members: athletesPerCountry('France')
     },
     {
         id: '1',
-        image: '../assets/teams/om.jpg',
-        name: 'O.M.',
-        sport: 'Football',
+        image: '../assets/teams/belgium.png',
+        name: 'Belgique',
         Victory: '18',
         Defeat: '8',
         Medals: [
@@ -50,9 +58,37 @@ export const TEAMS_MOCKED: Team[] = [
               }
         ],
         Country: {
-            name: 'France',
-            flag: 'fr'
+            id: '1',
+            name: 'Belgique',
+            flag: 'be'
         },
-        Members: [0, 1]
-    }
+        Members: athletesPerCountry('Belgium')
+    },
+    {
+      id: '2',
+      image: '../assets/teams/switzerland.png',
+      name: 'Switzerland',
+      Victory: '18',
+      Defeat: '12',
+      Medals: [
+          {
+              type: 'Bronze',
+              quantity: 9
+            },
+            {
+              type: 'Argent',
+              quantity: 5
+            },
+            {
+              type: 'Or',
+              quantity: 3
+            }
+      ],
+      Country: {
+          id: '2',
+          name: 'Switzerland',
+          flag: 'ch'
+      },
+      Members: athletesPerCountry('Switzerland')
+  }
 ]

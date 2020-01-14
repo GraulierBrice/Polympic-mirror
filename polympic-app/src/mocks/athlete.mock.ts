@@ -23,6 +23,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '0',
             name: 'France',
             flag: 'fr'
           }
@@ -51,6 +52,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '1',
             name: 'Belgium',
             flag: 'be'
           }    
@@ -78,6 +80,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '2',
             name: 'Switzerland',
             flag: 'ch'
           }    
@@ -86,7 +89,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         id: '4',
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
-        sport: 'Athlétisme',
+        sport: 'Football',
         Victory: '12',
         Defeat: '7',
         Medals: [
@@ -105,6 +108,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
         ],
         Country: 
           {
+            id: '1',
             name: 'Belgium',
             flag: 'be'
           }    

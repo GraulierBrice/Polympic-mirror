@@ -2,6 +2,16 @@
 
 
 <ion-content>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="unfavoriteEvent()" *ngIf="isFavorite">
+            <ion-icon name="star"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button size="small" color="warning" (click)="favoriteEvent()" *ngIf="!isFavorite">
+            <ion-icon name="star-outline"></ion-icon>
+          </ion-fab-button>
+      </ion-fab>
+
   <ion-img [src]="event.image"></ion-img>
   <div class="ion-text-center eventHeader">
   <h3>{{event.name}}</h3>
@@ -62,9 +72,5 @@
 
   <ion-button *ngIf="!event.ended" expand="block" size="large">Je veux m'y rendre  
     <ion-icon name="navigate"></ion-icon></ion-button>
-
-
-
-</ion-content>
  
 </ion-content>
