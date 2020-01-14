@@ -1,5 +1,34 @@
 import { Athlete } from '../models/athlete.model';
 export const ATHLETES_MOCKED : Athlete[] = [
+  {
+    id: 0,
+    image: '../assets/athletes/nicolas.jpg',
+    name: 'Renaud Lavillenie',
+    sport: 'Athlétisme',
+    Victory: '9',
+    Defeat: '2',
+    Medals: [
+      {
+        type: 'Bronze',
+        quantity: 3
+      },
+      {
+        type: 'Argent',
+        quantity: 1
+      },
+      {
+        type: 'Or',
+        quantity: 3
+      }
+    ],
+    Country: 
+      {
+        id: '0',
+        name: 'France',
+        flag: 'fr'
+      }
+    
+  },
     {
         id: 1,
         image: '../assets/athletes/mbappe.jpg',
