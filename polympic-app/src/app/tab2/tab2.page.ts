@@ -97,7 +97,7 @@ export class Tab2Page {
 
     this.geolocation.getCurrentPosition().then((resp) => {
       this.myPos = [resp.coords.latitude, resp.coords.longitude]
-      this.myPosMarker = this.setMarker(this.myPos[0], this.myPos[1], 'football.png', 'My pos');
+      this.myPosMarker = this.setMarker(this.myPos[0], this.myPos[1], 'football.png', 'My pos','myPos');
       console.log('place how i am: ')
       console.log(this.myPos)
       this.setViewMyPos();
@@ -140,7 +140,7 @@ export class Tab2Page {
     // });
   
     this.events.forEach(e => {
-      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString());
+      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
     });
     var map = this.map;
     var zoom = map.getZoom();
@@ -156,11 +156,10 @@ export class Tab2Page {
       })
       .on('popupclose', function () {});
     //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
-    this.setMarker(48.9244592, 2.3601645, 'football.png', 'Stade de France<br>');
   }
 
   //var x = 48.9244592, y = 2.3601645
-  setMarker(x = 0, y = 0, iconImage, popupText) {
+  setMarker(x = 0, y = 0, iconImage, popupText, className) {
     var mapIcon = icon({
       iconUrl: '../assets/icon/map-marker.png',
       shadowUrl: iconImage,
@@ -169,7 +168,8 @@ export class Tab2Page {
       shadowSize: [24, 24], // size of the shadow
       iconAnchor: [24, 48], // point of the icon which will correspond to marker's location
       shadowAnchor: [13, 42], // the same for the shadow
-      popupAnchor: [0, -45] // point from which the popup should open relative to the iconAnchor
+      popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
+      className: className,
     });
 
     var map = this.map;

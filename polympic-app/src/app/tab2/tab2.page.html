@@ -13,7 +13,15 @@
         <ion-icon name="search" ></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="bottom">
-        <ion-fab-button *ngFor="let e of getSportsFilters()" mode ="ios" size="small" onclick="e.clicked=!e.clicked; console.log(e)"> <img src={{e.image}}></ion-fab-button>
+        <ion-fab-button *ngFor="let e of getSportsFilters()" mode ="ios" size="small"  class={{e.name}} onclick="
+          var c = this.className.split(' ')[0];
+          const classedMarkers = document.querySelectorAll('img.'+c);
+          classedMarkers.forEach(element => {
+            element.style.opacity = 1 -element.style.opacity;
+          });
+        "> 
+          <img src={{e.image}} alt={{e.name}}>
+        </ion-fab-button>
       </ion-fab-list>
       <ion-fab-list side="end">
         <ion-fab-button><ion-icon name="star-outline"></ion-icon></ion-fab-button>
