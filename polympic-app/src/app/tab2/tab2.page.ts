@@ -4,6 +4,7 @@ import {
 import {
   EVENTS_MOCKED
 } from 'src/mocks/event.mock';
+import { Event } from '../../models/event.model'
 import {
   Geolocation
 } from '@ionic-native/geolocation/ngx';
@@ -39,6 +40,7 @@ export class Tab2Page {
   posTo = [];
   routing: boolean;
   route: any;
+  events: Event[] = [];
   // Before map is being initialized.
 
   constructor(private geolocation: Geolocation, private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
@@ -58,12 +60,29 @@ export class Tab2Page {
         console.log('place to go : ')
         console.log(this.posTo)
       }
-    })
+    });
     this.leafletMap('mapId');
   }
 
-  leafletMap(mapId) {
+  ngOnInit() {
+    for(var event of EVENTS_MOCKED) {
+      const found: Event = this.events.find(e => { 
+        return event.place === e.place;
+      });
+      //console.log(found);
+      if (found) {
+        if(found.beginDate > event.beginDate && !event.ended) {
+          const ind = this.events.indexOf(found);
+          this.events.splice(ind, 1, event); //replace element at index ind by the element event
+        }
+      }
+      else if (!event.ended)
+        this.events.push(event);
+    }
+    //console.log(this.events);
+  }
 
+  leafletMap(mapId) {
     // In setView add latLng and zoom
     this.map = new Map(mapId, {
       minZoom: 5,
@@ -117,9 +136,9 @@ export class Tab2Page {
     //   // data.coords.latitude
     //   // data.coords.longitude
     // });
-
-    EVENTS_MOCKED.forEach(e => {
-      this.setMarker(e.place.longitude, e.place.latitude, e.icon, e.name + "<br>" + e.place.name + "<br>" + e.beginDate.toLocaleString());
+  
+    this.events.forEach(e => {
+      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString());
     });
     var map = this.map;
     var zoom = map.getZoom();
@@ -162,12 +181,12 @@ export class Tab2Page {
       })
       .on('mousedown', function () {
         zoom = map.getZoom();
-        map.flyTo(eventMarker.getLatLng(), map.getZoom() + 1)
-          .dragging.disable();
+        map.flyTo(eventMarker.getLatLng(),Math.max(map.getZoom()+1,14),{duration:0.5})
+        .dragging.disable();
         console.log("mousedown! ");
       })
-      .on('click', function () {
-        map.flyTo(eventMarker.getLatLng(), zoom)
+      .on('click',function () {
+        map.flyTo(eventMarker.getLatLng(),zoom,{duration:0.5})
         eventMarker.openPopup();
         console.log("clicked! ");
       });

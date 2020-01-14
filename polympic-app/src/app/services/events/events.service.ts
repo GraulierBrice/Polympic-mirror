@@ -47,7 +47,7 @@ export class EventsService {
     return arr;
   }
 
-  getWinner(winnerId: String) {
+  getWinner(winnerId: Number) {
     return this.athletesService.getAthletes().find(athlete => {
       return athlete.id === winnerId;
     })
