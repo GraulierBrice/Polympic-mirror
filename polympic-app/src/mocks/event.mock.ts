@@ -20,19 +20,6 @@ export const EVENTS_MOCKED: Event[] = [
         id: 0
     ,podium: [] },
     {
-        name:"Pentathlon qualifications",
-        icon:assets+"icon/pentathlon.png",
-        image:assets+"pentathlon.jpg",
-        place:PLACES_MOCKED[6],
-        beginDate:new Date(2020, 1, 11, 12, 0),
-        type: 'Pentathlon',
-        participants: [4, 3, 1],
-        ended: false,
-        winner: undefined,
-        eventType: EVENTSTYPES_MOCKED[1],
-        id: 1
-    ,podium: [] },
-    {
         name: '100 m',
         icon: assets+'icon/athletics.png',
         image:assets+"athletics.jpg",
@@ -44,7 +31,7 @@ export const EVENTS_MOCKED: Event[] = [
         winner: 1,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 2
-    ,podium: [] },
+    ,podium: [1, 0, 2] },
     {
         name: '110m haie',
         icon: assets+'icon/athletics.png',
@@ -57,7 +44,9 @@ export const EVENTS_MOCKED: Event[] = [
         winner: 4,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 3
-    ,podium: [] },
+    ,podium: [
+        4, 3, 2
+    ] },
     {
         name: 'Lancer de javelot',
         icon: assets+'icon/athletics.png',
@@ -191,7 +180,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Judo',
         icon: assets+'icon/judo.png',
-        image:assets+"athletics.jpg",
+        image:assets+"karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 12, 9, 0),
         type: 'Judo',
@@ -203,7 +192,7 @@ export const EVENTS_MOCKED: Event[] = [
     ,podium: [] },
     {
         name: 'Karaté-Combat',
-        icon: assets+'icon/karatekumite.png',
+        icon: assets+'icon/karate.png',
         image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 9, 0),
@@ -217,7 +206,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Karate-Kata',
         icon: assets+'icon/karatekata.png',
-        image:assets+"athletics.jpg",
+        image:assets+"karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 14, 0),
         type: 'Karate',
@@ -230,7 +219,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Escrime',
         icon: assets+'icon/fencing.png',
-        image:assets+"athletics.jpg",
+        image:assets+"escrime.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Escrime',
