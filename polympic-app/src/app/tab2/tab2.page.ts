@@ -1,9 +1,6 @@
-import {
-  Component
-} from '@angular/core';
-import {
-  EVENTS_MOCKED
-} from 'src/mocks/event.mock';
+import { Component } from '@angular/core';
+import { EVENTS_MOCKED } from 'src/mocks/event.mock';
+import { SportsFilterService } from '../services/sports-filter/sports-filter.service';
 import { Event } from '../../models/event.model'
 import {
   Geolocation
@@ -43,7 +40,7 @@ export class Tab2Page {
   events: Event[] = [];
   // Before map is being initialized.
 
-  constructor(private geolocation: Geolocation, private activatedRoute: ActivatedRoute, private eventsService: EventsService) {}
+  constructor(private geolocation: Geolocation, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private service: SportsFilterService) {}
 
   ionViewDidEnter() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -82,6 +79,11 @@ export class Tab2Page {
     //console.log(this.events);
   }
 
+
+  getSportsFilters() {
+    return this.service.getSportsFilters();
+  }
+  
   leafletMap(mapId) {
     // In setView add latLng and zoom
     this.map = new Map(mapId, {
