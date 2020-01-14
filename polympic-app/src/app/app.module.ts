@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FavoriteService } from './services/favorite.service'
 import { IonicStorageModule } from '@ionic/storage';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
      FontAwesomeModule
   ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     FavoriteService,
