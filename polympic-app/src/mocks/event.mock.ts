@@ -178,7 +178,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Taekwondo',
         icon: assets+'icon/taekwondo.png',
-        image:assets+"athletic.jpg",
+        image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 11, 9, 0),
         type: 'Taekwondo',

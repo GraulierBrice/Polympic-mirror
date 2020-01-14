@@ -111,7 +111,10 @@ export class Tab2Page {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
     
-    this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
+    console.log('still ok')
+    //this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
+    console.log('not ok')
+
 
     if (this.routing) {
       console.log('trying to make route')
