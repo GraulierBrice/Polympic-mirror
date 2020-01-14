@@ -39,15 +39,12 @@
         <ion-img [src]="athlete.image"> </ion-img>
       </ion-avatar >
       <ion-label *ngIf="i===0">
-        🥇 - {{athlete.name}}
-      </ion-label>
-      <ion-label *ngIf="i===1">
         🥈 - {{athlete.name}}
       </ion-label>
-      <ion-label *ngIf="i===2">
+      <ion-label *ngIf="i===1">
         🥉 - {{athlete.name}}
       </ion-label>
-      <ion-label *ngIf="i>=3">
+      <ion-label *ngIf="i>=2">
         &nbsp;&nbsp;{{i+2}} - {{athlete.name}}
       </ion-label>
       <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
