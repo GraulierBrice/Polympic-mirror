@@ -68,9 +68,20 @@ export class Tab2Page {
       console.log('Error getting location', error);
     }).then(() => {
       console.log('lauching mat init');
-      if (!this.map){
-        this.leafletMap('mapId');
+
+      if (this.route){
+        this.map.removeControl(this.route);
+        console.log('route removed')
       }
+
+      this.route = Routing.control({
+        waypoints: [
+          latLng(this.myPos[0], this.myPos[1]),
+          latLng(this.posTo[0], this.posTo[1])
+        ]
+      })
+
+      this.leafletMap('mapId');
     });
   }
 
@@ -100,30 +111,26 @@ export class Tab2Page {
   leafletMap(mapId) {
     // In setView add latLng and zoom
     if (!this.map){
+      console.log(this.map)
+      console.log('INIT MAP')
       //this.map.remove();
       this.map = new Map(mapId, {
         minZoom: 5,
         maxZoom: 17
       }).setView([48.9244592, 2.3601645], 13)
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
+      // console.log('still ok')
+      this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
+      this.setViewMyPos();
+      // console.log('not ok')
     }
-
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-    
-    console.log('still ok')
-    //this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
-    console.log('not ok')
-
 
     if (this.routing) {
       console.log('trying to make route')
-      this.route = Routing.control({
-        waypoints: [
-          latLng(this.myPos[0], this.myPos[1]),
-          latLng(this.posTo[0], this.posTo[1])
-        ]
-      }).addTo(this.map);
+      console.log(this.route)
+      this.route.addTo(this.map);
 
       console.log('route supposed to be made')
     } else {
