@@ -108,10 +108,10 @@ export class Tab3Page {
     return this.favoriteService.getSportFavorites();
   }
 
-  unfavoriteSport(id) {
-    this.favoriteService.unfavoriteSport(id);
-    this.sportItems = this.sportItems.filter(item => item.id !== id);
-    this.sportsFavoriteService.unfavorite(id)
+  unfavoriteSport(item) {
+    this.favoriteService.unfavoriteSport(item);
+    this.sportItems = this.sportItems.filter(item => item.id !== item.id);
+    this.sportsFavoriteService.unfavorite(item.id)
     console.log('after changes')
     console.log(this.sportItems)
   }

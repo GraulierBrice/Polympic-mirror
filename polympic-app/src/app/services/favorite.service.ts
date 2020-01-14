@@ -126,9 +126,13 @@ export class FavoriteService {
   unfavoriteSport(item) {
     return this.getAllSportFavorite().then(result => {
       if (result) {
-        var index = result.indexOf(item);
-        result.splice(index, 1);
-        this.sportItems.splice(index, 1);
+        result.forEach( (object, index) => {
+          if (object === item) result.splice(index, 1);
+        } );
+
+        this.sportItems.forEach( (object, index) => {
+          if (object === item) this.sportItems.splice(index, 1);
+        } )
         this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_SPORT, result);
       }
