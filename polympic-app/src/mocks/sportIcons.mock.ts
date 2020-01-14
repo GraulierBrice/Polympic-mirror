@@ -3,9 +3,9 @@ import { faSwimmer, faFutbol, faRunning, faBicycle, faBasketballBall } from '@fo
 var prefix = "../assets/icon/"
 
 export const SPORTS_ICONS_MOCKED = {
-    Natation: prefix+"swimming.png",
-    Athlétisme: prefix+"athletics.png",
-    Football: prefix+"football.png",
-    VéloPiste: prefix+"cyclingtrack.png",
-    Basketball: prefix+"basketball.png"
+    Natation: faSwimmer,
+    Athlétisme: faRunning,
+    Football: faFutbol,
+    VéloPiste: faBicycle,
+    Basketball: faBasketballBall
 }
