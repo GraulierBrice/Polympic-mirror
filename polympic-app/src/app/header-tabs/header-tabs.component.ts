@@ -19,6 +19,7 @@ export class HeaderTabsComponent implements OnInit {
 
   filterEventsByFavorites() {
     if(!this.clicked) {
+      console.log('Im in header tabs');
       this.eventsService.filterEventsByFavorites();
       this.clicked = true;
     }

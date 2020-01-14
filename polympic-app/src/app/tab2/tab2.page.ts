@@ -153,7 +153,7 @@ export class Tab2Page {
     // });
   
     this.events.forEach(e => {
-      this.setMarker(e.place.longitude,e.place.latitude, e.icon,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
+      this.setMarker(e.place.longitude,e.place.latitude, e.iconMap,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
     });
     var map = this.map;
     var zoom = map.getZoom();

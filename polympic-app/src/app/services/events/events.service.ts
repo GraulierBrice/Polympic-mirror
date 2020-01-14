@@ -80,15 +80,27 @@ export class EventsService {
 
   filterEventsByFavorites() {
 
+    let arrayOfSports: String[] = [];
+    this.favoriteService.getAllSportFavorite().then( sport => {
+
+      sport.forEach( s => {
+        if(!arrayOfSports.includes(s.name))
+        arrayOfSports.push(s.name);
+      } )
+
+    } )
+    console.log(arrayOfSports);
     this.favoriteService.getAllCompetFavorite().then ( compet => {
-      if(compet.length) {
-        console.log(compet);
+      console.log(arrayOfSports);
+      if(compet.length || arrayOfSports.length) {
         this.events = this.events.filter( event => {
-          
-          return compet.includes(event.id);
+          console.log(event.type);
+          return compet.includes(event.id) || arrayOfSports.includes(event.type);
         } )
       }
-      else this.events = [];
+      else {
+        this.events = [];
+      } 
     })
 /*         return compet.map(eventId => {
           console.log(`event.id : ${event.id} // eventId : ${eventId}`);
