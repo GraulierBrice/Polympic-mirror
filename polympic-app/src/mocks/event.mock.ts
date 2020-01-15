@@ -241,7 +241,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Escrime',
         participants: [1, 2, 3, 4],
-        status: 'A venir',
+        status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 17
