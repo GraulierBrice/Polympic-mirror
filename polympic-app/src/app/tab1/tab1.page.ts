@@ -26,7 +26,7 @@ export class Tab1Page {
     return SPORTS_ICONS_MOCKED[sport];
   }
 
-  getAllEvents() {
+  getAllEvents(): Event[] {
     return this.service.getAllEvents();
   }
 
@@ -69,4 +69,6 @@ export class Tab1Page {
   getEventWinner(event: Event) {
     return this.service.getWinner(event.winner);
   }
+  
+
 }

@@ -157,4 +157,9 @@ getDurationByCar() {
   return result.toFixed(0) + ' h';
 }
 
+getBeginDate(): String {
+  let eventDate = this.event.beginDate.toLocaleString();
+  return eventDate
+}
+
 }

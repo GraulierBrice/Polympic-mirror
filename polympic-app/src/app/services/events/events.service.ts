@@ -21,13 +21,14 @@ export class EventsService {
 
 
   getAllEvents() {
-    return [...this.events];
+    this.sortEvents();
+    return this.events;
   }
 
   getEvent(eventId: Number) {
-    return {...this.events.find(event => {
+    return this.events.find(event => {
       return event.id === eventId;
-    })}
+    })
   }
 
   getParticipantsToEvent(eventId: Number) {
@@ -107,4 +108,25 @@ export class EventsService {
           return event.id === eventId;
         }) */
       } 
+
+      sortEvents() {
+
+        this.events.sort( (a,b) => {
+    
+          let aValue; let bValue;
+          aValue = this.calculateSorting(a);
+          bValue = this.calculateSorting(b);
+    
+          return (aValue - bValue);
+        } )
+      }
+    
+      calculateSorting(event: Event) {
+        switch(event.status) {
+          case 'Terminé': return 0; break;
+          case 'A venir': return 3; break;
+          case 'En cours': return 1; break;
+          case 'Bientot': return 2; break;
+        }
+      }
 }

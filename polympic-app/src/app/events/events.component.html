@@ -1,13 +1,23 @@
 <ion-card  class="welcome-card" >
         
   <ion-card-header>
-      <ion-card-title class="mainTitle">{{event.name}}</ion-card-title>
-    <ion-card-subtitle>
-      {{event.type}}
-    </ion-card-subtitle>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-card-title class="mainTitle">{{event.name}}</ion-card-title>
+        <ion-card-subtitle>
+          {{event.type}}
+        </ion-card-subtitle>
+      </ion-col>
+      <ion-col class="ion-text-right">
+        <ion-chip [color]="getEventColor(event.status)">
+          <h4>{{event.status}}</h4>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+
     
   </ion-card-header>
-  <img *ngIf = "event.status !== 'Terminé' " [src]="event.image"/>
+  <img [src]="event.image"/>
     <ion-grid>
       <ion-row class="ion-no-padding">
         <ion-col>
@@ -21,33 +31,29 @@
 
       <ion-row class="ion-no-padding">
         <ion-col size="auto">                
-          <ion-chip color="secondary">
-            <ion-label color="dark">{{event.beginDate.toLocaleString()}}</ion-label>
-          </ion-chip>
+          <span>
+               <strong id="eventPlace" >{{getBeginDate()}}</strong>
+          </span>
         </ion-col >
-
-        <ion-col class="ion-text-right">
-          <ion-chip color="getEventColor(event.status)">
-            <ion-label [color]="getEventColor(event.status)">{{event.status}}</ion-label>
-          </ion-chip>
-        </ion-col>
       </ion-row>
 
       <ion-row *ngIf = "event.status !== 'Terminé'">
-        <ion-col >                
+        <ion-col >      Distance estimée:           
           <ion-chip color="secondary">
+            <ion-icon name="compass"></ion-icon>
             <ion-label color="dark">{{getDistance()}} km</ion-label>
           </ion-chip>
         </ion-col >
 
-        <ion-col >                
+      </ion-row>
+
+      <ion-row *ngIf = "event.status !== 'Terminé'">
+        <ion-col >       Durée estimée:          
           <ion-chip color="success">
             <ion-icon name="walk"></ion-icon>
             <ion-label color="dark">{{getDurationByFeet()}}</ion-label>
           </ion-chip>
-        </ion-col >
 
-        <ion-col >                
           <ion-chip color="success">
             <ion-icon name="car"></ion-icon>
             <ion-label color="dark">{{getDurationByCar()}}</ion-label>
