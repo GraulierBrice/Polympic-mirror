@@ -29,7 +29,7 @@
           </ion-card-subtitle>
           
         </ion-card-header>
-        <img [src]="event.image"/>
+        <img *ngIf = "event.status !== 'Terminé' " [src]="event.image"/>
           <ion-grid>
             <ion-row class="ion-no-padding">
               <ion-col>
@@ -57,10 +57,19 @@
           </ion-grid>
 
 
-        <ion-button *ngIf="!event.ended" [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
+        <ion-button *ngIf="event.status !== 'Terminé' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
           M'y rendre 
           <ion-icon name="navigate"></ion-icon>
-        </ion-button> 
+        </ion-button>
+        
+          <ion-item *ngIf="event.status === 'Terminé' " class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="getEventWinner(event).image"> </ion-img>
+            </ion-avatar >
+            <ion-label>
+              🥇 - {{getEventWinner(event).name}}
+            </ion-label>
+          </ion-item>
       </ion-card>
 
     </ion-item>

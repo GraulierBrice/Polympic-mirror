@@ -1,3 +1,4 @@
+import { Event } from 'src/models/event.model';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { PopoverEventsComponent } from './../popover-events/popover-events.component';
 import { EventsService } from '../services/events/events.service';
@@ -57,11 +58,15 @@ export class Tab1Page {
     this.service.filterEventsByFavorites();
   }
 
-  getEventColor(status) {
+  getEventColor(status: String) {
     switch(status) {
       case 'Terminé': return "danger"; break;
       case 'A venir': return "medium"; break;
       case 'En cours': return "success"; break;
     }
+  }
+
+  getEventWinner(event: Event) {
+    return this.service.getWinner(event.winner);
   }
 }
