@@ -1,4 +1,4 @@
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { EventsService } from './../services/events/events.service';
 import { Event } from 'src/models/event.model';
@@ -14,19 +14,22 @@ import { SPORTS_ICONS_MOCKED } from 'src/mocks/sportIcons.mock';
 export class EventsComponent implements OnInit {
 
   @Input() event: Event;
-  currentPosition;
+  latitude;
+  longitude;
 
   constructor(private service: EventsService, private navCtrl: NavController, private localNotifications: LocalNotifications,
               private geolocation: Geolocation) { }
 
   ngOnInit() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('Current Position', resp.coords);
-      this.currentPosition = resp.coords;
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+      //this.currentPosition = resp;
     }).catch((error) => {
       console.log('Error getting location', error);
     });
   }
+
 
   getSportIcon(sport) {
     return SPORTS_ICONS_MOCKED[sport];
@@ -76,10 +79,9 @@ export class EventsComponent implements OnInit {
 
   getDistance(){
 
-    console.log(this.currentPosition);
     let usersLocation = {
-        lat: 	this.currentPosition.latitude, 
-        lng:  this.currentPosition.longitude
+        lat: 	this.latitude, 
+        lng:  this.longitude
     };
 
     let placeLocation = {
@@ -115,13 +117,44 @@ getDistanceBetweenPoints(start, end, units){
     Math.sin(dLon / 2);
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let d = R * c;
-
     return d;
 
 }
 
 toRad(x){
     return x * Math.PI / 180;
+}
+
+getDurationByFeet() {
+  let result = Number( this.getDistance() ) / 4;
+
+  if(result < 1) {
+    result = result * 60;
+    return result.toFixed(0) + ' min';
+  }
+
+  else if(result > 24) {
+    result = (result / 24);
+    return result.toFixed(0) + ' jr'
+  }
+
+  return result.toFixed(0) + ' h';
+}
+
+getDurationByCar() {
+  let result = Number( this.getDistance() ) / 70;
+
+  if(result < 1) {
+    result = result * 60;
+    return result.toFixed(0) + ' min';
+  }
+
+  else if(result > 24) {
+    result = (result / 24);
+    return result.toFixed(0) + ' jr'
+  }
+
+  return result.toFixed(0) + ' h';
 }
 
 }
