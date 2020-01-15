@@ -64,7 +64,7 @@ export class EventsComponent implements OnInit {
       case 'Terminé': return "danger"; break;
       case 'A venir': return "medium"; break;
       case 'En cours': return "success"; break;
-      case 'Bientot': return ""; break;
+      case 'Bientot': return "warning"; break;
     }
   }
 
