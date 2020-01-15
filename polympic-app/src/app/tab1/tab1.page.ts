@@ -2,9 +2,10 @@ import { Event } from 'src/models/event.model';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { PopoverEventsComponent } from './../popover-events/popover-events.component';
 import { EventsService } from '../services/events/events.service';
-import { Component } from '@angular/core';
-import { NavController, PopoverController } from '@ionic/angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController, PopoverController, IonList } from '@ionic/angular';
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+
+  @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
   
@@ -20,6 +23,24 @@ export class Tab1Page {
 
   ionViewWillEnter() {
     this.getAllEvents();
+    this.scrollListVisible();
+  }
+
+  scrollListVisible() {
+    let arr = this.list.nativeElement.children;
+    let i = 0;
+    let myEvent: Event;
+
+    for(let event of this.getAllEvents()) {
+      if(event.status === 'En cours') {
+        myEvent = event;
+        break;
+      }
+      i++;
+    }
+    let id = i;
+    let event = arr[id]; 
+    event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
   }
 
   getSportIcon(sport) {

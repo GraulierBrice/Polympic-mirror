@@ -19,9 +19,10 @@
 
   <ion-list>
 
-    <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" >
+    <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" [id] = "event.id">
 
       <app-events
+      
       [event] = "event"
       [routerLink] = "['./', event.id]"
       ></app-events>
