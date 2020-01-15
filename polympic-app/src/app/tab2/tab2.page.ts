@@ -120,7 +120,8 @@ export class Tab2Page {
       //this.map.remove();
       this.map = new Map(mapId, {
         minZoom: 5,
-        maxZoom: 17
+        maxZoom: 17,
+        zoomSnap: 0.25
       }).setView([48.9244592, 2.3601645], 13)
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

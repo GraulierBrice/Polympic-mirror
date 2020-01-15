@@ -179,7 +179,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Taekwondo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/swimming.png",
+        iconMap: assets+"icon/taekwondo.png",
         image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 11, 9, 0),
@@ -193,7 +193,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Judo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/swimming.png",
+        iconMap: assets+"icon/judo.png",
         image:assets+"karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 12, 9, 0),
@@ -207,7 +207,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Karaté-Combat',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/swimming.png",
+        iconMap: assets+"icon/karatekumite.png",
         image:assets+"athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 9, 0),
@@ -221,7 +221,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Karate-Kata',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/swimming.png",
+        iconMap: assets+"icon/karatekata.png",
         image:assets+"karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 14, 0),
@@ -235,7 +235,7 @@ export const EVENTS_MOCKED: Event[] = [
     {
         name: 'Escrime',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/swimming.png",
+        iconMap: assets+"icon/fencing.png",
         image:assets+"escrime.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 0),
