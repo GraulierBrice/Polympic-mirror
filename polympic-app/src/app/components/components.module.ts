@@ -9,15 +9,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EventsComponent } from '../events/events.component';
 
 @NgModule({
     imports: [
         IonicModule,
         CommonModule,
         FormsModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        RouterModule
     ],
-    declarations: [HeaderComponent, HeaderTabsComponent],
-    exports: [HeaderComponent, HeaderTabsComponent]
+    declarations: [HeaderComponent, HeaderTabsComponent, EventsComponent],
+    exports: [HeaderComponent, HeaderTabsComponent, EventsComponent]
 })
 export class ComponentsModule {}

@@ -20,7 +20,12 @@
   <ion-list>
 
     <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" >
-      <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
+
+      <app-events
+      [event] = "event"
+      [routerLink] = "['./', event.id]"
+      ></app-events>
+      <!-- <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
         
         <ion-card-header>
             <ion-card-title class="mainTitle">{{event.name}}</ion-card-title>
@@ -70,7 +75,7 @@
               🥇 - {{getEventWinner(event).name}}
             </ion-label>
           </ion-item>
-      </ion-card>
+      </ion-card> -->
 
     </ion-item>
     <ion-item class="noEventsAvailable" slot="fixed" *ngIf="getAllEvents().length <= 0 || !getAllEvents()">
