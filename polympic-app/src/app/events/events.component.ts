@@ -20,13 +20,12 @@ export class EventsComponent implements OnInit {
               private geolocation: Geolocation) { }
 
   ngOnInit() {
-     this.currentPosition = this.geolocation.watchPosition();
-
-     this.currentPosition.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-       data.coords.latitude
-       data.coords.longitude
-     });
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log('Current Position', resp.coords);
+      this.currentPosition = resp.coords;
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   getSportIcon(sport) {
@@ -62,6 +61,7 @@ export class EventsComponent implements OnInit {
       case 'Terminé': return "danger"; break;
       case 'A venir': return "medium"; break;
       case 'En cours': return "success"; break;
+      case 'Bientot': return ""; break;
     }
   }
 
@@ -76,17 +76,10 @@ export class EventsComponent implements OnInit {
 
   getDistance(){
 
-    let currentLatitude;
-    let currentLongitude;
-
-    this.currentPosition.forEach( location => {
-      currentLatitude = location.latitude;
-      currentLongitude = location.longitude;
-    } )
-
+    console.log(this.currentPosition);
     let usersLocation = {
-        lat: 	currentLatitude, 
-        lng:  currentLongitude
+        lat: 	this.currentPosition.latitude, 
+        lng:  this.currentPosition.longitude
     };
 
     let placeLocation = {
@@ -98,7 +91,7 @@ export class EventsComponent implements OnInit {
             usersLocation,
             placeLocation,
             'km'
-        ).toFixed(2);
+        ).toFixed(0);
 }
 
 getDistanceBetweenPoints(start, end, units){
