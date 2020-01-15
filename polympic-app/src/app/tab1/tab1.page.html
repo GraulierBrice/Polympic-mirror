@@ -49,12 +49,12 @@
               </ion-col >
   
               <ion-col class="ion-text-right">
-                <ion-chip color="danger" *ngIf="event.ended; else notEnded">
-                  <ion-label color="danger">Terminé</ion-label>
+                <ion-chip color="danger" *ngIf="event.status === 'Terminé'; else notEnded">
+                  <ion-label color="danger">{{event.status}}</ion-label>
                 </ion-chip>
                 <ng-template #notEnded>
                   <ion-chip color="success">
-                    <ion-label color="success">En cours</ion-label>
+                    <ion-label color="success">{{event.status}}</ion-label>
                   </ion-chip>
                 </ng-template>
               </ion-col>

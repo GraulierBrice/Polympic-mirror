@@ -51,7 +51,7 @@ export class EventsService {
   getPodiumAthlete(eventId) {
     const event = this.getEvent(eventId);
     var res = [];
-    if(event.ended) {
+    if(event.status === 'Terminé') {
       for(var id of event.podium) {
         res.push(this.athletesService.getAthlete(id));
       }

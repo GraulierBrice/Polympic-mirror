@@ -12,7 +12,7 @@ export interface Event {
     place: Place,
     beginDate: Date,
     participants: Number[],
-    ended: boolean,
+    status: String,
     winner: Number,
     eventType: EventType,
     podium: Number[]
