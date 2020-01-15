@@ -95,12 +95,12 @@ export class Tab2Page {
       });
       //console.log(found);
       if (found) {
-        if(found.beginDate > event.beginDate && !event.ended) {
+        if(found.beginDate > event.beginDate && event.status === 'Terminé') {
           const ind = this.events.indexOf(found);
           this.events.splice(ind, 1, event); //replace element at index ind by the element event
         }
       }
-      else if (!event.ended)
+      else if (event.status !== 'Terminé')
         this.events.push(event);
         this.favEvents.push(event);
     }

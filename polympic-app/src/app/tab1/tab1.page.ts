@@ -56,4 +56,12 @@ export class Tab1Page {
   filterEventsByFavorites() {
     this.service.filterEventsByFavorites();
   }
+
+  getEventColor(status) {
+    switch(status) {
+      case 'Terminé': return "danger"; break;
+      case 'A venir': return "medium"; break;
+      case 'En cours': return "success"; break;
+    }
+  }
 }
