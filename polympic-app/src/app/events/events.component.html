@@ -1,4 +1,4 @@
-<ion-card  class="welcome-card" >
+<ion-card  class="welcome-card">
         
   <ion-card-header>
     <ion-row>
@@ -19,7 +19,7 @@
   </ion-card-header>
   <img [src]="event.image"/>
     <ion-grid>
-      <ion-row class="ion-no-padding">
+      <ion-row *ngIf = "event.status !== 'Terminé'" class="ion-no-padding">
         <ion-col>
             <h3>
               <fa-icon [icon]="event.icon"></fa-icon>
@@ -29,7 +29,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row class="ion-no-padding">
+      <ion-row *ngIf = "event.status !== 'Terminé'" class="ion-no-padding">
         <ion-col size="auto">                
           <span>
                <strong id="eventPlace" >{{getBeginDate()}}</strong>
@@ -75,5 +75,6 @@
       <ion-label>
         🥇 - {{getEventWinner(event).name}}
       </ion-label>
+      <span [class]="getAthleteCountryFlag(getEventWinner(event).Country.flag)"></span>
     </ion-item>
 </ion-card>

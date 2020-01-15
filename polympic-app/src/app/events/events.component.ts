@@ -59,6 +59,15 @@ export class EventsComponent implements OnInit {
     this.service.filterEventsByFavorites();
   }
 
+getBackgroundColor(status: String) {
+  switch(status) {
+    case 'Terminé': return "danger"; break;
+    case 'A venir': return "medium"; break;
+    case 'En cours': return "success"; break;
+    case 'Bientot': return "warning"; break;
+  }
+}
+
   getEventColor(status: String) {
     switch(status) {
       case 'Terminé': return "danger"; break;
@@ -160,6 +169,10 @@ getDurationByCar() {
 getBeginDate(): String {
   let eventDate = this.event.beginDate.toLocaleString();
   return eventDate
+}
+
+getAthleteCountryFlag(flag) {
+  return 'flag-icon flag-icon-' + flag;
 }
 
 }

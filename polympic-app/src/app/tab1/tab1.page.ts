@@ -90,6 +90,8 @@ export class Tab1Page {
   getEventWinner(event: Event) {
     return this.service.getWinner(event.winner);
   }
+
+
   
 
 }
