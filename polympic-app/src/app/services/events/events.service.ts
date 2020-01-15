@@ -65,7 +65,7 @@ export class EventsService {
     })
   }
 
-  initializeEvents() {
+  initializeEvents () {
     this.events = EVENTS_MOCKED;
   }
 
@@ -84,12 +84,12 @@ export class EventsService {
     this.favoriteService.getAllSportFavorite().then( sport => {
 
       sport.forEach( s => {
-        if(!arrayOfSports.includes(s.name))
+        //if(!arrayOfSports.includes(s.name))
         arrayOfSports.push(s.name);
       } )
 
     } )
-    console.log(arrayOfSports);
+    console.log('Array Of Sports : ' + arrayOfSports);
     this.favoriteService.getAllCompetFavorite().then ( compet => {
       console.log(arrayOfSports);
       if(compet.length || arrayOfSports.length) {

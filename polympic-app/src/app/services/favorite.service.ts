@@ -129,16 +129,17 @@ export class FavoriteService {
   unfavoriteSport(item) {
     return this.getAllSportFavorite().then(result => {
       if (result) {
-         result.forEach(r => console.log(r));
-        var index = result.indexOf(item);
-        
-        console.log(`item : ${item}`);
-        console.log(`result : ${result}`);
-        console.log(`index 1 : ${index}`);
-        console.log(`index 2 : ${index2}`);
-        result.splice(index, 1); 
-        var index2 = this.sportItems.indexOf(item);
-        this.sportItems.splice(index2, 1);
+         result.forEach((r, index) => {
+          console.log(r);
+          if (r.name === item.name) {
+            console.log(`r === item ${r.name} - ${item.name}`);
+            result.splice(index, 1);
+          } 
+         } );
+
+         this.sportItems.forEach( (object, index) => {
+          if (object.name === item.name) this.sportItems.splice(index, 1);
+        } )
  /*        result.forEach( (object, index) => {
           if (object === item) result.splice(index, 1);
         } );
