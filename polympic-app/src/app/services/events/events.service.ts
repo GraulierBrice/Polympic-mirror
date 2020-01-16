@@ -43,7 +43,8 @@ export class EventsService {
   }
 
   loaderEvents(bottomScroll?: boolean) {
-    this.eventsLoader = this.loadEnCoursEvents();
+    this.eventsLoader = this.loadFinishedEvents().concat( this.loadEnCoursEvents() ) ;
+
     if(bottomScroll) bottomScroll = bottomScroll;
   }
 
@@ -62,6 +63,12 @@ export class EventsService {
   loadEvents() {
     
     return this.eventsLoader;
+  }
+
+  loadFinishedEvents() {
+    return this.getAllEvents().filter( event => {
+      return event.status === 'Terminé';
+    } )
   }
 
   loadEnCoursEvents(status?) {

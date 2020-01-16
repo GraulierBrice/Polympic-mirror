@@ -22,7 +22,7 @@
     <ion-item class="eventItem" *ngFor = "let event of loadEvents()" [id] = "event.id">
 
       <app-events
-      
+      class = "eventCard"
       [event] = "event"
       [routerLink] = "['./', event.id]"
       ></app-events>
@@ -43,10 +43,10 @@
     </ion-infinite-scroll>
 
 
-  <ion-fab *ngIf = "offsetTop !== 76" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf = "offsetTop !== offsetTopValue" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small" (click) = "scrollListVisible()">
-        <ion-icon *ngIf = "offsetTop > 76" name="arrow-round-up"></ion-icon>
-      <ion-icon *ngIf = "offsetTop < 76" name="arrow-round-down"></ion-icon>
+        <ion-icon *ngIf = "offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
+      <ion-icon *ngIf = "offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
     </ion-fab-button>
 </ion-fab>
 

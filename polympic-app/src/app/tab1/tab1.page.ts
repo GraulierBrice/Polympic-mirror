@@ -19,11 +19,13 @@ export class Tab1Page {
   offsetTop;
   completedBottom: boolean;
   infiniteScrollCounter: Number;
+  offsetTopValue: Number;
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
     console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
+    this.offsetTopValue = 405.6000061035156;
   }
 
   ionViewWillEnter() {
@@ -80,6 +82,7 @@ export class Tab1Page {
   }
 
   onScroll(e) {
+    console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 

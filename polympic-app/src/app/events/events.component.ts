@@ -16,11 +16,15 @@ export class EventsComponent implements OnInit {
   @Input() event: Event;
   latitude;
   longitude;
+  imageURL: String;
 
   constructor(private service: EventsService, private navCtrl: NavController, private localNotifications: LocalNotifications,
               private geolocation: Geolocation) { }
 
   ngOnInit() {
+    if(this.event.status === 'En cours') this.imageURL = './../../assets/EnCours.png';
+    else if(this.event.status === 'A venir') this.imageURL = './../../assets/AVenir.png';
+    else this.imageURL = `./../../assets/${this.event.status}.png`;
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;

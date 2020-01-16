@@ -1,4 +1,4 @@
-<ion-card  class="welcome-card">
+<ion-card [ngStyle]="{'background-image':'url('+imageURL+')'}"  class="welcome-card">
         
   <ion-card-header>
     <ion-row>
@@ -17,7 +17,11 @@
 
     
   </ion-card-header>
-  <img [src]="event.image"/>
+
+    <ion-img class="eventImage" *ngIf = "event.status === 'En cours' || event.status === 'Bientot'" [src]="event.image">
+
+    </ion-img>
+
     <ion-grid>
       <ion-row *ngIf = "event.status !== 'Terminé'" class="ion-no-padding">
         <ion-col>
@@ -38,17 +42,12 @@
       </ion-row>
 
       <ion-row *ngIf = "event.status !== 'Terminé'">
-        <ion-col >      Distance estimée:           
+        <ion-col style = "text-align: center;">
           <ion-chip color="secondary">
             <ion-icon name="compass"></ion-icon>
             <ion-label color="dark">{{getDistance()}} km</ion-label>
           </ion-chip>
-        </ion-col >
 
-      </ion-row>
-
-      <ion-row *ngIf = "event.status !== 'Terminé'">
-        <ion-col >       Durée estimée:          
           <ion-chip color="success">
             <ion-icon name="walk"></ion-icon>
             <ion-label color="dark">{{getDurationByFeet()}}</ion-label>
@@ -59,22 +58,37 @@
             <ion-label color="dark">{{getDurationByCar()}}</ion-label>
           </ion-chip>
         </ion-col >
+
+      </ion-row>
+
+      <ion-row *ngIf = "event.status !== 'Terminé'">
+
+        <ion-col>
+          <ion-button *ngIf="event.status !== 'Terminé' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
+            M'y rendre 
+            <ion-icon name="navigate"></ion-icon>
+          </ion-button>
+
+
+        </ion-col>
         </ion-row>
+        <ion-col>
+          <ion-item  *ngIf="event.status === 'Terminé' " class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="getEventWinner(event).image"> </ion-img>
+            </ion-avatar >
+            <ion-label>
+              <span [class]="getAthleteCountryFlag(getEventWinner(event).Country.flag)"></span>
+               - {{getEventWinner(event).name}}
+            </ion-label>
+            <span>🥇</span>
+          </ion-item>    
+        </ion-col>
+
     </ion-grid>
 
 
-  <ion-button *ngIf="event.status !== 'Terminé' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
-    M'y rendre 
-    <ion-icon name="navigate"></ion-icon>
-  </ion-button>
+
   
-    <ion-item *ngIf="event.status === 'Terminé' " class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
-      <ion-avatar slot="start">
-        <ion-img [src]="getEventWinner(event).image"> </ion-img>
-      </ion-avatar >
-      <ion-label>
-        🥇 - {{getEventWinner(event).name}}
-      </ion-label>
-      <span [class]="getAthleteCountryFlag(getEventWinner(event).Country.flag)"></span>
-    </ion-item>
+
 </ion-card>
