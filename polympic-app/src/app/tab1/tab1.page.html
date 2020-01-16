@@ -28,7 +28,7 @@
       ></app-events>
 
     </ion-item>
-    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="getAllEvents().length <= 0 || !getAllEvents()">
+    <ion-item class="noEventsAvailable" slot="fixed" *ngIf="loadEvents().length <= 0 || !loadEvents()">
         Pas d'événement disponible.
     </ion-item>
 

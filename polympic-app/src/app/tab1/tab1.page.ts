@@ -100,6 +100,7 @@ export class Tab1Page {
       this.completedBottom = true;
     }
     else this.completedBottom = false;
+    console.log(this.loadEvents());
     console.log(this.service.getAllEvents());
     
   }
