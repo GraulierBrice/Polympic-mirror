@@ -73,7 +73,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 11, 15, 30),
         type: 'Athlétisme',
         participants: [2, 3, 1],
-        status: 'A venir',
+        status: 'Bientot',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 5
@@ -101,7 +101,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 12, 10, 0),
         type: 'Athlétisme',
         participants: [1,2,3],
-        status: 'A venir',
+        status: 'Bientot',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 7
@@ -129,7 +129,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 12, 16, 30),
         type: 'Natation',
         participants: [1,4,3],
-        status: 'A venir',
+        status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 9
@@ -185,7 +185,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 11, 9, 0),
         type: 'Taekwondo',
         participants: [2, 1 ,3, 4],
-        status: 'A venir',
+        status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 13
