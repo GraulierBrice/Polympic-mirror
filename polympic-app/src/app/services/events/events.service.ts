@@ -15,12 +15,21 @@ export class EventsService {
   
   events: Event[];
   eventsLoader: Event[];
+  bottomScroll: boolean;
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
     this.loaderEvents();
+    this.bottomScroll = false;
   }
 
+  getBottomScroll() {
+    return this.bottomScroll;
+  }
+
+  setBottomScroll(value: boolean) {
+    this.bottomScroll = value;
+  }
 
   getAllEvents() {
     this.sortEvents();
@@ -33,8 +42,9 @@ export class EventsService {
     })
   }
 
-  loaderEvents() {
+  loaderEvents(bottomScroll?: boolean) {
     this.eventsLoader = this.loadEnCoursEvents();
+    if(bottomScroll) bottomScroll = bottomScroll;
   }
 
   loadAvenirEvents() {
@@ -128,13 +138,13 @@ export class EventsService {
     this.favoriteService.getAllCompetFavorite().then ( compet => {
       console.log(arrayOfSports);
       if(compet.length || arrayOfSports.length) {
-        this.events = this.events.filter( event => {
+        this.eventsLoader = this.events.filter( event => {
           console.log(event.type);
           return compet.includes(event.id) || arrayOfSports.includes(event.type);
         } )
       }
       else {
-        this.events = [];
+        this.eventsLoader = [];
       } 
     })
 /*         return compet.map(eventId => {

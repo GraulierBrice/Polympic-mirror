@@ -56,7 +56,7 @@ export class Tab1Page {
         this.infiniteScrollCounter = 0;
         infiniteScroll.target.complete();
         infiniteScroll.target.disable = true;
-        this.completedBottom = true;
+        this.service.setBottomScroll(true);
       }
       console.log('Async operation has ended');
     }, 500);
@@ -97,12 +97,15 @@ export class Tab1Page {
     const val = e.target.value;
     if(val && val.trim() != '') {
       this.service.filterEvents(val);
-      this.completedBottom = true;
+      this.service.setBottomScroll(true);
     }
-    else this.completedBottom = false;
+    else this.service.setBottomScroll(false);
     console.log(this.loadEvents());
     console.log(this.service.getAllEvents());
-    
+  }
+
+  getBottomScroll() {
+    return this.service.getBottomScroll();
   }
 
   registerNotification(ms) {
@@ -121,9 +124,6 @@ export class Tab1Page {
     return await popover.present();
   }
 
-  filterEventsByFavorites() {
-    this.service.filterEventsByFavorites();
-  }
 
   getEventColor(status: String) {
     switch(status) {

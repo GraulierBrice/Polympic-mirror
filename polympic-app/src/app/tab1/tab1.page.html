@@ -34,7 +34,7 @@
 
   </ion-list>
 
-  <ion-infinite-scroll *ngIf="!completedBottom" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll *ngIf="!getBottomScroll()" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
       loadingSpinner="bubbles" 
       loadingText="Loading Events...">

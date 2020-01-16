@@ -25,6 +25,7 @@ export class HeaderTabsComponent implements OnInit {
     }
 
     else {
+      this.eventsService.loaderEvents(false);
       this.eventsService.initializeEvents();
       this.clicked = false;
     }
