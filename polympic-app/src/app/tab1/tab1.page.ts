@@ -3,7 +3,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { PopoverEventsComponent } from './../popover-events/popover-events.component';
 import { EventsService } from '../services/events/events.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, PopoverController, IonList } from '@ionic/angular';
+import { NavController, PopoverController, IonList, IonContent } from '@ionic/angular';
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 
@@ -16,6 +16,8 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 export class Tab1Page {
 
   @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
+
+  offsetTop;
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
   
@@ -41,6 +43,11 @@ export class Tab1Page {
     let id = i;
     let event = arr[id]; 
     event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+  }
+
+  onScroll(e) {
+    console.log(e);
+    this.offsetTop = e.detail.scrollTop;
   }
 
   getSportIcon(sport) {

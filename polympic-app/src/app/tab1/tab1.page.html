@@ -1,6 +1,6 @@
 <app-header-tabs></app-header-tabs>
 
-<ion-content>
+<ion-content [scrollEvents] = "true" (ionScroll) = "onScroll($event)">
     
   <ion-row>
     <ion-col size="10">
@@ -17,7 +17,7 @@
     
   </ion-row>
 
-  <ion-list>
+  <ion-list >
 
     <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" [id] = "event.id">
 
@@ -84,5 +84,12 @@
     </ion-item>
 
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click) = "scrollListVisible()">
+        <ion-icon *ngIf = "offsetTop > 824" name="arrow-round-up"></ion-icon>
+      <ion-icon *ngIf = "offsetTop < 824" name="arrow-round-down"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
 
 </ion-content>
