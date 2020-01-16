@@ -4,9 +4,10 @@
 
 To run this example in production or development mode you have to make sure, `ionic` and `cordova` are installed globally on your machine. After that you can install all necessary dependencies for running this example.
 
-0. Check if `npm` is installed. Otherwise please [install `node.js` and `npm`](https://nodejs.org/en/download/package-manager/).
+0. Check if `npm` is installed. Otherwise please [install `node.js` and `npm`](https://nodejs.org/en/download/package-manager/). Then just navigate to the *polympic-app* folder
 ```bash
 npm -v
+cd polympic-app
 ```
 
 1. Install ionic and cordova command line interface globally.
