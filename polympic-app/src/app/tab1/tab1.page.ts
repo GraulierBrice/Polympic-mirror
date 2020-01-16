@@ -5,7 +5,6 @@ import { EventsService } from '../services/events/events.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, PopoverController, IonList, IonContent } from '@ionic/angular';
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -18,9 +17,13 @@ export class Tab1Page {
   @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
 
   offsetTop;
+  completedBottom: boolean;
+  infiniteScrollCounter: Number;
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
-  
+    console.log('Consutrctor');
+    this.completedBottom = false;
+    this.infiniteScrollCounter = 0;
   }
 
   ionViewWillEnter() {
@@ -28,12 +31,43 @@ export class Tab1Page {
     this.scrollListVisible();
   }
 
+  loadEvents() {
+    return this.service.loadEvents();
+  }
+
+  setEvents(events: Event[]): void {
+    console.log(event);
+    this.service.setEvents(events);
+    console.log(this.service.eventsLoader);
+  }
+
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      if(this.infiniteScrollCounter === 0) {
+        this.setEvents( this.loadEvents().concat(this.service.loadBientotEvents()) );
+        this.infiniteScrollCounter = +this.infiniteScrollCounter + 1;
+        infiniteScroll.target.complete();
+      }
+      else if (this.infiniteScrollCounter === 1) {
+        this.setEvents( this.loadEvents().concat(this.service.loadAvenirEvents()) );
+        this.infiniteScrollCounter = 0;
+        infiniteScroll.target.complete();
+        infiniteScroll.target.disable = true;
+        this.completedBottom = true;
+      }
+      console.log('Async operation has ended');
+    }, 500);
+  }
+
   scrollListVisible() {
     let arr = this.list.nativeElement.children;
     let i = 0;
     let myEvent: Event;
 
-    for(let event of this.getAllEvents()) {
+    for(let event of this.loadEvents()) {
       if(event.status === 'En cours') {
         myEvent = event;
         break;
@@ -46,7 +80,6 @@ export class Tab1Page {
   }
 
   onScroll(e) {
-    console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 
@@ -59,11 +92,16 @@ export class Tab1Page {
   }
 
    filterEvents(e) {
+     this.service.loaderEvents();
      this.service.initializeEvents();
     const val = e.target.value;
     if(val && val.trim() != '') {
       this.service.filterEvents(val);
+      this.completedBottom = true;
     }
+    else this.completedBottom = false;
+    console.log(this.service.getAllEvents());
+    
   }
 
   registerNotification(ms) {

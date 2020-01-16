@@ -4,19 +4,21 @@ import { TeamsService } from './../teams/teams.service';
 import { Event } from '../../../models/event.model';
 
 import { AthletesService } from '../athletes/athletes.service';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { EVENTS_MOCKED } from '../../../mocks/event.mock'
+import { IonList } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
   
-
   events: Event[];
+  eventsLoader: Event[];
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
+    this.loaderEvents();
   }
 
 
@@ -29,6 +31,38 @@ export class EventsService {
     return this.events.find(event => {
       return event.id === eventId;
     })
+  }
+
+  loaderEvents() {
+    this.eventsLoader = this.loadEnCoursEvents();
+  }
+
+  loadAvenirEvents() {
+    return this.getAllEvents().filter( event => {
+      return event.status === 'A venir';
+    } );
+  }
+
+  loadBientotEvents() {
+    return this.getAllEvents().filter( event => {
+      return event.status === 'Bientot';
+    } )
+  }
+
+  loadEvents() {
+    
+    return this.eventsLoader;
+  }
+
+  loadEnCoursEvents(status?) {
+    return this.getAllEvents().filter( event => {
+      if(status) return event.status === 'En cours' || event.status === status;
+      else return event.status === 'En cours';
+    } )
+  }
+
+  setEvents(events: Event[]): void {
+    this.eventsLoader = events;
   }
 
   getParticipantsToEvent(eventId: Number) {
@@ -72,7 +106,7 @@ export class EventsService {
 
   filterEvents(searchTerm: String) {
     if(searchTerm !== '') {
-      this.events = this.events.filter( event => {
+      this.eventsLoader = this.events.filter( event => {
         return (event.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || 
                (event.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1); 
       } )

@@ -19,64 +19,13 @@
 
   <ion-list >
 
-    <ion-item class="eventItem" *ngFor = "let event of getAllEvents()" [id] = "event.id">
+    <ion-item class="eventItem" *ngFor = "let event of loadEvents()" [id] = "event.id">
 
       <app-events
       
       [event] = "event"
       [routerLink] = "['./', event.id]"
       ></app-events>
-      <!-- <ion-card  class="welcome-card" [routerLink] = "['./', event.id]">
-        
-        <ion-card-header>
-            <ion-card-title class="mainTitle">{{event.name}}</ion-card-title>
-          <ion-card-subtitle>
-            {{event.type}}
-          </ion-card-subtitle>
-          
-        </ion-card-header>
-        <img *ngIf = "event.status !== 'Terminé' " [src]="event.image"/>
-          <ion-grid>
-            <ion-row class="ion-no-padding">
-              <ion-col>
-                  <h3>
-                    <fa-icon [icon]="event.icon"></fa-icon>
-                       <strong id="eventPlace" >{{event.place.name}}</strong>
-                  </h3>
-                 
-              </ion-col>
-            </ion-row>
-
-            <ion-row class="ion-no-padding">
-              <ion-col size="auto">                
-                <ion-chip color="secondary">
-                  <ion-label color="dark">{{event.beginDate.toLocaleString()}}</ion-label>
-                </ion-chip>
-              </ion-col >
-  
-              <ion-col class="ion-text-right">
-                <ion-chip color="getEventColor(event.status)">
-                  <ion-label [color]="getEventColor(event.status)">{{event.status}}</ion-label>
-                </ion-chip>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-
-
-        <ion-button *ngIf="event.status !== 'Terminé' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
-          M'y rendre 
-          <ion-icon name="navigate"></ion-icon>
-        </ion-button>
-        
-          <ion-item *ngIf="event.status === 'Terminé' " class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
-            <ion-avatar slot="start">
-              <ion-img [src]="getEventWinner(event).image"> </ion-img>
-            </ion-avatar >
-            <ion-label>
-              🥇 - {{getEventWinner(event).name}}
-            </ion-label>
-          </ion-item>
-      </ion-card> -->
 
     </ion-item>
     <ion-item class="noEventsAvailable" slot="fixed" *ngIf="getAllEvents().length <= 0 || !getAllEvents()">
@@ -85,10 +34,19 @@
 
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-infinite-scroll *ngIf="!completedBottom" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+      loadingSpinner="bubbles" 
+      loadingText="Loading Events...">
+    
+    </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+  <ion-fab *ngIf = "offsetTop !== 76" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small" (click) = "scrollListVisible()">
-        <ion-icon *ngIf = "offsetTop > 824" name="arrow-round-up"></ion-icon>
-      <ion-icon *ngIf = "offsetTop < 824" name="arrow-round-down"></ion-icon>
+        <ion-icon *ngIf = "offsetTop > 76" name="arrow-round-up"></ion-icon>
+      <ion-icon *ngIf = "offsetTop < 76" name="arrow-round-down"></ion-icon>
     </ion-fab-button>
 </ion-fab>
 
