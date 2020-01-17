@@ -26,6 +26,26 @@ export class SportsFilterService {
      return this.sportsFilter;
    }
 
+   getSportsSelected() {
+     return this.sportsSelected;
+   }
+
+   setSportsFilter(value) {
+     this.sportsFilter = value;
+   }
+
+   setSportsSelected(value) {
+    this.sportsSelected = value;
+  }
+
+  setEventTypesSelected(value) {
+    this.eventsTypeSelected = value;
+  }
+
+  getEventsService() {
+    return this.eventsService;
+  }
+
   filterBySport(sport) {
     
     if(!sport.clicked) {

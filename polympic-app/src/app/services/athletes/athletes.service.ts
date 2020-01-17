@@ -13,13 +13,13 @@ export class AthletesService {
    }
 
    getAthletes() {
-     return [...this.athletes];
+     return this.athletes;
    }
 
    getAthlete(athleteId: Number) {
-    return {...this.athletes.find(athlete => {
+    return this.athletes.find(athlete => {
       return athlete.id === athleteId;
-    })}
+    })
   }
 
   getAthletesPerCountry(country) {

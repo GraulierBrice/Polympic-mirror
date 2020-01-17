@@ -154,6 +154,8 @@ export class EventsService {
         this.eventsLoader = [];
       } 
     })
+
+    console.log(this.eventsLoader.length);
 /*         return compet.map(eventId => {
           console.log(`event.id : ${event.id} // eventId : ${eventId}`);
           return event.id === eventId;
