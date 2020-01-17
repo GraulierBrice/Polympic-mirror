@@ -125,7 +125,7 @@ export const EVENTS_MOCKED: Event[] = [
         icon: SPORTS_ICONS_MOCKED['Natation'],
         iconMap: assets+"icon/swimming.png",
         image:assets+"swimming.jpg",
-        place: PLACES_MOCKED[4],
+        place: PLACES_MOCKED[14],
         beginDate: new Date(2020, 1, 12, 16, 30),
         type: 'Natation',
         participants: [1,4,3],
