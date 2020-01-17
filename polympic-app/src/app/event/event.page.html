@@ -1,85 +1,200 @@
 <app-header></app-header>
 
-
 <ion-content>
 
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-        <ion-fab-button color="warning" (click)="unfavoriteEvent()" *ngIf="isFavorite">
-            <ion-icon name="star"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button size="small" color="warning" (click)="favoriteEvent()" *ngIf="!isFavorite">
-            <ion-icon name="star-outline"></ion-icon>
-          </ion-fab-button>
-      </ion-fab>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="unfavoriteEvent()" *ngIf="isFavorite">
+      <ion-icon name="star"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button size="small" color="warning" (click)="favoriteEvent()" *ngIf="!isFavorite">
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-img [src]="event.image" class=“photo-brightness”></ion-img>
 
-  <ion-img [src]="event.image"></ion-img>
-  <div class="ion-text-center eventHeader">
-  <h3>{{event.name}}</h3>
-  {{event.beginDate.toLocaleString()}}
-</div>
-<div class="winnerDiv" *ngIf = "event.ended">
-  <span class="participantsText">Vainqueur :</span>
-  <ion-list>  
-    <ion-item class="winner" [routerLink] = "['/athletes/', winner.id]">
-      <ion-avatar slot="start">
-        <ion-img [src]="winner.image"> </ion-img>
-      </ion-avatar >
-      <ion-label>
-        🥇 - {{winner.name}}
-      </ion-label>
-      <span [class]="getAthleteCountryFlag(winner.Country.flag)"></span>
-    </ion-item>
+  <ion-toolbar>  
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" color="warning">  
+      <ion-segment-button value="0">  
+        <!-- <ion-label>Resulats</ion-label>   -->
+        <ion-icon name="information-circle"></ion-icon> 
+      </ion-segment-button>  
+      <ion-segment-button value="1">  
+<!--         <ion-label>Participants</ion-label>  --> 
+        <ion-icon name="trophy"></ion-icon> 
+      </ion-segment-button>  
+      <ion-segment-button value="2">  
+<!--         <ion-label>Lieux</ion-label>   -->
+        <ion-icon name="pin"></ion-icon>  
+      </ion-segment-button>  
+    </ion-segment>  
+  </ion-toolbar>
 
-
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">  
     
-    <span class="participantsText">Podium :</span>
+    <!-- INFOS -->
+    <ion-slide>
+      <div class="full">
+        <div class="eventHeader">
 
-    <ion-item *ngFor="let athlete of podium; let i = index" [routerLink] = "['/athletes/', athlete.id]">
-      <ion-avatar slot="start">
-        <ion-img [src]="athlete.image"> </ion-img>
-      </ion-avatar >
-      <ion-label *ngIf="i===0">
-        🥈 - {{athlete.name}}
-      </ion-label>
-      <ion-label *ngIf="i===1">
-        🥉 - {{athlete.name}}
-      </ion-label>
-      <ion-label *ngIf="i>=2">
-        &nbsp;&nbsp;{{i+2}} - {{athlete.name}}
-      </ion-label>
-      <span [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
+          <!-- <h3>{{event.name}}</h3>
+          {{event.beginDate.toLocaleString()}}
+          <ion-chip [color]="getEventColor(event.status)">
+            <ion-label>{{event.status}}</ion-label>
+          </ion-chip> -->
+
+          <ion-row>
+            <ion-col size="12">
+              <!-- <h2>
+                {{event.name}}   
+              </h2> -->
+              <h1>
+                <fa-icon [icon]="event.icon"></fa-icon>
+                -
+                <strong id="eventPlace" >{{event.name}}</strong>
+              </h1>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4">
+              <h4>
+                <ion-chip color="warning" outline="true">
+                  <ion-icon name="clock"></ion-icon>
+                  <ion-label>10/02 - 15h00</ion-label>
+                </ion-chip>
+              </h4>
+            </ion-col>
+            <ion-col size="4">
+              <h4>
+                <ion-chip [color]="getEventColor(event.status)">
+                  <ion-label>{{event.status}}</ion-label>
+                </ion-chip>
+              </h4>
+            </ion-col>
+            <ion-col size="4">
+              <h4>
+                <ion-chip color="primary" outline="true">
+                  <ion-label>{{event.place.name}}</ion-label>
+                  <ion-icon name="pin"></ion-icon>
+                </ion-chip>
+              </h4>
+            </ion-col>
+          </ion-row>
+
+        </div>
+
         
-    </ion-item>
 
-  </ion-list>
+        <div class="winnerDiv" *ngIf="this.ended">
+          <!-- <h3 class="participantsText">Vainqueur :</h3> -->
+          
+          <ion-list>
+            <ion-item-divider>
+              <ion-label>
+                Vainqueur :
+              </ion-label>
+            </ion-item-divider>
+            <ion-item class="winner" [routerLink]="['/athletes/', winner.id]">
+              <ion-avatar slot="start">
+                <ion-img [src]="winner.image"> </ion-img>
+              </ion-avatar>
+              <ion-label>
+                <div [class]="getAthleteCountryFlag(winner.Country.flag)"></div>
+                 - {{winner.name}}
+              </ion-label>
+              <span> 🥇 </span>
+            </ion-item>
 
-  
-</div>
-  
+            <ion-item-divider>
+              <ion-label>
+                Podium :
+              </ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let athlete of podium; let i = index" [routerLink]="['/athletes/', athlete.id]">
+              <ion-avatar slot="start">
+                <ion-img [src]="athlete.image"> </ion-img>
+              </ion-avatar>
+              <ion-label>
+                <div [class]="getAthleteCountryFlag(athlete.Country.flag)"></div>
+                 - {{athlete.name}}
+                </ion-label>
 
-<ion-content *ngIf="!event.ended">
-  <span class="participantsText">Participants :</span>
-  <ion-list>
-    <ion-item *ngFor="let participant of participants" [routerLink] = "[pathOnClick, participant.id]">
-      <ion-avatar slot="start">
-        <ion-img [src]="participant.image"> </ion-img>
-      </ion-avatar >
-      <ion-label>
-        {{participant.name}}
-      </ion-label>
-        <span [class]="getAthleteCountryFlag(participant.Country.flag)"></span>
-      
-    </ion-item>
-  </ion-list>
+              <span *ngIf="i===0">
+                🥈 
+              </span>
+              <span *ngIf="i===1">
+                🥉 
+              </span>
+          
+            </ion-item>
+            
+          </ion-list>
+        </div>
+      </div>
+    </ion-slide>  
 
+    <!-- RESULATS -->
+    <ion-slide>
+      <div class="winnerDiv full" *ngIf="this.ended">
+        <span class="participantsText">Resulats :</span>
+        
+        <ion-list>
+          <ion-item *ngFor="let elem of results; let i = index" [routerLink]="['/athletes/', elem.athlete.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="elem.athlete.image"> </ion-img>
+            </ion-avatar>
+            <ion-label>
+              <div [class]="getAthleteCountryFlag(elem.athlete.Country.flag)"></div>
+               - {{elem.athlete.name}}
+              </ion-label>
 
-  <ion-button *ngIf="!event.ended" expand="block" size="large">
-    M'y rendre  
-    <ion-icon name="navigate"></ion-icon>
-  </ion-button>
+            <span *ngIf="i===0">
+              🥇 
+            </span>
+            <span *ngIf="i===1">
+              🥈 
+            </span>
+            <span *ngIf="i===2">
+              🥉 
+            </span>
+            <span *ngIf="i>2">
+              {{i}}ème
+            </span>
+        
+          </ion-item>
 
+        </ion-list>
+      </div>
+    
+      <!-- <div *ngIf="!event.ended" class="full">
+        <span class="participantsText">Participants :</span>
+        <ion-list>
+          <ion-item *ngFor="let participant of participants" [routerLink]="[pathOnClick, participant.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="participant.image"> </ion-img>
+            </ion-avatar>
+            <ion-label>
+              {{participant.name}}
+            </ion-label>
+            <span [class]="getAthleteCountryFlag(participant.Country.flag)"></span>
+    
+          </ion-item>
+        </ion-list>
+      </div> -->
+    </ion-slide>  
 
+    <!-- MAP -->
+    <ion-slide>
+      <div>
+        <ion-button *ngIf="!event.ended" expand="block" size="large">
+          M'y rendre
+          <ion-icon name="navigate"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>  
+
+  </ion-slides>  
 
 </ion-content>
- 
-</ion-content>
+
+
+

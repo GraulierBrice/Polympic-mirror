@@ -60,6 +60,24 @@ export class EventsService {
     return res;
   }
 
+  getResultsAthlete(eventId) {
+    const event = this.getEvent(eventId);
+    var res = []
+    if(event.status === 'Terminé') {
+      for(var el of event.results) {
+        let ath = {
+          athlete : { },
+          res : '' 
+        }
+        let athlete = this.athletesService.getAthlete(el.id)
+        ath.athlete = athlete;
+        ath.res = el.res;
+        res.push(ath);
+      }
+    }
+    return res;
+  }
+
   getWinner(winnerId: Number) {
     return this.athletesService.getAthletes().find(athlete => {
       return athlete.id === winnerId;

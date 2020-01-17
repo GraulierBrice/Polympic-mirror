@@ -1,60 +1,82 @@
-import { SPORTS_ICONS_MOCKED } from './sportIcons.mock';
-import {Event} from '../models/event.model';
-import { PLACES_MOCKED } from './place.mock';
-import { EVENTSTYPES_MOCKED} from './eventType.mock';
+import {
+    SPORTS_ICONS_MOCKED
+} from './sportIcons.mock';
+import {
+    Event
+} from '../models/event.model';
+import {
+    PLACES_MOCKED
+} from './place.mock';
+import {
+    EVENTSTYPES_MOCKED
+} from './eventType.mock';
 
 const assets = "../assets/";
 
-export const EVENTS_MOCKED: Event[] = [
-    {
-        name:"Final de football",
-        icon:SPORTS_ICONS_MOCKED['Football'],
-        iconMap: assets+"icon/football.png",
-        image:assets+"football.jpg",
-        place:PLACES_MOCKED[5],
-        beginDate:new Date(2020, 1, 11, 16, 45),
+export const EVENTS_MOCKED: Event[] = [{
+        name: "Final de football",
+        icon: SPORTS_ICONS_MOCKED['Football'],
+        iconMap: assets + "icon/football.png",
+        image: assets + "football.jpg",
+        place: PLACES_MOCKED[5],
+        beginDate: new Date(2020, 1, 11, 16, 45),
         type: 'Football',
         participants: [1, 2],
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[0],
-        id: 0
-    ,podium: [] },
+        id: 0,
+        podium: [],
+        results: undefined
+    },
     {
         name: '100 m',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        image:assets+"athletics.jpg",
-        iconMap: assets+"icon/athletics.png",
+        image: assets + "athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 10, 9, 30),
         type: 'Athlétisme',
-        participants: [ 1, 2, 3],
+        participants: [1, 2, 3],
         status: 'Terminé',
         winner: 3,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 2
-    ,podium: [2, 1] },
+        id: 2,
+        podium: [2, 1],
+        results: undefined
+    },
     {
         name: '110m haie',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 10, 15, 0),
         type: 'Athlétisme',
-        participants: [2, 3, 4],
+        participants: [0, 1, 2, 3, 6, 7, 8, 11],
         status: 'Terminé',
-        winner: 4,
+        winner: 0,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 3
-    ,podium: [
-        4, 3, 2
-    ] },
+        id: 3,
+        podium: [
+            0, 3, 1
+        ],
+        results: [
+            {id : 0, res : "12s80"},
+            {id : 3, res : "12s86"},
+            {id : 1, res : "12s98"},
+            {id : 11, res : "13s08"},
+            {id : 6, res : "13s10"},
+            {id : 7, res : "13s25"},
+            {id : 2, res : "13s55"},
+            {id : 8, res : "13s75"},
+        ]
+    },
     {
         name: 'Lancer de javelot',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[8],
         beginDate: new Date(2020, 1, 11, 13, 30),
         type: 'Athlétisme',
@@ -62,13 +84,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 4
-    ,podium: [] },
+        id: 4,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Lancer de disque',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[8],
         beginDate: new Date(2020, 1, 11, 15, 30),
         type: 'Athlétisme',
@@ -76,69 +100,79 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'Bientot',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 5
-    ,podium: [] },
+        id: 5,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Saut en Hauteur',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[3],
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Athlétisme',
-        participants: [2, 1 ,3],
+        participants: [2, 1, 3],
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 6
-    ,podium: [] },
+        id: 6,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Saut à la perche',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[3],
         beginDate: new Date(2020, 1, 12, 10, 0),
         type: 'Athlétisme',
-        participants: [1,2,3],
+        participants: [1, 2, 3],
         status: 'Bientot',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 7
-    ,podium: [] },
+        id: 7,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Relais 4*100m',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
-        iconMap: assets+"icon/athletics.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/athletics.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[1],
         beginDate: new Date(2020, 1, 12, 14, 0),
-        participants: [2,3,1],
+        participants: [2, 3, 1],
         type: 'Athlétisme',
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[0],
-        id: 8
-    ,podium: [] },
+        id: 8,
+        podium: [],
+        results: undefined
+    },
     {
         name: '50m nage libre',
         icon: SPORTS_ICONS_MOCKED['Natation'],
-        iconMap: assets+"icon/swimming.png",
-        image:assets+"swimming.jpg",
+        iconMap: assets + "icon/swimming.png",
+        image: assets + "swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 12, 16, 30),
         type: 'Natation',
-        participants: [1,4,3],
+        participants: [1, 4, 3],
         status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 9
-    ,podium: [] },
+        id: 9,
+        podium: [],
+        results: undefined
+    },
     {
         name: '150m nage libre',
         icon: SPORTS_ICONS_MOCKED['Natation'],
-        iconMap: assets+"icon/swimming.png",
-        image:assets+"swimming.jpg",
+        iconMap: assets + "icon/swimming.png",
+        image: assets + "swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 13, 9, 30),
         type: 'Natation',
@@ -146,13 +180,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 10
-    ,podium: [] },
+        id: 10,
+        podium: [],
+        results: undefined
+    },
     {
         name: '100m dos',
         icon: SPORTS_ICONS_MOCKED['Natation'],
-        iconMap: assets+"icon/swimming.png",
-        image:assets+"swimming.jpg",
+        iconMap: assets + "icon/swimming.png",
+        image: assets + "swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 13, 12, 30),
         type: 'Natation',
@@ -160,13 +196,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 11
-    ,podium: [] },
+        id: 11,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Natation Synchronisé',
         icon: SPORTS_ICONS_MOCKED['Natation'],
-        iconMap: assets+"icon/swimming.png",
-        image:assets+"swimming.jpg",
+        iconMap: assets + "icon/swimming.png",
+        image: assets + "swimming.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 30),
         type: 'Natation',
@@ -174,27 +212,31 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 12
-    ,podium: [] },
+        id: 12,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Taekwondo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/taekwondo.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/taekwondo.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 11, 9, 0),
         type: 'Taekwondo',
-        participants: [2, 1 ,3, 4],
+        participants: [2, 1, 3, 4],
         status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 13
-    ,podium: [] },
+        id: 13,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Judo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/judo.png",
-        image:assets+"karate.jpg",
+        iconMap: assets + "icon/judo.png",
+        image: assets + "karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 12, 9, 0),
         type: 'Judo',
@@ -202,13 +244,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 14
-    ,podium: [] },
+        id: 14,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Karaté-Combat',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/karatekumite.png",
-        image:assets+"athletics.jpg",
+        iconMap: assets + "icon/karatekumite.png",
+        image: assets + "athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 9, 0),
         type: 'Karate',
@@ -216,13 +260,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 15
-    ,podium: [] },
+        id: 15,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Karate-Kata',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/karatekata.png",
-        image:assets+"karate.jpg",
+        iconMap: assets + "icon/karatekata.png",
+        image: assets + "karate.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 14, 0),
         type: 'Karate',
@@ -230,13 +276,15 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'A venir',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 16
-    ,podium: [] },
+        id: 16,
+        podium: [],
+        results: undefined
+    },
     {
         name: 'Escrime',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets+"icon/fencing.png",
-        image:assets+"escrime.jpg",
+        iconMap: assets + "icon/fencing.png",
+        image: assets + "escrime.jpg",
         place: PLACES_MOCKED[4],
         beginDate: new Date(2020, 1, 11, 10, 0),
         type: 'Escrime',
@@ -244,6 +292,8 @@ export const EVENTS_MOCKED: Event[] = [
         status: 'En cours',
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
-        id: 17
-    ,podium: [] },
+        id: 17,
+        podium: [],
+        results: undefined
+    },
 ]

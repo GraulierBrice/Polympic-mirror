@@ -1,5 +1,6 @@
 .eventHeader {
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .participantsText {
@@ -13,3 +14,12 @@
 .winner {
     margin-bottom: 10px;
 }
+
+.full {
+    width: 100%;
+}
+
+ion-slide{
+    display: block !important;
+    align-items: unset !important;
+  }

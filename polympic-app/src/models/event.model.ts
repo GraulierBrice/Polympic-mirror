@@ -15,5 +15,6 @@ export interface Event {
     status: String,
     winner: Number,
     eventType: EventType,
-    podium: Number[]
+    podium: Number[],
+    results: any;
 }

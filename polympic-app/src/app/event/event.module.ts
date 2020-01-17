@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { EventPageRoutingModule } from './event-routing.module';
 
 import { EventPage } from './event.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { EventPage } from './event.page';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    EventPageRoutingModule
+    EventPageRoutingModule,
+    FontAwesomeModule
   ],
   declarations: [EventPage]
 })
