@@ -1,4 +1,6 @@
 import { Athlete } from '../models/athlete.model';
+import { COUNTRIES } from './country.mock';
+
 export const ATHLETES_MOCKED : Athlete[] = [
   {
     category: 'athlete',
@@ -23,12 +25,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       }
     ],
     Country: 
-      {
-        id: '0',
-        name: 'France',
-        flag: 'fr',
-        category: 'country',
-      }
+      COUNTRIES[77]
     
   },
     {
@@ -54,12 +51,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '0',
-            name: 'France',
-            flag: 'fr',
-            category: 'country',
-          }
+        COUNTRIES[1]
         
       },
       {
@@ -85,12 +77,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '1',
-            name: 'Belgium',
-            flag: 'be',
-            category: 'country',
-          }    
+        COUNTRIES[74]
       },
       {
         category: 'athlete',
@@ -115,12 +102,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '2',
-            name: 'Switzerland',
-            flag: 'ch',
-            category: 'country',
-          }    
+        COUNTRIES[77]
       },
       {
         category: 'athlete',
@@ -145,11 +127,6 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '1',
-            name: 'Belgium',
-            flag: 'be',
-            category: 'country',
-          }    
+        COUNTRIES[105]              
       }
 ]

@@ -1,5 +1,7 @@
 import { ATHLETES_MOCKED } from './athlete.mock';
 import { Team } from '../models/team.model';
+import { COUNTRIES } from './country.mock';
+
  
 
 export const athletesPerCountry = (countryName: String) => {
@@ -30,12 +32,7 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 2
               }
         ],
-        Country: {
-            id: '0',
-            name: 'France',
-            flag: 'fr',
-            category: 'country'
-        },
+        Country: COUNTRIES[77],
         Members: athletesPerCountry('France')
     },
     {
@@ -58,12 +55,7 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 5
               }
         ],
-        Country: {
-            id: '1',
-            name: 'Belgique',
-            flag: 'be',
-            category: 'country'
-        },
+        Country: COUNTRIES[105],
         Members: athletesPerCountry('Belgium')
     },
     {
@@ -86,12 +78,7 @@ export const TEAMS_MOCKED: Team[] = [
               quantity: 3
             }
       ],
-      Country: {
-          id: '2',
-          name: 'Switzerland',
-          flag: 'ch',
-          category: 'country'
-      },
+      Country: COUNTRIES[1],
       Members: athletesPerCountry('Switzerland')
   }
 ]
