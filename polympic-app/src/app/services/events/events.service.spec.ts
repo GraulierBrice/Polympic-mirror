@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { EventsService } from './events.service';
 
 describe('EventsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [IonicStorageModule.forRoot()]
+  }));
 
   it('should be created', () => {
     const service: EventsService = TestBed.get(EventsService);

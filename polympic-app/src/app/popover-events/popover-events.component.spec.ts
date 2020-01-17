@@ -1,6 +1,7 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { PopoverEventsComponent } from './popover-events.component';
 
 describe('PopoverEventsComponent', () => {
@@ -10,7 +11,7 @@ describe('PopoverEventsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PopoverEventsComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), IonicStorageModule.forRoot(), FontAwesomeModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PopoverEventsComponent);
