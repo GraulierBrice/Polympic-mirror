@@ -12,9 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
-
-
+<!--<ion-content color="light">
   <ion-row>
     <ion-col size="12" class="ion-padding">
       <ion-title>Mes équipes</ion-title>
@@ -151,4 +149,24 @@
     </ion-col>
   </ion-row>
 
+</ion-content>-->
+
+<ion-content>
+  <!-- Filter bar -->
+   <ion-toolbar class="filterBar">
+    <ion-icon (click)="filter('country')" class="filterIcon" name="flag"></ion-icon>
+    <ion-icon (click)="filter('event')" class="filterIcon" name="calendar"></ion-icon>
+    <ion-icon (click)="filter('athlete')" class="filterIcon" name="person"></ion-icon>
+    <ion-icon (click)="filter('sport')" class="filterIcon" name="football"></ion-icon>
+    <ion-icon slot="end" (click)="addNewFavorite()" class="filterIcon" name="add-circle-outline"></ion-icon>
+  </ion-toolbar>
+
+  <ion-list>
+    <ion-item *ngFor="let fav of displayFavorite">
+      <app-favorite-display [favorite]="fav" (toDisplay)="update($event)"></app-favorite-display>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
+
+

@@ -1,5 +1,11 @@
 
-.noFavoritesMsg {
-    text-align: center;
-    display: block;
+
+.filterIcon {
+    width: 30px;
+    height: 30px;
+}
+
+
+.filterIcon:focus {
+    color: blue;
 }

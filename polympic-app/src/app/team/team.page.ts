@@ -26,16 +26,15 @@ export class TeamPage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService, private favoriteService: FavoriteService) { }
 
+  
   favoriteTeam() {
-    this.favoriteService.favoriteNation(this.teamId).then(() => {
-      this.isFavorite = true;
-    });
+    this.favoriteService.addFavorite(this.teamId);
+    this.isFavorite = true;
   }
  
   unfavoriteTeam() {
-    this.favoriteService.unfavoriteNation(this.teamId).then(() => {
-      this.isFavorite = false;
-    });
+    this.favoriteService.removeFavorite(this.teamId);
+    this.isFavorite = false;
   }
 
   ngOnInit() {
@@ -51,10 +50,7 @@ export class TeamPage implements OnInit {
 
   this.drawChart();
   this.calculateMedalsNumber();
-
-  this.favoriteService.isFavoriteNation(this.teamId).then(isFav => {
-    this.isFavorite = isFav;
-  })
+  this.isFavorite = this.favoriteService.isFavorite(this.teamId);
 }
 
 calculateMedalsNumber() {

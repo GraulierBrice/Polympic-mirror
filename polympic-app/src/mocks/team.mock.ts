@@ -33,7 +33,8 @@ export const TEAMS_MOCKED: Team[] = [
         Country: {
             id: '0',
             name: 'France',
-            flag: 'fr'
+            flag: 'fr',
+            category: 'country'
         },
         Members: athletesPerCountry('France')
     },
@@ -60,7 +61,8 @@ export const TEAMS_MOCKED: Team[] = [
         Country: {
             id: '1',
             name: 'Belgique',
-            flag: 'be'
+            flag: 'be',
+            category: 'country'
         },
         Members: athletesPerCountry('Belgium')
     },
@@ -87,7 +89,8 @@ export const TEAMS_MOCKED: Team[] = [
       Country: {
           id: '2',
           name: 'Switzerland',
-          flag: 'ch'
+          flag: 'ch',
+          category: 'country'
       },
       Members: athletesPerCountry('Switzerland')
   }

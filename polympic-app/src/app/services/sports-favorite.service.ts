@@ -24,22 +24,18 @@ export class SportsFavoriteService {
 
  favoriteManage(sport: SportFavorite) {
    if(!sport.clicked) {
-     this.favoriteService.favoriteSport(sport);
+     this.favoriteService.addFavorite(sport);
    }
    else {
-     this.favoriteService.unfavoriteSport(sport);
+     this.favoriteService.removeFavorite(sport);
    }
 
    sport.clicked = !sport.clicked;
  }
 
  isFavorite(sport: SportFavorite) {
-  this.favoriteService.getAllSportFavorite().then(result => {
-    console.log('isFavorite method : ' + result);
-  })
-   return this.favoriteService.isFavoriteSport(sport.id).then(response => {
-     return response;
-   });
+  console.log(this.favoriteService.getAllFavorites());
+   return this.favoriteService.isFavorite(sport);
  }
 
  unfavorite(sportId: String) {

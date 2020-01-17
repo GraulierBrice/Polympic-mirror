@@ -26,15 +26,13 @@ export class EventPage implements OnInit {
    }
 
    favoriteEvent() {
-    this.favoriteService.favoriteCompet(this.event.id).then(() => {
-      this.isFavorite = true;
-    });
+    this.favoriteService.addFavorite(this.eventsService.getEvent(this.event.id));
+    this.isFavorite = true;
   }
  
   unfavoriteEvent() {
-    this.favoriteService.unfavoriteCompet(this.event.id).then(() => {
-      this.isFavorite = false;
-    });
+    this.favoriteService.removeFavorite(this.eventsService.getEvent(this.event.id))
+    this.isFavorite = false;
   }
 
   ngOnInit() {
@@ -55,9 +53,8 @@ export class EventPage implements OnInit {
       if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
       else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
 
-      this.favoriteService.isFavoriteCompet(eventId).then(isFav => {
-        this.isFavorite = isFav;
-      })
+      
+      this.isFavorite = this.favoriteService.isFavorite(this.eventsService.getEvent(eventId));
     })
   }
 

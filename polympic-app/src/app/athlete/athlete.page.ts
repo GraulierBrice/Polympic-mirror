@@ -32,16 +32,15 @@ export class AthletePage implements OnInit {
               private favoriteService: FavoriteService) 
   {}
 
+  
   favoriteAthlete() {
-    this.favoriteService.favoriteAthlete(this.athlete.id).then(() => {
-      this.isFavorite = true;
-    });
+    this.favoriteService.addFavorite(this.athlete);
+    this.isFavorite = true;
   }
  
   unfavoriteAthlete() {
-    this.favoriteService.unfavoriteAthlete(this.athlete.id).then(() => {
-      this.isFavorite = false;
-    });
+    this.favoriteService.removeFavorite(this.athlete);
+    this.isFavorite = false;
   }
 
   ngOnInit() {
@@ -53,9 +52,8 @@ export class AthletePage implements OnInit {
       
       const athleteId = Number(paramMap.get('athleteId'));
       this.athlete = this.athletesService.getAthlete(athleteId);
-      this.favoriteService.isFavoriteAthlete(athleteId).then(isFav => {
-        this.isFavorite = isFav;
-      })
+      
+        this.isFavorite = this.favoriteService.isFavorite(this.athlete);
       console.log(this.isFavorite);
     })
 

@@ -1,28 +1,77 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { Favoriseable } from 'src/models/favorisable.model';
 
+/*
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
 const STORAGE_KEY_NATION = 'favoriteCountry';
 const STORAGE_KEY_ATHLETE = 'favoriteAthlete';
 const STORAGE_KEY_SPORT = 'favoriteSport';
-
+*/
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
 
-  sportItems : any;
+  //sportItems : any;
+  favorite: Favoriseable[] = [];
+  displayFav: Favoriseable[] = [];
 
   constructor(public storage: Storage, private toastController : ToastController) {
+    /*
     this.storage.set(STORAGE_KEY_COMPETITION, []);
     this.storage.set(STORAGE_KEY_ATHLETE, []);
     this.storage.set(STORAGE_KEY_NATION, []);
     this.storage.set(STORAGE_KEY_SPORT, []);
 
     this.sportItems = [];
+    */
+   }
+   
+   filter(type) {
+    this.displayFav = [];
+    this.favorite.forEach(e => {
+      console.log(e.category);
+      if(e.category === type) {
+        this.displayFav.push(e);
+      }
+    });
+    console.log(this.displayFav);
+  }
+
+   getAllFavorites() {
+     return this.favorite;
    }
 
+   getDisplayFav() {
+     return this.displayFav;
+   }
+
+   setDisplayFav(list) {
+     this.displayFav = list;
+   }
+
+   isFavorite(item) {
+     return this.favorite.indexOf(item) !== -1;
+   }
+
+   addFavorite(item) {
+     this.favorite.push(item);
+     this.addToast();
+   }
+
+   removeFavorite(item) {
+     let index = this.favorite.indexOf(item);
+     this.favorite.splice(index, 1);
+     index = this.displayFav.indexOf(item);
+     if(index !== -1) {
+      this.displayFav.splice(index, 1);
+     }
+     this.removeToast();
+   }
+
+   /*
   isFavoriteSport(itemId) {
     return this.getAllSportFavorite().then(result => {
       return result && result.indexOf(itemId) !== -1;
@@ -140,13 +189,6 @@ export class FavoriteService {
          this.sportItems.forEach( (object, index) => {
           if (object.name === item.name) this.sportItems.splice(index, 1);
         } )
- /*        result.forEach( (object, index) => {
-          if (object === item) result.splice(index, 1);
-        } );
-
-         this.sportItems.forEach( (object, index) => {
-          if (object === item) this.sportItems.splice(index, 1);
-        } ) */
         this.unfavoriteAddedToast();
         return this.storage.set(STORAGE_KEY_SPORT, result);
       }
@@ -182,21 +224,23 @@ export class FavoriteService {
 
   getSportFavorites() {
     return this.sportItems;
-  }
+  }*/
 
 
-  async favoriteAddedToast() {
+  async addToast() {
     const toast = await this.toastController.create({
       message: 'Ajouté aux favoris avec succès',
-      duration: 1000
+      duration: 1000,
+      position: "middle",
     });
     toast.present();
   }
 
-  async unfavoriteAddedToast() {
+  async removeToast() {
     const toast = await this.toastController.create({
       message: 'Retiré des favoris avec succès',
-      duration: 1000
+      duration: 1000,
+      position: "middle",
     });
     toast.present();
   }

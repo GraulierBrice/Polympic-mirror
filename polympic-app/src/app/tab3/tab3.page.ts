@@ -6,6 +6,8 @@ import { FavoriteService } from '../services/favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
 import { AlertController } from '@ionic/angular';
 import { SportsFavoriteService } from '../services/sports-favorite.service';
+import { Favoriseable } from 'src/models/favorisable.model';
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-tab3',
@@ -15,16 +17,21 @@ import { SportsFavoriteService } from '../services/sports-favorite.service';
 export class Tab3Page {
   private editButtonColor: string = "warning";
   private isEditing: boolean = false;
-  private athleteItems: any;
+  /*private athleteItems: any;
   private eventItems: any;
   private nationItems: Team[];
-  private sportItems: any;
+  private sportItems: any;*/
+
+  private favoriteItems: Favoriseable[];
+  private displayFavorite: Favoriseable[];
  
   constructor(private athletesService: AthletesService, private favoriteService: FavoriteService, private alertCtrl: AlertController,
               private eventsService: EventsService, private teamsService: TeamsService, private sportsFavoriteService: SportsFavoriteService) {}
 
   ionViewDidEnter() {
-    this.athleteItems = [];
+    this.favoriteItems = this.favoriteService.getAllFavorites();
+    this.displayFavorite = [];
+    /*this.athleteItems = [];
     this.eventItems = [];
     this.nationItems = [];
     this.sportItems = [];
@@ -66,7 +73,7 @@ export class Tab3Page {
       console.log(this.eventItems);
       console.log('teams : ');
       console.log(this.nationItems);
-    ;
+    ;*/
   }
 
   async presentConfirm(type, favoriteType: String) {
@@ -87,13 +94,13 @@ export class Tab3Page {
           role: 'okay',
           cssClass: 'warning',
           handler: () => {
-            switch(favoriteType) {
+            /*switch(favoriteType) {
               case 'Team': this.unfavoriteNation(type); break;
               case 'Event': this.unfavoriteCompet(type); break;
               case 'Athlete': this.unfavoriteAthlete(type); break;
               case 'Sport': this.unfavoriteSport(type); break;
-            }
-            
+            }*/
+            this.unfavorite(type);
           }
         }
       ]
@@ -104,7 +111,39 @@ export class Tab3Page {
     console.log(result);
   }
 
-  getSportItems() {
+  unfavorite(item) {
+    this.favoriteService.removeFavorite(item);
+    this.favoriteItems = this.favoriteService.getAllFavorites();
+  }
+
+  update(list) {
+    this.displayFavorite = list;
+  }
+
+  favorite(item) {
+    this.favoriteService.addFavorite(item);
+    this.favoriteItems = this.favoriteService.getAllFavorites();
+  }
+
+  filter(type) {
+    console.log("You click on the icon : "+type);
+    this.displayFavorite = [];
+    console.log(this.favoriteItems);
+    this.favoriteItems.forEach(e => {
+      console.log(e.category);
+      if(e.category === type) {
+        this.displayFavorite.push(e);
+      }
+    });
+    console.log(this.displayFavorite);
+    this.favoriteService.setDisplayFav(this.displayFavorite);
+  }
+
+  addNewFavorite() {
+    alert('Add of new favorite not implemented yet');
+  }
+
+  /*getSportItems() {
     return this.favoriteService.getSportFavorites();
   }
 
@@ -135,7 +174,7 @@ export class Tab3Page {
     this.nationItems = this.nationItems.filter(item => item.id !== id);
     console.log('after changes')
     console.log(this.nationItems)
-  }
+  }*/
 
   getEditButtonColor() {
     return this.editButtonColor;

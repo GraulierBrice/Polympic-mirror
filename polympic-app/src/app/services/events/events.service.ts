@@ -80,9 +80,9 @@ export class EventsService {
   }
 
   filterEventsByFavorites() {
-
+    /*
     let arrayOfSports: String[] = [];
-    this.favoriteService.getAllSportFavorite().then( sport => {
+    this.favoriteService.getFavorite().then( sport => {
 
       sport.forEach( s => {
         //if(!arrayOfSports.includes(s.name))

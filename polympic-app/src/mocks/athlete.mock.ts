@@ -1,6 +1,7 @@
 import { Athlete } from '../models/athlete.model';
 export const ATHLETES_MOCKED : Athlete[] = [
   {
+    category: 'athlete',
     id: 0,
     image: '../assets/athletes/nicolas.jpg',
     name: 'Renaud Lavillenie',
@@ -25,11 +26,13 @@ export const ATHLETES_MOCKED : Athlete[] = [
       {
         id: '0',
         name: 'France',
-        flag: 'fr'
+        flag: 'fr',
+        category: 'country',
       }
     
   },
     {
+      category: 'athlete',
         id: 1,
         image: '../assets/athletes/mbappe.jpg',
         name: 'Christophe Lemaire',
@@ -54,11 +57,13 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '0',
             name: 'France',
-            flag: 'fr'
+            flag: 'fr',
+            category: 'country',
           }
         
       },
       {
+        category: 'athlete',
         id: 2,
         image: '../assets/athletes/jonas.jpg',
         name: 'Mathieu Legrand',
@@ -83,10 +88,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '1',
             name: 'Belgium',
-            flag: 'be'
+            flag: 'be',
+            category: 'country',
           }    
       },
       {
+        category: 'athlete',
         id: 3,
         image: '../assets/athletes/meuf.jpg',
         name: 'Isabel Quartier',
@@ -111,10 +118,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '2',
             name: 'Switzerland',
-            flag: 'ch'
+            flag: 'ch',
+            category: 'country',
           }    
       },
       {
+        category: 'athlete',
         id: 4,
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
@@ -139,7 +148,8 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '1',
             name: 'Belgium',
-            flag: 'be'
+            flag: 'be',
+            category: 'country',
           }    
       }
 ]
