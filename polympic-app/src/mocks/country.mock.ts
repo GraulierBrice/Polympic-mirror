@@ -2,7 +2,7 @@ import { Country } from '../models/country.model';
 
 export const COUNTRIES : Country[]
  =[
-{id: 0,name: 'Afghanistan', flag: 'AF', category:'country'}, 
+{id: 0,name: 'Afghanistan', flag: 'af', category:'country'}, 
 {id: 1,name: 'Åland Islands', flag: 'ax', category:'country'}, 
 {id: 2,name: 'Albania', flag: 'al', category:'country'}, 
 {id: 3,name: 'Algeria', flag: 'dz', category:'country'}, 
