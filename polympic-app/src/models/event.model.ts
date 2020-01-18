@@ -5,7 +5,6 @@ import { Favoriseable } from './favorisable.model';
 
 export interface Event extends Favoriseable {
     id: Number,
-    name: string,
     icon: IconDefinition,
     iconMap: String,
     image: string,

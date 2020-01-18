@@ -6,7 +6,6 @@ import { Favoriseable } from './favorisable.model';
 export interface Team extends Favoriseable {
     id: String;
     image: String;
-    name: String;
     Victory: String;
     Defeat: String;
     Medals: Medal[];

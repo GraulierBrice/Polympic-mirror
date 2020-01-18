@@ -78,6 +78,26 @@ export class Tab3Page {
     this.favoriteService.setDisplayFav(this.displayFavorite);
   }
 
+  onSearchChange(input) {
+    console.log(input.detail.value);
+    if(this.addingFavorite) {
+      this.addables = this.favoriteService.getAllFavorisable().filter(e=> {
+        return e.name.toLocaleLowerCase().includes(input.detail.value.toLocaleLowerCase());
+      });
+    } else {
+      if(input.detail.value === "") {
+        const oldFilter = this.filters
+        this.filters = 'all';
+        this.filter(oldFilter);
+      } else {
+        const toFilter = (this.filters==='all') ? this.favoriteItems: this.displayFavorite;
+        this.displayFavorite = toFilter.filter(e=> {
+          return e.name.toLocaleLowerCase().includes(input.detail.value.toLocaleLowerCase());
+        });
+      }
+    }
+  }
+
   addNewFavorite() {
     this.addingFavorite = !this.addingFavorite;
     this.toAdd = [];

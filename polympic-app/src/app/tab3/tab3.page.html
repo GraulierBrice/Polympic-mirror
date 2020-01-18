@@ -1,14 +1,15 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-title>Favoris</ion-title>
+    <ion-title *ngIf="!addingFavorite">Mes Favoris</ion-title>
+    <ion-title *ngIf="addingFavorite">Ajouter des Favoris</ion-title>
 
-    <ion-buttons slot="primary">
+    <!--<ion-buttons slot="primary">
       <ion-button>
         <ion-icon slot="icon-only" name="search"></ion-icon>
       </ion-button>
-    </ion-buttons>
-
+    </ion-buttons>-->
+    
   </ion-toolbar>
 </ion-header>
 
@@ -152,6 +153,9 @@
 </ion-content>-->
 
 <ion-content *ngIf="!addingFavorite">
+  <!--Searchbar-->
+  <ion-searchbar placeholder="Rechercher" (ionChange)="onSearchChange($event)" [debounce]="250" showCancelButton="focus"></ion-searchbar>
+
   <!-- Filter bar -->
    <ion-toolbar class="filterBar">
     <ion-icon id="country1" (click)="filter('country')" class="filter icon" name="flag"></ion-icon>
@@ -169,7 +173,10 @@
 
 
 <ion-content *ngIf="addingFavorite">
+  <!--Searchbar-->
+  <ion-searchbar placeholder="Rechercher" (ionChange)="onSearchChange($event)" [debounce]="250" showCancelButton="focus"></ion-searchbar>
 
+  <!--Filter Bar-->
   <ion-toolbar class="filterBar">
     <ion-icon id="country2" (click)="choice('country')" class="filter icon" name="flag"></ion-icon>
     <ion-icon id="event2" (click)="choice('event')" class="filter icon" name="calendar"></ion-icon>
