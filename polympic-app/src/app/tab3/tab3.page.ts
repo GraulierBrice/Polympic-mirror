@@ -7,7 +7,6 @@ import { AthletesService } from '../services/athletes/athletes.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { SportsFavoriteService } from '../services/sports-favorite.service';
 import { Favoriseable } from 'src/models/favorisable.model';
-import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-tab3',
@@ -18,10 +17,7 @@ export class Tab3Page {
   private editButtonColor: string = "warning";
   private isEditing: boolean = false;
   private addingFavorite: boolean = false;
-  /*private athleteItems: any;
-  private eventItems: any;
-  private nationItems: Team[];
-  private sportItems: any;*/
+
   private allTypes = ['event','country','athlete','sport'];
 
   private addables: Favoriseable[];

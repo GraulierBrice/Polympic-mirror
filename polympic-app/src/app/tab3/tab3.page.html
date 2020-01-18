@@ -3,154 +3,9 @@
 
     <ion-title *ngIf="!addingFavorite">Mes Favoris</ion-title>
     <ion-title *ngIf="addingFavorite">Ajouter des Favoris</ion-title>
-
-    <!--<ion-buttons slot="primary">
-      <ion-button>
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>-->
     
   </ion-toolbar>
 </ion-header>
-
-<!--<ion-content color="light">
-  <ion-row>
-    <ion-col size="12" class="ion-padding">
-      <ion-title>Mes équipes</ion-title>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-list>
-        <ion-item-sliding *ngFor="let nation of nationItems">
-          <ion-item [routerLink] = "['/teams', nation.id]">
-            <ion-avatar slot="start">
-              <img [src]="nation.image">
-            </ion-avatar>
-            <ion-label>
-              <h2>{{ nation.name }}</h2>
-              <p>{{ nation.type }}</p>
-            </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="presentConfirm(nation.id, 'Team')">
-              <ion-icon slot="end" name="trash"></ion-icon>
-              Delete
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-
-        <span class="noFavoritesMsg" *ngIf = "!nationItems || nationItems.length <= 0">Pas d'équipe dans vos favoris</span> 
-      </ion-list>
-      <ion-button (click)="onClick()" class="ion-float-right">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-
-
-  <ion-row>
-    <ion-col size="12" class="ion-padding">
-      <ion-title>Mes événements</ion-title>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-list>
-        <ion-item-sliding *ngFor="let event of eventItems">
-          <ion-item [routerLink] = "['/tabs/tab1', event.id]">
-            <ion-avatar slot="start">
-              <img [src]="event.image">
-            </ion-avatar>
-            <ion-label>
-              <h2>{{ event.name }}</h2>
-              <p>{{ event.type }}</p>
-            </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="presentConfirm(event.id, 'Event')">
-              <ion-icon slot="end" name="trash"></ion-icon>
-              Delete
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-        <span class="noFavoritesMsg" *ngIf = "!eventItems || eventItems.length <= 0">Pas d'événements dans vos favoris</span> 
-      </ion-list>
-      <ion-button (click)="onClick()" class="ion-float-right">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-
-
-
-  <ion-row>
-    <ion-col size="12" class="ion-padding">
-      <ion-title>Mes athlètes</ion-title>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-list>
-        <ion-item-sliding *ngFor="let athlete of athleteItems">
-          <ion-item [routerLink] = "['/athletes', athlete.id]">
-            <ion-avatar slot="start">
-              <img [src]="athlete.image">
-            </ion-avatar>
-            <ion-label>
-              <h2>{{ athlete.name }}</h2>
-              <p>{{ athlete.sport }}</p>
-            </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="presentConfirm(athlete.id, 'Athlete')">
-              <ion-icon slot="end" name="trash"></ion-icon>
-              Delete
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-        <span class="noFavoritesMsg" *ngIf = "!athleteItems || athleteItems.length <= 0">Pas d'athlètes dans vos favoris</span> 
-      </ion-list>
-      <ion-button (click)="onClick()" class="ion-float-right">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col size="12" class="ion-padding">
-      <ion-title>Mes sports</ion-title>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-list>
-        <ion-item-sliding *ngFor="let sport of getSportItems()">
-          <ion-item >
-            <ion-avatar slot="start">
-              <img [src]="sport.image">
-            </ion-avatar>
-            <ion-label>
-              <h2>{{ sport.name }}</h2>
-            </ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="presentConfirm(sport, 'Sport')">
-              <ion-icon slot="end" name="trash"></ion-icon>
-              Delete
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-
-        <span class="noFavoritesMsg" *ngIf = "!getSportItems() || getSportItems().length <= 0">Pas de sport dans vos favoris</span> 
-      </ion-list>
-      <ion-button [routerLink] = "['/sports-favorite']" class="ion-float-right">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-
-</ion-content>-->
 
 <ion-content *ngIf="!addingFavorite">
   <!--Searchbar-->
@@ -201,7 +56,10 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="confirmAdding()">
-      <ion-icon name="checkmark"></ion-icon>
+      <ion-icon *ngIf="toAdd.length!==0; else empty" name="checkmark"></ion-icon>
+      <ng-template #empty>
+          <ion-icon name="close"></ion-icon>
+      </ng-template>
     </ion-fab-button>
   </ion-fab>
 
