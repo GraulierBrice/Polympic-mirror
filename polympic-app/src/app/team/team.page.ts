@@ -28,12 +28,12 @@ export class TeamPage implements OnInit {
 
   
   favoriteTeam() {
-    this.favoriteService.addFavorite(this.teamId);
+    this.favoriteService.addFavorite(this.teamsService.getTeam(this.teamId));
     this.isFavorite = true;
   }
  
   unfavoriteTeam() {
-    this.favoriteService.removeFavorite(this.teamId);
+    this.favoriteService.removeFavorite(this.teamsService.getTeam(this.teamId));
     this.isFavorite = false;
   }
 

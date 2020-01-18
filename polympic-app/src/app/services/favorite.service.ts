@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { Favoriseable } from 'src/models/favorisable.model';
+import { COUNTRIES } from 'src/mocks/country.mock';
+import { TEAMS_MOCKED } from 'src/mocks/team.mock';
+import { EVENTS_MOCKED } from 'src/mocks/event.mock';
+import { ATHLETES_MOCKED } from 'src/mocks/athlete.mock';
 
 /*
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
@@ -14,31 +18,27 @@ const STORAGE_KEY_SPORT = 'favoriteSport';
 })
 export class FavoriteService {
 
-  //sportItems : any;
+  //sportItems : any;ù
+  allFavoriseable: Favoriseable[] = [];
   favorite: Favoriseable[] = [];
   displayFav: Favoriseable[] = [];
 
-  constructor(public storage: Storage, private toastController : ToastController) {
-    /*
-    this.storage.set(STORAGE_KEY_COMPETITION, []);
-    this.storage.set(STORAGE_KEY_ATHLETE, []);
-    this.storage.set(STORAGE_KEY_NATION, []);
-    this.storage.set(STORAGE_KEY_SPORT, []);
+  constructor(private toastController : ToastController) {
+    TEAMS_MOCKED.forEach(e=> {
+      this.allFavoriseable.push(e);
+    });
+    EVENTS_MOCKED.forEach(e=> {
+      this.allFavoriseable.push(e);
+    });
+    ATHLETES_MOCKED.forEach(e=> {
+      this.allFavoriseable.push(e);
+    });
 
-    this.sportItems = [];
-    */
    }
    
-   filter(type) {
-    this.displayFav = [];
-    this.favorite.forEach(e => {
-      console.log(e.category);
-      if(e.category === type) {
-        this.displayFav.push(e);
-      }
-    });
-    console.log(this.displayFav);
-  }
+   getAllFavorisable() {
+     return this.allFavoriseable;
+   }
 
    getAllFavorites() {
      return this.favorite;
@@ -70,162 +70,6 @@ export class FavoriteService {
      }
      this.removeToast();
    }
-
-   /*
-  isFavoriteSport(itemId) {
-    return this.getAllSportFavorite().then(result => {
-      return result && result.indexOf(itemId) !== -1;
-    });
-  }
- 
-  isFavoriteCompet(itemId) {
-    return this.getAllCompetFavorite().then(result => {
-      return result && result.indexOf(itemId) !== -1;
-    });
-  }
- 
-  isFavoriteNation(itemId) {
-    return this.getAllNationFavorite().then(result => {
-      return result && result.indexOf(itemId) !== -1;
-    });
-  }
- 
-  isFavoriteAthlete(itemId) {
-    return this.getAllAthleteFavorite().then(result => {
-      return result && result.indexOf(itemId) !== -1;
-    });
-  }
-
-  favoriteSport(item) {
-    return this.getAllSportFavorite().then(result => {
-      if (result) {
-        this.sportItems.push(item);
-        result.push(item);
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_SPORT, result);
-      } else {
-        this.sportItems.push(item);
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_SPORT, [item]);
-      }
-    });
-  }
- 
-  favoriteCompet(itemId) {
-    return this.getAllCompetFavorite().then(result => {
-      if (result) {
-        result.push(itemId);
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_COMPETITION, result);
-      } else {
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_COMPETITION, [itemId]);
-      }
-    });
-  }
- 
-  favoriteNation(itemId) {
-    return this.getAllNationFavorite().then(result => {
-      if (result) {
-        result.push(itemId);
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_NATION, result);
-      } else {
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_NATION, [itemId]);
-      }
-    });
-  }
- 
-  favoriteAthlete(itemId) {
-    return this.getAllAthleteFavorite().then(result => {
-      if (result) {
-        result.push(itemId);
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_ATHLETE, result);
-      } else {
-        this.favoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_ATHLETE, [itemId]);
-      }
-    });
-  }
- 
-  unfavoriteCompet(itemId) {
-    return this.getAllCompetFavorite().then(result => {
-      if (result) {
-        var index = result.indexOf(itemId);
-        result.splice(index, 1);
-        this.unfavoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_COMPETITION, result);
-      }
-    });
-  }
- 
-  unfavoriteNation(itemId) {
-    return this.getAllNationFavorite().then(result => {
-      if (result) {
-        result.forEach(r => console.log(r));
-        var index = result.indexOf(itemId);
-        console.log(`result : ${result}`);
-        console.log(`index 1 : ${index}`);
-        result.splice(index, 1);
-        this.unfavoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_NATION, result);
-      }
-    });
-  }
- 
-  unfavoriteSport(item) {
-    return this.getAllSportFavorite().then(result => {
-      if (result) {
-         result.forEach((r, index) => {
-          console.log(r);
-          if (r.name === item.name) {
-            console.log(`r === item ${r.name} - ${item.name}`);
-            result.splice(index, 1);
-          } 
-         } );
-
-         this.sportItems.forEach( (object, index) => {
-          if (object.name === item.name) this.sportItems.splice(index, 1);
-        } )
-        this.unfavoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_SPORT, result);
-      }
-    });
-  }
-
-  unfavoriteAthlete(itemId) {
-    return this.getAllAthleteFavorite().then(result => {
-      if (result) {
-        var index = result.indexOf(itemId);
-        result.splice(index, 1);
-        this.unfavoriteAddedToast();
-        return this.storage.set(STORAGE_KEY_ATHLETE, result);
-      }
-    });
-  }
- 
-  getAllCompetFavorite() {
-    return this.storage.get(STORAGE_KEY_COMPETITION);
-  }
- 
-  getAllNationFavorite() {
-    return this.storage.get(STORAGE_KEY_NATION);
-  }
- 
-  getAllAthleteFavorite() {
-    return this.storage.get(STORAGE_KEY_ATHLETE);
-  }
-
-  getAllSportFavorite() {
-    return this.storage.get(STORAGE_KEY_SPORT);
-  }
-
-  getSportFavorites() {
-    return this.sportItems;
-  }*/
-
 
   async addToast() {
     const toast = await this.toastController.create({

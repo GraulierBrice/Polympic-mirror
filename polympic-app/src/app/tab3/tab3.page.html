@@ -151,22 +151,54 @@
 
 </ion-content>-->
 
-<ion-content>
+<ion-content *ngIf="!addingFavorite">
   <!-- Filter bar -->
    <ion-toolbar class="filterBar">
-    <ion-icon (click)="filter('country')" class="filterIcon" name="flag"></ion-icon>
-    <ion-icon (click)="filter('event')" class="filterIcon" name="calendar"></ion-icon>
-    <ion-icon (click)="filter('athlete')" class="filterIcon" name="person"></ion-icon>
-    <ion-icon (click)="filter('sport')" class="filterIcon" name="football"></ion-icon>
-    <ion-icon slot="end" (click)="addNewFavorite()" class="filterIcon" name="add-circle-outline"></ion-icon>
+    <ion-icon id="country1" (click)="filter('country')" class="filter icon" name="flag"></ion-icon>
+    <ion-icon id="event1" (click)="filter('event')" class="filter icon" name="calendar"></ion-icon>
+    <ion-icon id="athlete1" (click)="filter('athlete')" class="filter icon" name="person"></ion-icon>
+    <ion-icon id="sport1" (click)="filter('sport')" class="filter icon" name="football"></ion-icon>
+    <ion-icon slot="end" (click)="addNewFavorite()" class="icon" name="add-circle-outline"></ion-icon>
   </ion-toolbar>
 
   <ion-list>
-    <ion-item *ngFor="let fav of displayFavorite">
-      <app-favorite-display [favorite]="fav" (toDisplay)="update($event)"></app-favorite-display>
-    </ion-item>
-  </ion-list>
+    <app-favorite-display *ngFor="let fav of displayFavorite" class="item" [favorite]="fav" (toDisplay)="update($event)"></app-favorite-display>
+  </ion-list> 
 
 </ion-content>
+
+
+<ion-content *ngIf="addingFavorite">
+
+  <ion-toolbar class="filterBar">
+    <ion-icon id="country2" (click)="choice('country')" class="filter icon" name="flag"></ion-icon>
+    <ion-icon id="event2" (click)="choice('event')" class="filter icon" name="calendar"></ion-icon>
+    <ion-icon id="athlete2" (click)="choice('athlete')" class="filter icon" name="person"></ion-icon>
+    <ion-icon id="sport2" (click)="choice('sport')" class="filter icon" name="football"></ion-icon>
+  </ion-toolbar>
+
+  <ion-list>
+    <span *ngFor="let addable of addables">
+      <span *ngIf="favoriteItems.indexOf(addable) === -1">
+        <ion-item *ngIf="filters === 'all' || addable.category === filters" (click)="addFavorite(addable)">
+          <ion-avatar slot="start" *ngIf="addable.category ==='athlete' || addable.category === 'country'">
+            <img [src]="addable.image" />
+          </ion-avatar>
+          <ion-icon *ngIf="addable.category==='event'" slot="start" name="calendar"></ion-icon>
+          <ion-label>{{addable.name}}</ion-label>
+          <ion-icon [hidden]="toAdd.indexOf(addable) ===-1" slot="end" name="star"></ion-icon>
+        </ion-item>
+      </span>
+    </span>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="confirmAdding()">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
 
 

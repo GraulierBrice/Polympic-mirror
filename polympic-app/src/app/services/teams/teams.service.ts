@@ -24,9 +24,9 @@ export class TeamsService {
   }
 
   getTeam(teamId: String) {
-   return {...this.teams.find(team => {
+   return this.teams.find(team => {
      return team.id === teamId;
-   })}
+   });
  }
 
  getMembers(teamId: String): Athlete[] {

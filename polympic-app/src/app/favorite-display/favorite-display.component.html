@@ -1,6 +1,6 @@
 <!-- Display of event -->
 <ion-item-sliding *ngIf="favorite.category === 'event'">
-  <ion-item>
+  <ion-item [routerLink] = "['/tabs/tab1', favorite.id]">
     <ion-icon slot="start" name="calendar"></ion-icon>
     <ion-label>{{favorite.name}}</ion-label>
     <ion-chip slot="end" color={{getEventColor(favorite.status)}}>
@@ -23,8 +23,9 @@
   </ion-item-options>
 </ion-item-sliding>
 
+<!--Display of Sport-->
 <ion-item-sliding *ngIf="favorite.category === 'sport'">
-  <ion-item >
+  <ion-item [routerLink] = "['/sports', favorite.id]">
     <ion-icon slot="start" name="football"></ion-icon><ion-label>{{favorite.name}}</ion-label>
   </ion-item>
   
@@ -43,9 +44,13 @@
   </ion-item-options>
 </ion-item-sliding>
 
+<!--Display of Country-->
 <ion-item-sliding *ngIf="favorite.category === 'country'">
-  <ion-item >
-    <ion-icon slot="start" name="flag"></ion-icon>  
+  <ion-item [routerLink] = "['/teams', favorite.id]">
+    <ion-avatar slot="start">
+      <ion-img [src]="favorite.image"></ion-img>
+    </ion-avatar>
+    <ion-label>{{favorite.name}}</ion-label>
   </ion-item>
   
   <ion-item-options side="end">
@@ -63,9 +68,12 @@
   </ion-item-options>
 </ion-item-sliding>
 
+<!--Display of athlete-->
 <ion-item-sliding *ngIf="favorite.category === 'athlete'">
-  <ion-item >
-    <ion-icon slot="start" name="person"></ion-icon>
+  <ion-item [routerLink] = "['/athletes', favorite.id]">
+    <ion-avatar slot="start">
+      <ion-img [src]="favorite.image"></ion-img>
+    </ion-avatar>
     <ion-label>{{favorite.name}}</ion-label>
   </ion-item>
   

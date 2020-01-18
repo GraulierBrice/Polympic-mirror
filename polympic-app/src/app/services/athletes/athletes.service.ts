@@ -17,9 +17,9 @@ export class AthletesService {
    }
 
    getAthlete(athleteId: Number) {
-    return {...this.athletes.find(athlete => {
+    return this.athletes.find(athlete => {
       return athlete.id === athleteId;
-    })}
+    });
   }
 
   getAthletesPerCountry(country) {

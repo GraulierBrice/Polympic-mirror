@@ -91,7 +91,4 @@ export class Tab1Page {
     return this.service.getWinner(event.winner);
   }
 
-
-  
-
 }

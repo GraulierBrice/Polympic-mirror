@@ -54,7 +54,7 @@ export class EventPage implements OnInit {
       else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
 
       
-      this.isFavorite = this.favoriteService.isFavorite(this.eventsService.getEvent(eventId));
+      this.isFavorite = this.favoriteService.isFavorite(this.event);
     })
   }
 
