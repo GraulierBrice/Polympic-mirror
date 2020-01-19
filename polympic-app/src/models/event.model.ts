@@ -17,4 +17,5 @@ export interface Event {
     eventType: EventType,
     podium: Number[],
     results: any;
+    relatedContent: any;
 }

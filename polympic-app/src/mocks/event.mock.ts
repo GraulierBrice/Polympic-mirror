@@ -27,7 +27,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[0],
         id: 0,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: '100 m',
@@ -43,7 +46,19 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 2,
         podium: [2, 1],
-        results: undefined
+        results: [
+            {id : 11, res : "9s73"},
+            {id : 7, res : "9s86"},
+            {id : 6, res : "9s97"},
+            {id : 1, res : "10s08"},
+            {id : 3, res : "10s16"},
+            {id : 8, res : "10s75"},
+            {id : 2, res : "10s85"},
+            {id : 0, res : "11s01"},
+        ],
+        relatedContent: [
+            3, 5, 6
+        ]
     },
     {
         name: '110m haie',
@@ -70,6 +85,9 @@ export const EVENTS_MOCKED: Event[] = [{
             {id : 7, res : "13s25"},
             {id : 2, res : "13s55"},
             {id : 8, res : "13s75"},
+        ],
+        relatedContent: [
+            2, 5, 6
         ]
     },
     {
@@ -86,7 +104,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 4,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            2,3,4
+        ]
     },
     {
         name: 'Lancer de disque',
@@ -102,7 +123,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 5,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            2,3,4
+        ]
     },
     {
         name: 'Saut en Hauteur',
@@ -118,7 +142,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 6,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Saut à la perche',
@@ -134,7 +161,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 7,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Relais 4*100m',
@@ -150,7 +180,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[0],
         id: 8,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: '50m nage libre',
@@ -166,7 +199,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 9,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: '150m nage libre',
@@ -182,7 +218,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 10,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: '100m dos',
@@ -198,7 +237,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 11,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Natation Synchronisé',
@@ -214,7 +256,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 12,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Taekwondo',
@@ -230,7 +275,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 13,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Judo',
@@ -246,7 +294,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 14,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Karaté-Combat',
@@ -262,7 +313,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 15,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Karate-Kata',
@@ -278,7 +332,10 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 16,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
     {
         name: 'Escrime',
@@ -294,6 +351,9 @@ export const EVENTS_MOCKED: Event[] = [{
         eventType: EVENTSTYPES_MOCKED[1],
         id: 17,
         podium: [],
-        results: undefined
+        results: undefined,
+        relatedContent: [
+            
+        ]
     },
 ]

@@ -144,7 +144,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       },
       {
         id: 5,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/5.jpg',
         name: 'Marc Dumont',
         sport: 'Football',
         Victory: '1',
@@ -172,7 +172,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       },
       {
         id: 6,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/6.jpg',
         name: 'Philipe Strauss',
         sport: 'Athlétisme',
         Victory: '2',
@@ -194,13 +194,13 @@ export const ATHLETES_MOCKED : Athlete[] = [
         Country: 
           {
             id: '1',
-            name: 'Belgium',
-            flag: 'be'
+            name: 'Germany',
+            flag: 'de'
           }    
       },
       {
         id: 7,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/7.jpg',
         name: 'Joao Miranda',
         sport: 'Athlétisme',
         Victory: '0',
@@ -223,12 +223,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '8',
             name: 'Brazil',
-            flag: 'be'
+            flag: 'br'
           }    
       },
       {
         id: 8,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/8.jpg',
         name: 'James Trond',
         sport: 'Athlétisme',
         Victory: '7',
@@ -251,12 +251,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '9',
             name: 'United States of America',
-            flag: 'be'
+            flag: 'us'
           }    
       },
       {
         id: 9,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/9.jpg',
         name: 'Lara Deridifi',
         sport: 'Natation',
         Victory: '12',
@@ -279,12 +279,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '5',
             name: 'Italy',
-            flag: 'be'
+            flag: 'it'
           }    
       },
       {
         id: 10,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/10.jpg',
         name: 'Franz Hastrupen',
         sport: 'Football',
         Victory: '6',
@@ -307,12 +307,12 @@ export const ATHLETES_MOCKED : Athlete[] = [
           {
             id: '7',
             name: 'Germany',
-            flag: 'be'
+            flag: 'de'
           }    
       },
       {
         id: 11,
-        image: '../assets/athletes/barbu.jpg',
+        image: '../assets/athletes/11.jpg',
         name: 'Jean Maillot',
         sport: 'Athlétisme',
         Victory: '2',

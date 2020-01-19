@@ -15,9 +15,27 @@
     margin-bottom: 10px;
 }
 
+.event {
+    margin-top: 20px;
+}
+
 .full {
     width: 100%;
 }
+
+.item-inner{
+    min-height: 1px !important;
+    }
+    
+    .label-md{
+      margin-bottom: 1px!important;
+      margin-top: 1px!important;
+    }
+    
+    ion-item-divider{
+      margin-top: 0px;
+      min-height: 1px!important;
+    }
 
 ion-slide{
     display: block !important;

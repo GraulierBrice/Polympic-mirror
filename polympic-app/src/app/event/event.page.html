@@ -12,25 +12,25 @@
   </ion-fab>
   <ion-img [src]="event.image" class=“photo-brightness”></ion-img>
 
-  <ion-toolbar>  
-    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" color="warning">  
-      <ion-segment-button value="0">  
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment" color="warning">
+      <ion-segment-button value="0">
         <!-- <ion-label>Resulats</ion-label>   -->
-        <ion-icon name="information-circle"></ion-icon> 
-      </ion-segment-button>  
-      <ion-segment-button value="1">  
-<!--         <ion-label>Participants</ion-label>  --> 
-        <ion-icon name="trophy"></ion-icon> 
-      </ion-segment-button>  
-      <ion-segment-button value="2">  
-<!--         <ion-label>Lieux</ion-label>   -->
-        <ion-icon name="pin"></ion-icon>  
-      </ion-segment-button>  
-    </ion-segment>  
+        <ion-icon name="information-circle"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <!--         <ion-label>Participants</ion-label>  -->
+        <ion-icon name="trophy"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <!--         <ion-label>Lieux</ion-label>   -->
+        <ion-icon name="pin"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 
-  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">  
-    
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+
     <!-- INFOS -->
     <ion-slide>
       <div class="full">
@@ -50,7 +50,7 @@
               <h1>
                 <fa-icon [icon]="event.icon"></fa-icon>
                 -
-                <strong id="eventPlace" >{{event.name}}</strong>
+                <strong id="eventPlace">{{event.name}}</strong>
               </h1>
             </ion-col>
           </ion-row>
@@ -82,24 +82,25 @@
 
         </div>
 
-        
 
-        <div class="winnerDiv" *ngIf="this.ended">
+
+        <div  *ngIf="this.ended">
           <!-- <h3 class="participantsText">Vainqueur :</h3> -->
-          
+
           <ion-list>
             <ion-item-divider>
               <ion-label>
                 Vainqueur :
               </ion-label>
             </ion-item-divider>
+
             <ion-item class="winner" [routerLink]="['/athletes/', winner.id]">
               <ion-avatar slot="start">
                 <ion-img [src]="winner.image"> </ion-img>
               </ion-avatar>
               <ion-label>
                 <div [class]="getAthleteCountryFlag(winner.Country.flag)"></div>
-                 - {{winner.name}}
+                - {{winner.name}}
               </ion-label>
               <span> 🥇 </span>
             </ion-item>
@@ -109,62 +110,137 @@
                 Podium :
               </ion-label>
             </ion-item-divider>
+
             <ion-item *ngFor="let athlete of podium; let i = index" [routerLink]="['/athletes/', athlete.id]">
               <ion-avatar slot="start">
                 <ion-img [src]="athlete.image"> </ion-img>
               </ion-avatar>
               <ion-label>
                 <div [class]="getAthleteCountryFlag(athlete.Country.flag)"></div>
-                 - {{athlete.name}}
-                </ion-label>
+                - {{athlete.name}}
+              </ion-label>
 
               <span *ngIf="i===0">
-                🥈 
+                🥈
               </span>
               <span *ngIf="i===1">
-                🥉 
+                🥉
               </span>
-          
+
             </ion-item>
-            
+          </ion-list>
+          
+        </div>
+        <div>
+          <ion-list>
+            <ion-item-divider class="event">
+              <ion-label>
+                Evenements associes :
+              </ion-label>
+            </ion-item-divider>
+            <ion-item *ngFor="let event of this.relatedEvents; let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+              detail>
+              
+              <ion-row align-items-center>
+                <ion-col size="4">
+                  <ion-avatar item-start>
+                    <img [src]="event.iconMap">
+                  </ion-avatar>
+                </ion-col>
+                <ion-col size="6">
+                  {{event.name}}
+                </ion-col>
+                <ion-col size="2" align-self-center>
+                  <ion-chip [color]="getEventColor(event.status)">
+                    <ion-label>{{event.status}}</ion-label>
+                  </ion-chip>
+                </ion-col>
+              </ion-row>
+
+              <!-- <ion-button outline item-end>View</ion-button> -->
+            </ion-item>
           </ion-list>
         </div>
       </div>
-    </ion-slide>  
+    </ion-slide>
 
     <!-- RESULATS -->
     <ion-slide>
       <div class="winnerDiv full" *ngIf="this.ended">
-        <span class="participantsText">Resulats :</span>
+        
         
         <ion-list>
-          <ion-item *ngFor="let elem of results; let i = index" [routerLink]="['/athletes/', elem.athlete.id]">
+          <ion-item-divider>
+            <ion-label>
+              Resutats :
+            </ion-label>
+          </ion-item-divider>
+
+          <ion-item [routerLink]="['/athletes/', this.firstAth.athlete.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="this.firstAth.athlete.image"> </ion-img>
+            </ion-avatar>
+            <ion-label>
+              <div [class]="getAthleteCountryFlag(this.firstAth.athlete.Country.flag)"></div>
+              - {{this.firstAth.athlete.name}}
+            </ion-label>
+            <span>
+              {{this.firstAth.res}}
+            </span>
+          </ion-item>
+          
+          <ion-item-divider color="gold">
+          </ion-item-divider>
+
+          <ion-item [routerLink]="['/athletes/', this.secondAth.athlete.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="this.secondAth.athlete.image"> </ion-img>
+            </ion-avatar>
+            <ion-label>
+              <div [class]="getAthleteCountryFlag(this.secondAth.athlete.Country.flag)"></div>
+              - {{this.secondAth.athlete.name}}
+            </ion-label>
+            <span>
+              {{this.secondAth.res}}
+            </span>
+          </ion-item>
+          
+          <ion-item-divider color="silver">
+          </ion-item-divider>
+
+
+          <ion-item [routerLink]="['/athletes/', this.thirdAth.athlete.id]">
+            <ion-avatar slot="start">
+              <ion-img [src]="this.thirdAth.athlete.image"> </ion-img>
+            </ion-avatar>
+            <ion-label>
+              <div [class]="getAthleteCountryFlag(this.thirdAth.athlete.Country.flag)"></div>
+              - {{this.thirdAth.athlete.name}}
+            </ion-label>
+            <span>
+              {{this.thirdAth.res}}
+            </span>
+          </ion-item>
+          
+          <ion-item-divider color="bronze">
+          </ion-item-divider>
+
+          <ion-item *ngFor="let elem of results.slice(3); let i = index" [routerLink]="['/athletes/', elem.athlete.id]">
             <ion-avatar slot="start">
               <ion-img [src]="elem.athlete.image"> </ion-img>
             </ion-avatar>
             <ion-label>
               <div [class]="getAthleteCountryFlag(elem.athlete.Country.flag)"></div>
-               - {{elem.athlete.name}}
-              </ion-label>
-
-            <span *ngIf="i===0">
-              🥇 
+              - {{elem.athlete.name}}
+            </ion-label>
+            <span>
+              {{elem.res}}
             </span>
-            <span *ngIf="i===1">
-              🥈 
-            </span>
-            <span *ngIf="i===2">
-              🥉 
-            </span>
-            <span *ngIf="i>2">
-              {{i}}ème
-            </span>
-        
           </ion-item>
 
         </ion-list>
       </div>
-    
+
       <!-- <div *ngIf="!event.ended" class="full">
         <span class="participantsText">Participants :</span>
         <ion-list>
@@ -180,7 +256,7 @@
           </ion-item>
         </ion-list>
       </div> -->
-    </ion-slide>  
+    </ion-slide>
 
     <!-- MAP -->
     <ion-slide>
@@ -190,11 +266,8 @@
           <ion-icon name="navigate"></ion-icon>
         </ion-button>
       </div>
-    </ion-slide>  
+    </ion-slide>
 
-  </ion-slides>  
+  </ion-slides>
 
 </ion-content>
-
-
-

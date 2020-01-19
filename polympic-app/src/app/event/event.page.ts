@@ -8,6 +8,7 @@ import { Event } from 'src/models/event.model';
 import { ActivatedRoute } from '@angular/router';
 
 import { IonSlides } from '@ionic/angular';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-event',
@@ -27,6 +28,10 @@ export class EventPage implements OnInit {
   segment = 0;  
   ended: boolean;
   results: any;
+  relatedEvents = []
+  firstAth: any;
+  secondAth: any;
+  thirdAth: any;
 
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService, private favoriteService: FavoriteService) {
       
@@ -54,6 +59,7 @@ export class EventPage implements OnInit {
       const eventId = Number(paramMap.get('eventId'));
       this.event = this.eventsService.getEvent(eventId);
 
+      console.log('The event : ')
       console.log(this.event)
       
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
@@ -63,7 +69,20 @@ export class EventPage implements OnInit {
       this.ended = this.event.status === 'Terminé';
       this.results = this.eventsService.getResultsAthlete(eventId);
 
-      console.log(this.results);
+      this.firstAth = this.results[0];
+      this.secondAth = this.results[1];
+      this.thirdAth = this.results[2];
+      console.log(this.firstAth)
+      console.log(this.secondAth)
+      console.log(this.thirdAth)
+
+      console.log('related content id :')
+      console.log(this.event.relatedContent)
+
+      this.relatedEvents = this.eventsService.getRelatedEvents(this.event.relatedContent)
+
+      console.log('related : ')
+      console.log(this.relatedEvents);
 
       if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
       else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
@@ -93,5 +112,9 @@ export class EventPage implements OnInit {
   async slideChanged() {  
     this.segment = await this.slider.getActiveIndex();  
   }  
+
+  ngOnDestroy(){
+    this.relatedEvents = []
+  }
 
 }

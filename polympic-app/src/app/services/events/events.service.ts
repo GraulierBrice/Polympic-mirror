@@ -31,6 +31,14 @@ export class EventsService {
     })
   }
 
+  getRelatedEvents(eventsId){
+    let res = [];
+    for (let id of eventsId){
+      res.push(this.getEvent(Number(id)));
+    }
+    return res;
+  }
+
   getParticipantsToEvent(eventId: Number) {
     const event = this.getEvent(eventId);
     var arr;
