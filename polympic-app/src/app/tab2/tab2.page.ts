@@ -9,15 +9,13 @@ import {
   Map,
   latLng,
   tileLayer,
-  Layer,
   marker,
   icon,
-  Util,
   Routing,
-  Control,
-  LatLng
+  divIcon
 } from 'leaflet';
 import 'leaflet-routing-machine';
+import { MarkerClusterGroup } from 'leaflet.markercluster';
 import {
   ActivatedRoute
 } from '@angular/router';
@@ -157,11 +155,24 @@ export class Tab2Page {
     //   // data.coords.longitude
     // });
   
+    var markersCluster = new MarkerClusterGroup({
+        iconCreateFunction: function(cluster) {
+          var digits = (cluster.getChildCount()+'').length;
+          return divIcon({ 
+              html: cluster.getChildCount(), 
+              className: 'cluster digits-'+digits, 
+              iconSize: null 
+          });
+      }
+    });
+
     this.events.forEach(e => {
       let marker = this.setMarker(e.place.longitude,e.place.latitude, e.iconMap,e.name+"<br>"+e.place.name+"<br>"+e.beginDate.toLocaleString(), e.type);
-      this.eventsMarkers.push(marker)
+      this.eventsMarkers.push(marker);
+      markersCluster.addLayer(marker);
     });
     var map = this.map;
+    map.addLayer(markersCluster)
     var zoom = map.getZoom();
     map
       .on('mousedown', function () {
@@ -196,7 +207,6 @@ export class Tab2Page {
     var eventMarker = marker([y, x], {
         icon: mapIcon
       })
-      .addTo(this.map)
       .bindPopup(popupText, {
         closeButton: false
       })
@@ -211,6 +221,8 @@ export class Tab2Page {
         eventMarker.openPopup();
         console.log("clicked! ");
       });
+
+    
 
     return eventMarker;
   }

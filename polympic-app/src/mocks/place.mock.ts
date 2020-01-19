@@ -85,4 +85,9 @@ export const PLACES_MOCKED: Place[] = [
         longitude: 2.393333333333333,
         latitude: 48.8941667,
     },
+    {   //14
+        name: 'Nanterre',
+        longitude: 2.197020,
+        latitude: 48.890010,
+    }
 ];
