@@ -1,5 +1,7 @@
 import { ATHLETES_MOCKED } from './athlete.mock';
 import { Team } from '../models/team.model';
+import { COUNTRIES } from './country.mock';
+
  
 
 export const athletesPerCountry = (countryName: String) => {
@@ -11,6 +13,7 @@ export const athletesPerCountry = (countryName: String) => {
 
 export const TEAMS_MOCKED: Team[] = [
     {
+      category: 'country',
         id: '0',
         image: '../assets/teams/france.png',
         name: 'France',
@@ -30,14 +33,11 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 2
               }
         ],
-        Country: {
-            id: '0',
-            name: 'France',
-            flag: 'fr'
-        },
+        Country: COUNTRIES[77],
         Members: athletesPerCountry('France')
     },
     {
+      category: 'country',
         id: '1',
         image: '../assets/teams/belgium.png',
         name: 'Belgique',
@@ -57,14 +57,11 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 5
               }
         ],
-        Country: {
-            id: '1',
-            name: 'Belgique',
-            flag: 'be'
-        },
+        Country: COUNTRIES[105],
         Members: athletesPerCountry('Belgium')
     },
     {
+      category: 'country',
       id: '2',
       image: '../assets/teams/switzerland.png',
       name: 'Switzerland',
@@ -84,11 +81,7 @@ export const TEAMS_MOCKED: Team[] = [
               quantity: 3
             }
       ],
-      Country: {
-          id: '2',
-          name: 'Switzerland',
-          flag: 'ch'
-      },
+      Country: COUNTRIES[1],
       Members: athletesPerCountry('Switzerland')
   }
 ]

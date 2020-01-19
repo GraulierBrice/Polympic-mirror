@@ -1,6 +1,9 @@
 import { Athlete } from '../models/athlete.model';
+import { COUNTRIES } from './country.mock';
+
 export const ATHLETES_MOCKED : Athlete[] = [
   {
+    category: 'athlete',
     id: 0,
     image: '../assets/athletes/nicolas.jpg',
     name: 'Renaud Lavillenie',
@@ -22,14 +25,11 @@ export const ATHLETES_MOCKED : Athlete[] = [
       }
     ],
     Country: 
-      {
-        id: '0',
-        name: 'France',
-        flag: 'fr'
-      }
+      COUNTRIES[77]
     
   },
     {
+      category: 'athlete',
         id: 1,
         image: '../assets/athletes/mbappe.jpg',
         name: 'Christophe Lemaire',
@@ -51,14 +51,11 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '0',
-            name: 'France',
-            flag: 'fr'
-          }
+        COUNTRIES[1]
         
       },
       {
+        category: 'athlete',
         id: 2,
         image: '../assets/athletes/jonas.jpg',
         name: 'Mathieu Legrand',
@@ -80,13 +77,10 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '1',
-            name: 'Belgium',
-            flag: 'be'
-          }    
+        COUNTRIES[74]
       },
       {
+        category: 'athlete',
         id: 3,
         image: '../assets/athletes/meuf.jpg',
         name: 'Isabel Quartier',
@@ -108,13 +102,10 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '2',
-            name: 'Switzerland',
-            flag: 'ch'
-          }    
+        COUNTRIES[77]
       },
       {
+        category: 'athlete',
         id: 4,
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
@@ -136,10 +127,6 @@ export const ATHLETES_MOCKED : Athlete[] = [
           }
         ],
         Country: 
-          {
-            id: '1',
-            name: 'Belgium',
-            flag: 'be'
-          }    
+        COUNTRIES[105]              
       }
 ]

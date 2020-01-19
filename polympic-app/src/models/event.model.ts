@@ -1,10 +1,10 @@
 import { Place } from './place.model';
 import { EventType } from './eventType.model';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Favoriseable } from './favorisable.model';
 
-export interface Event {
+export interface Event extends Favoriseable {
     id: Number,
-    name: string,
     icon: IconDefinition,
     iconMap: String,
     image: string,

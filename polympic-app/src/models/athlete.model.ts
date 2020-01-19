@@ -1,9 +1,9 @@
 import { Medal } from './medal.model';
 import { Country } from './country.model';
-export interface Athlete {
-    id: Number;
+import { Favoriseable } from './favorisable.model';
+export interface Athlete extends Favoriseable {
+    id: number;
     image: String;
-    name: String;
     sport: String;
     Victory: String;
     Defeat: String;

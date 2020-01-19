@@ -7,6 +7,7 @@ const assets = "../assets/";
 
 export const EVENTS_MOCKED: Event[] = [
     {
+        category: 'event',
         name:"Final de football",
         icon:SPORTS_ICONS_MOCKED['Football'],
         iconMap: assets+"icon/football.png",
@@ -21,6 +22,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 0
     ,podium: [] },
     {
+        category: 'event',
         name: '100 m',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         image:assets+"athletics.jpg",
@@ -35,6 +37,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 2
     ,podium: [2, 1] },
     {
+        category: 'event',
         name: '110m haie',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -51,6 +54,7 @@ export const EVENTS_MOCKED: Event[] = [
         4, 3, 2
     ] },
     {
+        category: 'event',
         name: 'Lancer de javelot',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -65,6 +69,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 4
     ,podium: [] },
     {
+        category: 'event',
         name: 'Lancer de disque',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -79,6 +84,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 5
     ,podium: [] },
     {
+        category: 'event',
         name: 'Saut en Hauteur',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -93,6 +99,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 6
     ,podium: [] },
     {
+        category: 'event',
         name: 'Saut à la perche',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -107,6 +114,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 7
     ,podium: [] },
     {
+        category: 'event',
         name: 'Relais 4*100m',
         icon: SPORTS_ICONS_MOCKED['Athlétisme'],
         iconMap: assets+"icon/athletics.png",
@@ -121,6 +129,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 8
     ,podium: [] },
     {
+        category: 'event',
         name: '50m nage libre',
         icon: SPORTS_ICONS_MOCKED['Natation'],
         iconMap: assets+"icon/swimming.png",
@@ -135,6 +144,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 9
     ,podium: [] },
     {
+        category: 'event',
         name: '150m nage libre',
         icon: SPORTS_ICONS_MOCKED['Natation'],
         iconMap: assets+"icon/swimming.png",
@@ -149,6 +159,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 10
     ,podium: [] },
     {
+        category: 'event',
         name: '100m dos',
         icon: SPORTS_ICONS_MOCKED['Natation'],
         iconMap: assets+"icon/swimming.png",
@@ -163,6 +174,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 11
     ,podium: [] },
     {
+        category: 'event',
         name: 'Natation Synchronisé',
         icon: SPORTS_ICONS_MOCKED['Natation'],
         iconMap: assets+"icon/swimming.png",
@@ -177,6 +189,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 12
     ,podium: [] },
     {
+        category: 'event',
         name: 'Taekwondo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
         iconMap: assets+"icon/taekwondo.png",
@@ -191,6 +204,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 13
     ,podium: [] },
     {
+        category: 'event',
         name: 'Judo',
         icon: SPORTS_ICONS_MOCKED['Karate'],
         iconMap: assets+"icon/judo.png",
@@ -205,6 +219,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 14
     ,podium: [] },
     {
+        category: 'event',
         name: 'Karaté-Combat',
         icon: SPORTS_ICONS_MOCKED['Karate'],
         iconMap: assets+"icon/karatekumite.png",
@@ -219,6 +234,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 15
     ,podium: [] },
     {
+        category: 'event',
         name: 'Karate-Kata',
         icon: SPORTS_ICONS_MOCKED['Karate'],
         iconMap: assets+"icon/karatekata.png",
@@ -233,6 +249,7 @@ export const EVENTS_MOCKED: Event[] = [
         id: 16
     ,podium: [] },
     {
+        category: 'event',
         name: 'Escrime',
         icon: SPORTS_ICONS_MOCKED['Karate'],
         iconMap: assets+"icon/fencing.png",

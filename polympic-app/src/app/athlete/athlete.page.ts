@@ -6,6 +6,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 import { faSwimmer, faFutbol, faRunning, faBicycle } from '@fortawesome/free-solid-svg-icons';
+import { Favoriseable } from 'src/models/favorisable.model';
 
 
 @Component({
@@ -32,18 +33,6 @@ export class AthletePage implements OnInit {
               private favoriteService: FavoriteService) 
   {}
 
-  favoriteAthlete() {
-    this.favoriteService.favoriteAthlete(this.athlete.id).then(() => {
-      this.isFavorite = true;
-    });
-  }
- 
-  unfavoriteAthlete() {
-    this.favoriteService.unfavoriteAthlete(this.athlete.id).then(() => {
-      this.isFavorite = false;
-    });
-  }
-
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if(!paramMap.has('athleteId')) {
@@ -53,11 +42,10 @@ export class AthletePage implements OnInit {
       
       const athleteId = Number(paramMap.get('athleteId'));
       this.athlete = this.athletesService.getAthlete(athleteId);
-      this.favoriteService.isFavoriteAthlete(athleteId).then(isFav => {
-        this.isFavorite = isFav;
-      })
+      
+      this.isFavorite = this.favoriteService.isFavorite(this.athlete);
       console.log(this.isFavorite);
-    })
+    });
 
     setTimeout( () => {
       this.barChart = new Chart(this.barCanvas.nativeElement, {
@@ -98,11 +86,21 @@ export class AthletePage implements OnInit {
 
     this.medalsNumber = this.calculateMedalsNumber();
   }
+  
+  favoriteAthlete() {
+    this.favoriteService.addFavorite(this.athlete);
+    this.isFavorite = true;
+  }
+ 
+  unfavoriteAthlete() {
+    this.favoriteService.removeFavorite(this.athlete);
+    this.isFavorite = false;
+  }
 
   calculateMedalsNumber() {
     let number: any = 0;
     this.athlete.Medals.forEach(medal => {
-      console.log(medal.quantity)
+      //console.log(medal.quantity)
       number += medal.quantity;
     })
 
@@ -117,7 +115,7 @@ export class AthletePage implements OnInit {
     this.goldNumber = this.athlete.Medals.find(medal => {
       return medal.type === 'Or'
     }).quantity
-    console.log(number)
+    //console.log(number)
     return number;
   }
 

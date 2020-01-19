@@ -1,6 +1,6 @@
+import { Favoriseable } from './favorisable.model';
 
-export interface Country {
-    id: String;
-    name: String;
+export interface Country extends Favoriseable {
+    id: number;
     flag: String;
 }
