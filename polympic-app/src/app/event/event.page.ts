@@ -1,14 +1,45 @@
-import { FavoriteService } from '../services/favorite.service';
+import {
+  FavoriteService
+} from '../services/favorite.service';
 
-import { Athlete } from '../../models/athlete.model';
-import { EventsService } from '../services/events/events.service';
+import {
+  Athlete
+} from '../../models/athlete.model';
+import {
+  EventsService
+} from '../services/events/events.service';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Event } from 'src/models/event.model';
-import { ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  Event
+} from 'src/models/event.model';
+import {
+  ActivatedRoute
+} from '@angular/router';
 
-import { IonSlides } from '@ionic/angular';
-import { ThrowStmt } from '@angular/compiler';
+import {
+  IonSlides
+} from '@ionic/angular';
+import {
+  ThrowStmt
+} from '@angular/compiler';
+
+import {
+  Map,
+  latLng,
+  tileLayer,
+  Layer,
+  marker,
+  icon,
+  Util,
+  Routing,
+  Control,
+  LatLng
+} from 'leaflet';
 
 @Component({
   selector: 'app-event',
@@ -17,32 +48,36 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class EventPage implements OnInit {
 
-  @ViewChild('slides', { static: true }) slider: IonSlides; 
+  @ViewChild('slides', {
+    static: true
+  }) slider: IonSlides;
 
-  event : Event;
-  participants : Athlete[];
+  event: Event;
+  participants: Athlete[];
   winner: Athlete;
   podium: Athlete[];
-  isFavorite : boolean;
+  isFavorite: boolean;
   pathOnClick = '/athletes/';
-  segment = 0;  
+  segment = 0;
   ended: boolean;
   results: any;
   relatedEvents = []
   firstAth: any;
   secondAth: any;
   thirdAth: any;
+  eventPos = [];
+  map : any;
 
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService, private favoriteService: FavoriteService) {
-      
-   }
 
-   favoriteEvent() {
+  }
+
+  favoriteEvent() {
     this.favoriteService.favoriteCompet(this.event.id).then(() => {
       this.isFavorite = true;
     });
   }
- 
+
   unfavoriteEvent() {
     this.favoriteService.unfavoriteCompet(this.event.id).then(() => {
       this.isFavorite = false;
@@ -51,7 +86,7 @@ export class EventPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      if(!paramMap.has('eventId')) {
+      if (!paramMap.has('eventId')) {
         //redirect
         return;
       }
@@ -61,7 +96,7 @@ export class EventPage implements OnInit {
 
       console.log('The event : ')
       console.log(this.event)
-      
+
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
       this.winner = this.eventsService.getWinner(this.event.winner);
       this.podium = this.eventsService.getPodiumAthlete(eventId);
@@ -84,12 +119,25 @@ export class EventPage implements OnInit {
       console.log('related : ')
       console.log(this.relatedEvents);
 
-      if(this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
-      else if(this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
+      if (this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
+      else if (this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
 
       this.favoriteService.isFavoriteCompet(eventId).then(isFav => {
         this.isFavorite = isFav;
       })
+
+      this.eventPos = [this.event.place.latitude, this.event.place.longitude];
+
+      /* this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 13);
+
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
+
+      marker([this.eventPos[0], this.eventPos[1]]).addTo(this.map)
+        .bindPopup(this.event.place.name)
+        .openPopup(); */
+
     })
   }
 
@@ -98,23 +146,37 @@ export class EventPage implements OnInit {
   }
 
   getEventColor(status: String) {
-    switch(status) {
-      case 'Terminé': return "danger"; break;
-      case 'A venir': return "medium"; break;
-      case 'En cours': return "success"; break;
-      case 'Bientot': return "warning"; break;
+    switch (status) {
+      case 'Terminé':
+        return "danger";
+        break;
+      case 'A venir':
+        return "medium";
+        break;
+      case 'En cours':
+        return "success";
+        break;
+      case 'Bientot':
+        return "warning";
+        break;
     }
   }
 
-  async segmentChanged(ev: any) {  
-    await this.slider.slideTo(this.segment);  
-  }  
-  async slideChanged() {  
-    this.segment = await this.slider.getActiveIndex();  
-  }  
+  async segmentChanged(ev: any) {
+    await this.slider.slideTo(this.segment);
+  }
+  async slideChanged() {
+    this.segment = await this.slider.getActiveIndex();
+  }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.relatedEvents = []
+    //this.map.remove();
+  }
+
+  getBeginDate(): String {
+    let eventDate = this.event.beginDate.toLocaleString();
+    return eventDate
   }
 
 }

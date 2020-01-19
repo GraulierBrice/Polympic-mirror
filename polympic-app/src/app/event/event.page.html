@@ -84,7 +84,7 @@
 
 
 
-        <div  *ngIf="this.ended">
+        <div *ngIf="this.ended">
           <!-- <h3 class="participantsText">Vainqueur :</h3> -->
 
           <ion-list>
@@ -129,7 +129,7 @@
 
             </ion-item>
           </ion-list>
-          
+
         </div>
         <div>
           <ion-list>
@@ -140,14 +140,14 @@
             </ion-item-divider>
             <ion-item *ngFor="let event of this.relatedEvents; let i = index" [routerLink]="['/tabs/tab1/', event.id]"
               detail>
-              
+
               <ion-row align-items-center>
-                <ion-col size="4">
+                <ion-col size="3">
                   <ion-avatar item-start>
                     <img [src]="event.iconMap">
                   </ion-avatar>
                 </ion-col>
-                <ion-col size="6">
+                <ion-col size="7">
                   {{event.name}}
                 </ion-col>
                 <ion-col size="2" align-self-center>
@@ -167,8 +167,8 @@
     <!-- RESULATS -->
     <ion-slide>
       <div class="winnerDiv full" *ngIf="this.ended">
-        
-        
+
+
         <ion-list>
           <ion-item-divider>
             <ion-label>
@@ -188,7 +188,7 @@
               {{this.firstAth.res}}
             </span>
           </ion-item>
-          
+
           <ion-item-divider color="gold">
           </ion-item-divider>
 
@@ -204,7 +204,7 @@
               {{this.secondAth.res}}
             </span>
           </ion-item>
-          
+
           <ion-item-divider color="silver">
           </ion-item-divider>
 
@@ -221,7 +221,7 @@
               {{this.thirdAth.res}}
             </span>
           </ion-item>
-          
+
           <ion-item-divider color="bronze">
           </ion-item-divider>
 
@@ -241,9 +241,13 @@
         </ion-list>
       </div>
 
-      <!-- <div *ngIf="!event.ended" class="full">
-        <span class="participantsText">Participants :</span>
+      <div *ngIf="!event.ended" class="full">
         <ion-list>
+          <ion-item-divider>
+            <ion-label>
+              Participants :
+            </ion-label>
+          </ion-item-divider>
           <ion-item *ngFor="let participant of participants" [routerLink]="[pathOnClick, participant.id]">
             <ion-avatar slot="start">
               <ion-img [src]="participant.image"> </ion-img>
@@ -255,12 +259,54 @@
     
           </ion-item>
         </ion-list>
-      </div> -->
+      </div>
     </ion-slide>
 
     <!-- MAP -->
     <ion-slide>
+
       <div>
+        <ion-grid>
+          <ion-row class="ion-no-padding">
+            <ion-col>
+              <ion-item>
+                <ion-icon color="primary" name="pin" slot="start"></ion-icon>
+                <ion-label>
+                  {{event.place.name}}
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+        <div id="map" style="width: 100%; height: 20%;"></div>
+
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col> Distance estimée:
+              <ion-chip color="secondary">
+                <ion-icon name="compass"></ion-icon>
+                <ion-label color="dark">5 km</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col> Durée estimée:
+              <ion-chip color="success">
+                <ion-icon name="walk"></ion-icon>
+                <ion-label color="dark">30 min</ion-label>
+              </ion-chip>
+
+              <ion-chip color="success">
+                <ion-icon name="car"></ion-icon>
+                <ion-label color="dark">7 min</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
         <ion-button *ngIf="!event.ended" expand="block" size="large">
           M'y rendre
           <ion-icon name="navigate"></ion-icon>

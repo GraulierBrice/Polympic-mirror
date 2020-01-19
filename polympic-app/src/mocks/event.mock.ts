@@ -29,7 +29,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            0
         ]
     },
     {
@@ -144,7 +144,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            7,8,2
         ]
     },
     {
@@ -163,7 +163,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            6,8,2
         ]
     },
     {
@@ -182,7 +182,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            2,3
         ]
     },
     {
@@ -201,7 +201,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            10,11,12
         ]
     },
     {
@@ -220,7 +220,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            9,11,12
         ]
     },
     {
@@ -239,7 +239,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            9,10,12
         ]
     },
     {
@@ -258,7 +258,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            9,10,11
         ]
     },
     {
@@ -277,7 +277,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            14,15,16,17
         ]
     },
     {
@@ -296,7 +296,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            13,15,16,17
         ]
     },
     {
@@ -315,7 +315,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            13,14,16,17
         ]
     },
     {
@@ -334,7 +334,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            13,14,15,17
         ]
     },
     {
@@ -353,7 +353,7 @@ export const EVENTS_MOCKED: Event[] = [{
         podium: [],
         results: undefined,
         relatedContent: [
-            
+            13,14,15,16
         ]
     },
 ]
