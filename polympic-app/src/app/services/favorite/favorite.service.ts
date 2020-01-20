@@ -6,6 +6,7 @@ import { COUNTRIES } from 'src/mocks/country.mock';
 import { TEAMS_MOCKED } from 'src/mocks/team.mock';
 import { EVENTS_MOCKED } from 'src/mocks/event.mock';
 import { ATHLETES_MOCKED } from 'src/mocks/athlete.mock';
+import { SPORTS_FILTERS_MOCKED } from 'src/mocks/sportFilter.mock';
 
 /*
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
@@ -31,6 +32,9 @@ export class FavoriteService {
       this.allFavoriseable.push(e);
     });
     ATHLETES_MOCKED.forEach(e=> {
+      this.allFavoriseable.push(e);
+    });
+    SPORTS_FILTERS_MOCKED.forEach(e=> {
       this.allFavoriseable.push(e);
     });
 

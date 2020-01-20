@@ -16,6 +16,8 @@ export class FavoriteDisplayComponent implements OnInit {
   @Output()
   toDisplay: EventEmitter<Favoriseable[]> = new EventEmitter();
 
+  private wiki = 'https://fr.wikipedia.org/wiki/';
+
   constructor(private favoriteService: FavoriteService, private alertCtrl: AlertController) { }
 
   ngOnInit() {}
@@ -32,6 +34,10 @@ export class FavoriteDisplayComponent implements OnInit {
   unfavorite(item) {
     this.favoriteService.removeFavorite(item);
     this.toDisplay.emit(this.favoriteService.getDisplayFav());
+  }
+
+  openLink(fav) {
+    window.open(this.wiki+fav.name, '_self');
   }
 
   async presentConfirm(type) {

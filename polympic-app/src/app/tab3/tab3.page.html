@@ -47,6 +47,7 @@
             <img [src]="addable.image" />
           </ion-avatar>
           <ion-icon *ngIf="addable.category==='event'" slot="start" name="calendar"></ion-icon>
+          <ion-icon *ngIf="addable.category==='sport'" slot="start" name="football"></ion-icon>
           <ion-label>{{addable.name}}</ion-label>
           <ion-icon [hidden]="toAdd.indexOf(addable) ===-1" slot="end" name="star"></ion-icon>
         </ion-item>
