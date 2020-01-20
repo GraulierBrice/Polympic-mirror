@@ -1,4 +1,11 @@
-<app-header></app-header>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{athlete.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 
 <ion-content>
@@ -11,78 +18,17 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-img width="640" height="426" [src]="athlete.image"></ion-img>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <div class="ion-text-center eventHeader">
-          <h3>{{athlete.name}}</h3>
-        </div>
-      </ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <ion-img  [src]="athlete.image"></ion-img>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <strong>Victoires</strong>
-      </ion-col>
-      <ion-col>
-        <div class="verticalLine"> </div>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <strong>Défaites</strong>
-      </ion-col>
-    </ion-row>
+  <div class="ion-text-center basicInfo">
+    <ion-icon name="{{athlete.sexe}}"></ion-icon> &nbsp;{{athlete.age}} ans <div [routerLink] = "[pathOnClick, athlete.Country.id]" [class]="getAthleteCountryFlag(athlete.Country.flag)"></div>&nbsp; <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>&nbsp;{{athlete.sport}}
+  </div>
+  <div class="horizontalLine ion-text-center"></div>
+  <table class="medals">
+    <tr><th>{{athlete.Medals[2].quantity}} 🥇</th><th> {{athlete.Medals[1].quantity}} 🥈</th><th>{{athlete.Medals[0].quantity}} 🥉</th><th>{{athlete.Defeat}} <ion-icon name="medal"></ion-icon></th></tr>
+  </table>
+  <div class="horizontalLine ion-text-center"></div>
 
-    <ion-row>
-      <ion-col class="ion-text-center">
-        {{athlete.Victory}}
-      </ion-col>
-      <ion-col class="ion-text-center">
-
-      </ion-col>
-      <ion-col class="ion-text-center">
-        {{athlete.Defeat}}
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <div class="col"></div>
-      </ion-col>
-      <ion-col class="ion-text-center image">
-        <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>
-        {{athlete.sport}}
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <div class="col"></div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <strong>Médailles</strong>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <strong>Nationalité</strong>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="ion-text-center">
-        {{medalsNumber}}
-      </ion-col>
-      <ion-col>
-        <div class="verticalLine"> </div>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <span [routerLink] = "[pathOnClick, athlete.Country.id]" [class]="getAthleteCountryFlag(athlete.Country.flag)"></span>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <canvas #pieCanvas></canvas>
+  
 
 </ion-content>

@@ -1,18 +1,21 @@
-.verticalLine {
-    width:1%;
-    height:50px;
-    background:#000;
-    margin-top: 0;
-    position: relative;
-    margin-left: 10%;
-    margin: 0 auto;
-  }
+.basicInfo{
+  width: 100%;
+  font-size: larger;
+  margin: 10px 0px;
+}
 
-  .col{
-    border: 1px solid black;
- }
+.horizontalLine {
+  width:69%;
+  height:1px;
+  background:#000;
+  margin-top: 0;
+  position: relative;
+  margin-left: 10%;
+  margin: 0 auto;
+}
 
- .image {
-   margin: 0 auto;
-   display: inline-grid;
- }
+.medals {
+  margin: 10px 0px;
+  width: 100%;
+  font-size: larger;
+}
