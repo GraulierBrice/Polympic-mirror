@@ -25,7 +25,7 @@ export class Tab1Page {
     console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
-    this.offsetTopValue = 405.6000061035156;
+    this.offsetTopValue = 76;
   }
 
   ionViewWillEnter() {
@@ -45,7 +45,9 @@ export class Tab1Page {
 
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
+    console.log(typeof infiniteScroll)
+    this.service.doInfinite(infiniteScroll);
+/*     console.log('Begin async operation');
 
     setTimeout(() => {
       if(this.infiniteScrollCounter === 0) {
@@ -61,7 +63,7 @@ export class Tab1Page {
         this.service.setBottomScroll(true);
       }
       console.log('Async operation has ended');
-    }, 500);
+    }, 500); */
   }
 
   scrollListVisible() {
@@ -82,7 +84,7 @@ export class Tab1Page {
   }
 
   onScroll(e) {
-    console.log(e);
+    //console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 

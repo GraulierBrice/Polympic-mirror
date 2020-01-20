@@ -17,6 +17,7 @@ export class EventsService {
   eventsLoader: Event[];
   bottomScroll: boolean;
   datePicker: Date = new Date(2020, 1, 11);
+  infiniteScrollCounter: Number = 0;
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
@@ -25,12 +26,34 @@ export class EventsService {
     this.datePicker = new Date(2020, 1, 11);
   }
 
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log(`infiniteScrollCounter ${this.infiniteScrollCounter}`)
+      if(this.infiniteScrollCounter === 0) {
+        this.setEvents( this.loadEvents().concat(this.loadBientotEvents()) );
+        this.infiniteScrollCounter = +this.infiniteScrollCounter + 1;
+        infiniteScroll.target.complete();
+      }
+      else if (this.infiniteScrollCounter === 1) {
+        this.setEvents( this.loadEvents().concat(this.loadAvenirEvents()) );
+        this.infiniteScrollCounter = 0;
+        infiniteScroll.target.complete();
+        infiniteScroll.target.disabled = true;
+        this.setBottomScroll(true);
+      }
+      console.log('Async operation has ended');
+    }, 1500);
+  }
+
   getDatePicker() {
     return this.datePicker;
   }
 
   setDatePicker(dateValue: Date) {
     this.datePicker = dateValue;
+    //this.doInfinite();
   }  
 
   getBottomScroll() {
@@ -55,7 +78,7 @@ export class EventsService {
   loaderEvents(bottomScroll?: boolean) {
     this.eventsLoader = this.loadFinishedEvents().concat( this.loadEnCoursEvents() ) ;
 
-    if(bottomScroll) bottomScroll = bottomScroll;
+    if(bottomScroll) this.bottomScroll = bottomScroll;
   }
 
   loadAvenirEvents() {
@@ -82,7 +105,6 @@ export class EventsService {
   }
 
   eventDateChecker(event: Event) {
-    console.log(`Event ${event.name} : ${event.beginDate.getMonth().toString()} // Datepicker : ${this.datePicker.getDate().toString()}`)
     return event.beginDate.getFullYear().toString() === this.datePicker.getFullYear().toString() 
           && event.beginDate.getMonth().toString() === this.datePicker.getMonth().toString()
           && event.beginDate.getDate().toString() === this.datePicker.getDate().toString();

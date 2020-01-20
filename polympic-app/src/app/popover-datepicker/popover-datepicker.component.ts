@@ -22,6 +22,7 @@ export class PopoverDatepickerComponent implements OnInit {
     this.eventsService.setDatePicker(new Date( this.dateTimePick ));
     console.log(this.eventsService.getDatePicker())
     this.eventsService.loaderEvents();
+    this.eventsService.infiniteScrollCounter = 0;
   }
 
   getDatePicker() {
