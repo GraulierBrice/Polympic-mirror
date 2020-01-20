@@ -1,6 +1,7 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Veuillez séléctionner une date</ion-label>
-    <ion-datetime displayFormat = "MM/DD/YYYY" (ionChange) = "submitDate()" [(ngModel)] = "dateTimePick" placeholder="2020/02/11"></ion-datetime>
+    <ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "dateTimePick" placeholder="2020/02/11"></ion-datetime>
   </ion-item>
+    <ion-button  (click) = "submitDate()">Valider</ion-button>
 </ion-content>

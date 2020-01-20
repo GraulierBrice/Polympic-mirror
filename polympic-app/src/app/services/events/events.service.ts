@@ -40,11 +40,10 @@ export class EventsService {
         this.setEvents( this.loadEvents().concat(this.loadAvenirEvents()) );
         this.infiniteScrollCounter = 0;
         infiniteScroll.target.complete();
-        infiniteScroll.target.disabled = true;
         this.setBottomScroll(true);
       }
       console.log('Async operation has ended');
-    }, 1500);
+    }, 750);
   }
 
   getDatePicker() {
