@@ -1,6 +1,6 @@
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock';
 import { AthletesService } from '../services/athletes/athletes.service';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../services/favorite/favorite.service';
 import { Athlete } from '../../models/athlete.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';

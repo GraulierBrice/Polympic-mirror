@@ -9,4 +9,6 @@ export interface Athlete extends Favoriseable {
     Defeat: String;
     Medals: Medal[];
     Country: Country;
+    age: number;
+    sexe: String;
 } 

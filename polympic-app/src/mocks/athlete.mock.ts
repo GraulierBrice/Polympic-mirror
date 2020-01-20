@@ -4,7 +4,7 @@ import { COUNTRIES } from './country.mock';
 export const ATHLETES_MOCKED : Athlete[] = [
   {
     category: 'athlete',
-    id: 0,
+    age: 28, sexe:'male', id: 0,
     image: '../assets/athletes/nicolas.jpg',
     name: 'Renaud Lavillenie',
     sport: 'Athlétisme',
@@ -30,7 +30,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
   },
     {
       category: 'athlete',
-        id: 1,
+        age: 28, sexe:'male', id: 1,
         image: '../assets/athletes/mbappe.jpg',
         name: 'Christophe Lemaire',
         sport: 'Athlétisme',
@@ -56,7 +56,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       },
       {
         category: 'athlete',
-        id: 2,
+        age: 28, sexe:'male', id: 2,
         image: '../assets/athletes/jonas.jpg',
         name: 'Mathieu Legrand',
         sport: 'Athlétisme',
@@ -81,7 +81,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       },
       {
         category: 'athlete',
-        id: 3,
+        age: 28, sexe:'female', id: 3,
         image: '../assets/athletes/meuf.jpg',
         name: 'Isabel Quartier',
         sport: 'Athlétisme',
@@ -106,7 +106,7 @@ export const ATHLETES_MOCKED : Athlete[] = [
       },
       {
         category: 'athlete',
-        id: 4,
+        age: 28, sexe:'male', id: 4,
         image: '../assets/athletes/barbu.jpg',
         name: 'Robert lacroix',
         sport: 'Football',

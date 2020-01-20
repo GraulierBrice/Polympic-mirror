@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Favoriseable } from 'src/models/favorisable.model';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../services/favorite/favorite.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({

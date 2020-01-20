@@ -1,7 +1,7 @@
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../services/favorite/favorite.service';
 import { Chart } from 'chart.js';
 import { SPORTS_ICONS_MOCKED } from './../../mocks/sportIcons.mock';
-import { TeamsService } from './../services/teams/teams.service';
+import { TeamsService } from '../services/teams/teams.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 

@@ -1,4 +1,4 @@
-import { TEAMS_MOCKED } from './../../../mocks/team.mock';
+import { TEAMS_MOCKED } from '../../../mocks/team.mock';
 import { TestBed } from '@angular/core/testing';
 
 import { TeamsService } from './teams.service';
