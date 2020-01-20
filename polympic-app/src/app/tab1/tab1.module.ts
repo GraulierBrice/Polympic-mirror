@@ -1,4 +1,3 @@
-import { PopoverDatepickerComponent } from './../popover-datepicker/popover-datepicker.component';
 import { PopoverEventsComponent } from './../popover-events/popover-events.component';
 
 import { ComponentsModule } from './../components/components.module';
@@ -21,7 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  entryComponents: [PopoverEventsComponent, PopoverDatepickerComponent],
-  declarations: [Tab1Page, PopoverEventsComponent, PopoverDatepickerComponent]
+  entryComponents: [PopoverEventsComponent],
+  declarations: [Tab1Page, PopoverEventsComponent]
 })
 export class Tab1PageModule {}
