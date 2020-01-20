@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 import { faSwimmer, faFutbol, faRunning, faBicycle } from '@fortawesome/free-solid-svg-icons';
 import { Favoriseable } from 'src/models/favorisable.model';
+import { EventsService } from '../services/events/events.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class AthletePage implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, 
               private athletesService: AthletesService,
-              private favoriteService: FavoriteService) 
+              private favoriteService: FavoriteService,
+              private eventService: EventsService) 
   {}
 
   ngOnInit() {
@@ -45,9 +47,10 @@ export class AthletePage implements OnInit {
       
       this.isFavorite = this.favoriteService.isFavorite(this.athlete);
       console.log(this.isFavorite);
+      console.log(this.eventService.getAthleteEvents(this.athlete));
     });
 
-    setTimeout( () => {
+/*     setTimeout( () => {
       this.barChart = new Chart(this.barCanvas.nativeElement, {
         type: "pie",
         data: {
@@ -82,7 +85,7 @@ export class AthletePage implements OnInit {
           }
         }
       });
-    }, 1000 )
+    }, 1000 ) */
 
     this.medalsNumber = this.calculateMedalsNumber();
   }
@@ -119,6 +122,14 @@ export class AthletePage implements OnInit {
     return number;
   }
 
+  getEventColor(status: String) {
+    switch(status) {
+      case 'Terminé': return "danger"; break;
+      case 'A venir': return "medium"; break;
+      case 'En cours': return "success"; break;
+      case 'Bientot': return "warning"; break;
+    }
+  }
 
   getAthleteCountryFlag(flag) {
     return 'flag-icon flag-icon-' + flag;
