@@ -13,8 +13,9 @@ import {
 
 const assets = "../assets/";
 
-export const EVENTS_MOCKED: Event[] = [{
-        name: "Final de football",
+export const EVENTS_MOCKED: Event[] = [
+    {
+        name: "Finale de football",
         icon: SPORTS_ICONS_MOCKED['Football'],
         iconMap: assets + "icon/football.png",
         image: assets + "football.jpg",
@@ -23,13 +24,14 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Football',
         participants: [1, 2],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[0],
         id: 0,
         podium: [],
         results: undefined,
         relatedContent: [
-            0
+            18
         ]
     },
     {
@@ -42,6 +44,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [1, 2, 3],
         status: 'Terminé',
+        score : undefined,
         winner: 3,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 2,
@@ -70,6 +73,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [0, 1, 2, 3, 6, 7, 8, 11],
         status: 'Terminé',
+        score : undefined,
         winner: 0,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 3,
@@ -100,6 +104,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [1, 3],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 4,
@@ -119,6 +124,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [2, 3, 1],
         status: 'Bientot',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 5,
@@ -138,6 +144,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [2, 1, 3],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 6,
@@ -157,6 +164,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Athlétisme',
         participants: [1, 2, 3],
         status: 'Bientot',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 7,
@@ -176,6 +184,7 @@ export const EVENTS_MOCKED: Event[] = [{
         participants: [2, 3, 1],
         type: 'Athlétisme',
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[0],
         id: 8,
@@ -195,6 +204,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Natation',
         participants: [1, 4, 3],
         status: 'En cours',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 9,
@@ -214,6 +224,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Natation',
         participants: [1, 2, 3, 4],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 10,
@@ -233,6 +244,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Natation',
         participants: [1, 3, 4],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 11,
@@ -252,6 +264,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Natation',
         participants: [4, 1, 3],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 12,
@@ -271,6 +284,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Taekwondo',
         participants: [2, 1, 3, 4],
         status: 'En cours',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 13,
@@ -291,6 +305,7 @@ export const EVENTS_MOCKED: Event[] = [{
         participants: [1, 4, 3],
         status: 'A venir',
         winner: undefined,
+        score : undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 14,
         podium: [],
@@ -302,13 +317,14 @@ export const EVENTS_MOCKED: Event[] = [{
     {
         name: 'Karaté-Combat',
         icon: SPORTS_ICONS_MOCKED['Karate'],
-        iconMap: assets + "icon/karatekumite.png",
+        iconMap: assets + "icon/karatekata.png",
         image: assets + "athletics.jpg",
         place: PLACES_MOCKED[2],
         beginDate: new Date(2020, 1, 13, 9, 0),
         type: 'Karate',
         participants: [4, 2, 1],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 15,
@@ -328,6 +344,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Karate',
         participants: [1, 3, 4, 2],
         status: 'A venir',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 16,
@@ -347,6 +364,7 @@ export const EVENTS_MOCKED: Event[] = [{
         type: 'Escrime',
         participants: [1, 2, 3, 4],
         status: 'En cours',
+        score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 17,
@@ -354,6 +372,26 @@ export const EVENTS_MOCKED: Event[] = [{
         results: undefined,
         relatedContent: [
             13,14,15,16
+        ]
+    },
+    {
+        name: "Petite Finale de Football",
+        icon: SPORTS_ICONS_MOCKED['Football'],
+        iconMap: assets + "icon/football.png",
+        image: assets + "football.jpg",
+        place: PLACES_MOCKED[5],
+        beginDate: new Date(2020, 1, 23, 9, 30),
+        type: 'Football',
+        participants: [0, 3],
+        status: 'En cours',
+        score : [5,1],
+        winner: undefined,
+        eventType: EVENTSTYPES_MOCKED[0],
+        id: 18,
+        podium: [],
+        results: undefined,
+        relatedContent: [
+            0
         ]
     },
 ]

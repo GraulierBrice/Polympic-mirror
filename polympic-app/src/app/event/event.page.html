@@ -35,6 +35,7 @@
     <ion-slide>
       <div class="full">
         <div class="eventHeader">
+          <h3>{{event.name}}</h3>
           <ion-grid fixed>
             <ion-row>
               <ion-col> 
@@ -47,7 +48,7 @@
                   <ion-label>{{event.status}}</ion-label>
                 </ion-chip>
   
-                <ion-chip color="primary" outline="true">
+                <ion-chip color="primary" outline="true" (click)="changeSlide(slides)">
                   <ion-label>{{event.place.name}}</ion-label>
                   <ion-icon name="pin"></ion-icon>
                 </ion-chip>
@@ -57,7 +58,36 @@
 
         </div>
 
+        <div *ngIf="event.status === 'En cours'">
+          <ion-list>
+            <ion-item-divider>
+              <ion-label>
+                Score actuel:
+              </ion-label>
+            </ion-item-divider>
 
+            <div *ngIf="event.score !== undefined">
+              <ion-item *ngFor="let participant of participants; let i = index" [routerLink]="[pathOnClick, participant.id]">
+                <ion-avatar slot="start">
+                  <ion-img [src]="participant.image"> </ion-img>
+                </ion-avatar>
+                <ion-label item-left>
+                  {{participant.name}}
+                </ion-label>
+                <ion-label item-right text-right color="accent">{{event.score[i]}}</ion-label>
+              </ion-item>
+            </div>
+
+            <div *ngIf="event.score === undefined">
+              <ion-item>
+                <ion-label>
+                  Aucun resultat pour le moment.
+                </ion-label>
+              </ion-item>
+            </div>
+
+          </ion-list>
+        </div>
 
         <div *ngIf="this.ended">
           <!-- <h3 class="participantsText">Vainqueur :</h3> -->
@@ -65,11 +95,11 @@
           <ion-list>
             <ion-item-divider>
               <ion-label>
-                Vainqueur :
+                Podium :
               </ion-label>
             </ion-item-divider>
 
-            <ion-item class="winner" [routerLink]="['/athletes/', winner.id]">
+            <ion-item [routerLink]="['/athletes/', winner.id]">
               <ion-avatar slot="start">
                 <ion-img [src]="winner.image"> </ion-img>
               </ion-avatar>
@@ -79,12 +109,6 @@
               </ion-label>
               <span> 🥇 </span>
             </ion-item>
-
-            <ion-item-divider>
-              <ion-label>
-                Podium :
-              </ion-label>
-            </ion-item-divider>
 
             <ion-item *ngFor="let athlete of podium; let i = index" [routerLink]="['/athletes/', athlete.id]">
               <ion-avatar slot="start">
@@ -116,22 +140,24 @@
             <ion-item *ngFor="let event of this.relatedEvents; let i = index" [routerLink]="['/tabs/tab1/', event.id]"
               detail>
 
-              <ion-row align-items-center>
-                <ion-col size="3">
-                  <ion-avatar item-start>
-                    <img [src]="event.iconMap">
-                  </ion-avatar>
-                </ion-col>
-                <ion-col size="7">
-                  {{event.name}}
-                </ion-col>
-                <ion-col size="2" align-self-center>
-                  <ion-chip [color]="getEventColor(event.status)">
-                    <ion-label>{{event.status}}</ion-label>
-                  </ion-chip>
-                </ion-col>
-              </ion-row>
-
+              <ion-grid fixed>
+                <ion-row align-items-center>
+                  <ion-col size="3">
+                    <ion-avatar item-start>
+                      <img [src]="event.iconMap">
+                    </ion-avatar>
+                  </ion-col>
+                  <ion-col size="6">
+                    {{event.name}}
+                  </ion-col>
+                  <ion-col size="2" align-self-center>
+                    <ion-chip [color]="getEventColor(event.status)">
+                      <ion-label>{{event.status}}</ion-label>
+                    </ion-chip>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+                
               
 
               <!-- <ion-button outline item-end>View</ion-button> -->
@@ -143,9 +169,8 @@
 
     <!-- RESULATS -->
     <ion-slide>
-      <div class="winnerDiv full" *ngIf="this.ended">
-
-
+      
+      <div class="winnerDiv" *ngIf="this.ended">
         <ion-list>
           <ion-item-divider>
             <ion-label>
@@ -162,7 +187,7 @@
               - {{this.firstAth.athlete.name}}
             </ion-label>
             <span>
-              {{this.firstAth.res}}
+              <strong>{{this.firstAth.res}}</strong>
             </span>
           </ion-item>
 
@@ -178,7 +203,7 @@
               - {{this.secondAth.athlete.name}}
             </ion-label>
             <span>
-              {{this.secondAth.res}}
+              <strong>{{this.secondAth.res}}</strong>
             </span>
           </ion-item>
 
@@ -195,7 +220,7 @@
               - {{this.thirdAth.athlete.name}}
             </ion-label>
             <span>
-              {{this.thirdAth.res}}
+              <strong>{{this.thirdAth.res}}</strong>
             </span>
           </ion-item>
 
@@ -218,7 +243,7 @@
         </ion-list>
       </div>
 
-      <div *ngIf="!event.ended" class="full">
+      <div *ngIf="event.status !== 'Terminé'">
         <ion-list>
           <ion-item-divider>
             <ion-label>
@@ -257,7 +282,7 @@
         </ion-grid>
 
 
-        <div id="map" style="width: 100%; height: 20%;"></div>
+        <div id="map" style="width: 100%; height: 200px;"></div>
 
         <ion-grid fixed>
           <ion-row>
@@ -280,8 +305,8 @@
           </ion-row>
         </ion-grid>
 
-        <ion-button *ngIf="!event.ended" expand="block" size="large">
-          M'y rendre
+        <ion-button [routerLink] = "['/tabs/tab2', this.event.id]" expand="block" size="large">
+          M'y rendre 
           <ion-icon name="navigate"></ion-icon>
         </ion-button>
       </div>

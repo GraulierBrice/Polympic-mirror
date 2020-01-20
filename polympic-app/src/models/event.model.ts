@@ -13,6 +13,7 @@ export interface Event {
     beginDate: Date,
     participants: Number[],
     status: String,
+    score: Number [],
     winner: Number,
     eventType: EventType,
     podium: Number[],

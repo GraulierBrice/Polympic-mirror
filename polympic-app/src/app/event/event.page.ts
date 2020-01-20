@@ -28,18 +28,7 @@ import {
   ThrowStmt
 } from '@angular/compiler';
 
-import {
-  Map,
-  latLng,
-  tileLayer,
-  Layer,
-  marker,
-  icon,
-  Util,
-  Routing,
-  Control,
-  LatLng
-} from 'leaflet';
+import {Map,tileLayer,marker} from 'leaflet';
 
 @Component({
   selector: 'app-event',
@@ -66,7 +55,7 @@ export class EventPage implements OnInit {
   secondAth: any;
   thirdAth: any;
   eventPos = [];
-  map : any;
+  map : Map;
 
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService, private favoriteService: FavoriteService) {
 
@@ -101,7 +90,8 @@ export class EventPage implements OnInit {
       this.winner = this.eventsService.getWinner(this.event.winner);
       this.podium = this.eventsService.getPodiumAthlete(eventId);
       this.podium.shift();
-      this.ended = this.event.status === 'Terminé';
+      this.ended = (this.event.status === 'Terminé'); 
+      console.log(!this.ended)
       this.results = this.eventsService.getResultsAthlete(eventId);
 
       this.firstAth = this.results[0];
@@ -126,19 +116,38 @@ export class EventPage implements OnInit {
         this.isFavorite = isFav;
       })
 
-      this.eventPos = [this.event.place.latitude, this.event.place.longitude];
-
-      /* this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 13);
-
-      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(this.map);
-
-      marker([this.eventPos[0], this.eventPos[1]]).addTo(this.map)
-        .bindPopup(this.event.place.name)
-        .openPopup(); */
-
     })
+  }
+
+  ionViewDidEnter(){
+    this.loadMap();
+  }
+
+  loadMap() {
+    this.eventPos = [this.event.place.latitude, this.event.place.longitude];
+
+    console.log(this.eventPos);
+
+    this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 10);
+
+    this.map
+    .on('mousedown', function () { 
+      // console.log('down') 
+      // this.slider.lockSwipes(true);
+    })
+    .on('mouseup', function () {
+      //  console.log('up') 
+      //  this.slider.lockSwipes(false);
+    });
+
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+
+    marker([this.eventPos[0], this.eventPos[1]]).addTo(this.map)
+      .bindPopup(this.event.place.name)
+      .openPopup();
+
   }
 
   getAthleteCountryFlag(flag) {
@@ -167,16 +176,25 @@ export class EventPage implements OnInit {
   }
   async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
+    // if (this.segment !== 2){
+    //   this.slider.lockSwipes(false);
+    // } else {
+    //   this.slider.lockSwipes(true);
+    // }
   }
 
   ngOnDestroy() {
     this.relatedEvents = []
-    //this.map.remove();
+    this.map.remove();
   }
 
   getBeginDate(): String {
     let eventDate = this.event.beginDate.toLocaleString();
     return eventDate
+  }
+
+  changeSlide(slides){
+    slides.slideTo(2);
   }
 
 }
