@@ -1,3 +1,4 @@
+import { EventsService } from './../services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopoverDatepickerComponent implements OnInit {
 
-  displayDate: Date;
-  constructor() { }
+  customPickerOptions: any;
+  dateTimePick
+
+  constructor(private eventsService: EventsService) {
+    this.dateTimePick = this.eventsService.getDatePicker();
+   }
 
   ngOnInit() {}
 
   submitDate() {
-    console.log(`Date : ${this.displayDate}`);
+    console.log(this.eventsService.getDatePicker())
+    this.eventsService.setDatePicker(new Date( this.dateTimePick ));
+    console.log(this.eventsService.getDatePicker())
+    this.eventsService.loaderEvents();
   }
+
+  getDatePicker() {
+    return this.eventsService.getDatePicker();
+  }
+
+
 
 }

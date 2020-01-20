@@ -16,12 +16,22 @@ export class EventsService {
   events: Event[];
   eventsLoader: Event[];
   bottomScroll: boolean;
+  datePicker: Date = new Date(2020, 1, 11);
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
     this.loaderEvents();
     this.bottomScroll = false;
+    this.datePicker = new Date(2020, 1, 11);
   }
+
+  getDatePicker() {
+    return this.datePicker;
+  }
+
+  setDatePicker(dateValue: Date) {
+    this.datePicker = dateValue;
+  }  
 
   getBottomScroll() {
     return this.bottomScroll;
@@ -50,13 +60,13 @@ export class EventsService {
 
   loadAvenirEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'A venir';
+      return event.status === 'A venir' && this.eventDateChecker(event);
     } );
   }
 
   loadBientotEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'Bientot';
+      return event.status === 'Bientot' && this.eventDateChecker(event);
     } )
   }
 
@@ -67,14 +77,23 @@ export class EventsService {
 
   loadFinishedEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'Terminé';
+      return event.status === 'Terminé' && this.eventDateChecker(event);
     } )
+  }
+
+  eventDateChecker(event: Event) {
+    console.log(`Event ${event.name} : ${event.beginDate.getMonth().toString()} // Datepicker : ${this.datePicker.getDate().toString()}`)
+    return event.beginDate.getFullYear().toString() === this.datePicker.getFullYear().toString() 
+          && event.beginDate.getMonth().toString() === this.datePicker.getMonth().toString()
+          && event.beginDate.getDate().toString() === this.datePicker.getDate().toString();
   }
 
   loadEnCoursEvents(status?) {
     return this.getAllEvents().filter( event => {
-      if(status) return event.status === 'En cours' || event.status === status;
-      else return event.status === 'En cours';
+      if(status) {
+        return (event.status === 'En cours' || event.status === status) && this.eventDateChecker(event);
+      } 
+      else return event.status === 'En cours' && this.eventDateChecker(event);
     } )
   }
 

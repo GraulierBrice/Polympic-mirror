@@ -122,5 +122,15 @@ describe('EventsService', () => {
       expect(event.status).toBe('A venir');
     })
   })
+
+  it('Should return events of today', () => {
+    const service: EventsService = TestBed.get(EventsService);
+    service.loadEnCoursEvents().forEach(event => {
+      expect(event.status).toBe('En cours');
+      expect(event.beginDate.getFullYear().toString()).toBe('2020');
+      expect(event.beginDate.getMonth().toString()).toBe('1');
+      expect(event.beginDate.getDate().toString()).toBe('11');
+    })
+  })
 });
  
