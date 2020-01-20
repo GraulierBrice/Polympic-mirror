@@ -133,6 +133,7 @@ export class Tab1Page {
       case 'Terminé': return "danger"; break;
       case 'A venir': return "medium"; break;
       case 'En cours': return "success"; break;
+      case 'Bientot': return "warning"; break;
     }
   }
 

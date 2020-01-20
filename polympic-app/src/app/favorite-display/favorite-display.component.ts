@@ -22,9 +22,10 @@ export class FavoriteDisplayComponent implements OnInit {
 
   getEventColor(status: String) {
     switch(status) {
-      case 'Terminé': return "danger";
-      case 'A venir': return "medium";
-      case 'En cours': return "success";
+      case 'Terminé': return "danger"; break;
+      case 'A venir': return "medium"; break;
+      case 'En cours': return "success"; break;
+      case 'Bientot': return "warning"; break;
     }
   }
 

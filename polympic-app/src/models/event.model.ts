@@ -13,7 +13,10 @@ export interface Event extends Favoriseable {
     beginDate: Date,
     participants: Number[],
     status: String,
+    score: Number [],
     winner: Number,
     eventType: EventType,
-    podium: Number[]
+    podium: Number[],
+    results: any;
+    relatedContent: any;
 }

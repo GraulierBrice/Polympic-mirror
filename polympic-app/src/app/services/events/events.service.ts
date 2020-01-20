@@ -82,6 +82,14 @@ export class EventsService {
     this.eventsLoader = events;
   }
 
+  getRelatedEvents(eventsId){
+    let res = [];
+    for (let id of eventsId){
+      res.push(this.getEvent(Number(id)));
+    }
+    return res;
+  }
+
   getParticipantsToEvent(eventId: Number) {
     const event = this.getEvent(eventId);
     var arr;
@@ -106,6 +114,24 @@ export class EventsService {
     if(event.status === 'Terminé') {
       for(var id of event.podium) {
         res.push(this.athletesService.getAthlete(id));
+      }
+    }
+    return res;
+  }
+
+  getResultsAthlete(eventId) {
+    const event = this.getEvent(eventId);
+    var res = []
+    if(event.status === 'Terminé') {
+      for(var el of event.results) {
+        let ath = {
+          athlete : { },
+          res : '' 
+        }
+        let athlete = this.athletesService.getAthlete(el.id)
+        ath.athlete = athlete;
+        ath.res = el.res;
+        res.push(ath);
       }
     }
     return res;

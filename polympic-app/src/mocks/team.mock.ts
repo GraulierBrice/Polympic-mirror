@@ -6,9 +6,9 @@ import { COUNTRIES } from './country.mock';
 
 export const athletesPerCountry = (countryName: String) => {
   const athletes = ATHLETES_MOCKED;
-  return athletes.filter( athlete => {
+  return athletes.filter(athlete => {
     return athlete.Country.name === countryName;
-  } )
+  })
 }
 
 export const TEAMS_MOCKED: Team[] = [
@@ -83,5 +83,29 @@ export const TEAMS_MOCKED: Team[] = [
       ],
       Country: COUNTRIES[1],
       Members: athletesPerCountry('Switzerland')
+  },
+    {
+      category: 'country',
+      id: '3',
+      image: '../assets/teams/germany.png',
+      name: 'Germany',
+      Victory: '18',
+      Defeat: '12',
+      Medals: [
+          {
+              type: 'Bronze',
+              quantity: 9
+            },
+            {
+              type: 'Argent',
+              quantity: 5
+            },
+            {
+              type: 'Or',
+              quantity: 3
+            }
+      ],
+      Country: COUNTRIES[79],
+      Members: athletesPerCountry('Germany')
   }
 ]
