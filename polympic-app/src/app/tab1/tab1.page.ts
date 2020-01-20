@@ -83,6 +83,15 @@ export class Tab1Page {
     event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
   }
 
+  eventEnCoursAvailable() {
+    for(let event of this.loadEvents()) {
+      if (event.status === 'En cours') {
+       return true; 
+      }
+    }
+    return false;
+  }
+
   onScroll(e) {
     //console.log(e);
     this.offsetTop = e.detail.scrollTop;

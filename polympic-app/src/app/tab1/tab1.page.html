@@ -43,7 +43,7 @@
     </ion-infinite-scroll>
 
 
-  <ion-fab *ngIf = "offsetTop !== offsetTopValue" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf = "offsetTop !== offsetTopValue && eventEnCoursAvailable()" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small" (click) = "scrollListVisible()">
         <ion-icon *ngIf = "offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
       <ion-icon *ngIf = "offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
