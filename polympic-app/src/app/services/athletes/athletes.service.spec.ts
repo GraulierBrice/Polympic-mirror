@@ -1,4 +1,4 @@
-import { Athlete } from './../../../models/athlete.model';
+import { Athlete } from '../../../models/athlete.model';
 import { TestBed } from '@angular/core/testing';
 
 import { AthletesService } from './athletes.service';

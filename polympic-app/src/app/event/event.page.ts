@@ -1,4 +1,4 @@
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../services/favorite/favorite.service';
 
 import { Athlete } from '../../models/athlete.model';
 import { EventsService } from '../services/events/events.service';

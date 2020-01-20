@@ -1,6 +1,6 @@
 import { Chart } from 'chart.js';
-import { AthletesService } from './../athletes/athletes.service';
-import { TEAMS_MOCKED } from './../../../mocks/team.mock';
+import { AthletesService } from '../athletes/athletes.service';
+import { TEAMS_MOCKED } from '../../../mocks/team.mock';
 import { Team } from '../../../models/team.model';
 import { Injectable, ElementRef } from '@angular/core';
 import { Athlete } from '../../../models/athlete.model';

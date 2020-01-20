@@ -1,4 +1,4 @@
-import { EventsService } from './../events/events.service';
+import { EventsService } from '../events/events.service';
 import { TestBed } from '@angular/core/testing';
 import { IonicStorageModule } from '@ionic/storage';
 

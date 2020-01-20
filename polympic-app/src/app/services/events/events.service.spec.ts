@@ -1,6 +1,6 @@
-import { FavoriteService } from './../favorite.service';
+import { FavoriteService } from '../favorite/favorite.service';
 import { Event } from 'src/models/event.model';
-import { AthletesService } from './../athletes/athletes.service';
+import { AthletesService } from '../athletes/athletes.service';
 import { TestBed } from '@angular/core/testing';
 import { IonicStorageModule } from '@ionic/storage';
 

@@ -1,6 +1,6 @@
-import { FavoriteService } from '../favorite.service';
+import { FavoriteService } from '../favorite/favorite.service';
 
-import { TeamsService } from './../teams/teams.service';
+import { TeamsService } from '../teams/teams.service';
 import { Event } from '../../../models/event.model';
 
 import { AthletesService } from '../athletes/athletes.service';

@@ -1,6 +1,6 @@
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { EventsService } from './../services/events/events.service';
+import { EventsService } from '../services/events/events.service';
 import { Event } from 'src/models/event.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { NavController } from '@ionic/angular';

@@ -1,7 +1,7 @@
-import { FavoriteService } from './favorite.service';
+import { FavoriteService } from '../favorite/favorite.service';
 import { Injectable } from '@angular/core';
 import { SPORTS_FAVORITE_MOCKED } from 'src/mocks/sport-favorite.mock';
-import { SportFavorite } from '../sport-favorite.model';
+import { SportFavorite } from '../../sport-favorite.model';
 
 @Injectable({
   providedIn: 'root'

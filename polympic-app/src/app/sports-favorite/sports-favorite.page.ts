@@ -1,4 +1,4 @@
-import { SportsFavoriteService } from './../services/sports-favorite.service';
+import { SportsFavoriteService } from '../services/sports/sports-favorite.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

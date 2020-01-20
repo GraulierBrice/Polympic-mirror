@@ -1,4 +1,4 @@
-import { SportsFilterService } from './../services/sports-filter/sports-filter.service';
+import { SportsFilterService } from '../services/sports-filter/sports-filter.service';
 import { SPORTS_FILTERS_MOCKED } from './../../mocks/sportFilter.mock';
 import { EventsService } from '../services/events/events.service';
 import { Component, OnInit } from '@angular/core';
