@@ -25,7 +25,7 @@ export class Tab1Page {
     console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
-    this.offsetTopValue = 76;
+    this.offsetTopValue = 468;
   }
 
   ionViewWillEnter() {
@@ -78,9 +78,12 @@ export class Tab1Page {
       }
       i++;
     }
-    let id = i;
-    let event = arr[id]; 
-    event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+    if(myEvent) {
+      let id = i;
+      let event = arr[id]; 
+      event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+    }
+
   }
 
   eventEnCoursAvailable() {
@@ -93,7 +96,7 @@ export class Tab1Page {
   }
 
   onScroll(e) {
-    //console.log(e);
+    console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 
