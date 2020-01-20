@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { FavoriteService } from '../services/favorite/favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { SportsFavoriteService } from '../services/sports/sports-favorite.service';
+import { SportsFavoriteService } from '../services/sports-favorite/sports-favorite.service';
 import { Favoriseable } from 'src/models/favorisable.model';
 
 @Component({
