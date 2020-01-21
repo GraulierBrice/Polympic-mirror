@@ -7,6 +7,8 @@ import { AthletesService } from '../athletes/athletes.service';
 import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { EVENTS_MOCKED } from '../../../mocks/event.mock'
 import { IonList } from '@ionic/angular';
+import { DAYS_DATE_MOCKED } from 'src/mocks/DaysDate.mock';
+import { MONTHS_DATE_MOCKED } from 'src/mocks/MonthsDate.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +46,12 @@ export class EventsService {
       }
       console.log('Async operation has ended');
     }, 750);
+  }
+
+  getCurrentDay() {
+    let todayDate = DAYS_DATE_MOCKED[ this.datePicker.getDay() ];
+    let monthDate = MONTHS_DATE_MOCKED[ this.datePicker.getMonth() ]
+    return `${todayDate} ${this.datePicker.getDate().toString()} ${monthDate} ${this.datePicker.getFullYear().toString()}`;
   }
 
   getDatePicker() {

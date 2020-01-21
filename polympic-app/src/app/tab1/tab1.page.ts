@@ -100,6 +100,10 @@ export class Tab1Page {
     return false;
   }
 
+  getCurrentDay() {
+    return this.service.getCurrentDay()
+  }
+
   onScroll(e) {
     //console.log(e);
     this.offsetTop = e.detail.scrollTop;

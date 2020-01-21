@@ -17,6 +17,12 @@
     
   </ion-row>
 
+  <ion-item style = "text-align: center">
+    <span style="margin: auto">
+      {{getCurrentDay()}}
+    </span>
+  </ion-item>
+
   <ion-list>
 
     <ion-item class="eventItem" *ngFor = "let event of loadEvents()" [id] = "event.id">
