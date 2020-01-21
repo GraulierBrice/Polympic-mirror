@@ -60,6 +60,7 @@ export class EventPage implements OnInit {
   thirdAth: any;
   eventPos = [];
   map: Map;
+  firstEnter = false;
 
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService, private favoriteService: FavoriteService) {
 
@@ -126,10 +127,15 @@ export class EventPage implements OnInit {
 
   loadMap() {
     this.eventPos = [this.event.place.latitude, this.event.place.longitude];
+    
 
-    console.log(this.eventPos);
+    console.log('the map :');
+    console.log(this.map);
 
-    this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 10);
+    //if (!this.firstEnter){
+      this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 10);
+      this.firstEnter = true;
+    //}
 
     this.map
       .on('mousedown', function () {
@@ -184,9 +190,12 @@ export class EventPage implements OnInit {
     // }
   }
 
+  ionViewDidLeave() {
+    this.map.remove();
+  }
+
   ngOnDestroy() {
     this.relatedEvents = []
-    this.map.remove();
   }
 
   getBeginDate(): String {
