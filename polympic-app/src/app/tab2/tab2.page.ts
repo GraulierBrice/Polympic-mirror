@@ -191,13 +191,12 @@ export class Tab2Page {
   //var x = 48.9244592, y = 2.3601645
   setMarker(x = 0, y = 0, iconImage, popupText, className) {
     var mapIcon = icon({
-      iconUrl: '../assets/icon/map-marker.png',
-      shadowUrl: iconImage,
-
-      iconSize: [48, 48], // size of the icon
-      shadowSize: [24, 24], // size of the shadow
-      iconAnchor: [24, 48], // point of the icon which will correspond to marker's location
-      shadowAnchor: [13, 42], // the same for the shadow
+      iconUrl: iconImage,
+      shadowUrl: '../assets/icon/map-marker.png',
+      iconSize: [24, 24], // size of the icon
+      shadowSize: [48, 48], // size of the shadow
+      iconAnchor: [13, 42], // point of the icon which will correspond to marker's location
+      shadowAnchor: [24, 48], // the same for the shadow
       popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
       className: className,
     });
