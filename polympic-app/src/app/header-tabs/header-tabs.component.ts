@@ -26,6 +26,7 @@ export class HeaderTabsComponent implements OnInit {
       this.eventsService.filterEventsByFavorites();
       this.clicked = true;
       this.eventsService.setClicked(true);
+      this.eventsService.resetInfiniteScroll(true);
     }
 
     else {
@@ -33,6 +34,7 @@ export class HeaderTabsComponent implements OnInit {
       this.eventsService.initializeEvents();
       this.clicked = false;
       this.eventsService.setClicked(false);
+      this.eventsService.resetInfiniteScroll(false);
     }
   }
 
