@@ -87,12 +87,14 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="confirmAdding()">
-      <ion-icon *ngIf="toAdd.length!==0; else empty" name="checkmark"></ion-icon>
-      <ng-template #empty>
-          <ion-icon name="close"></ion-icon>
-      </ng-template>
+    <ion-fab-button *ngIf="toAdd.length!==0; else other" color="success" (click)="confirmAdding()">
+      <ion-icon name="checkmark"></ion-icon>
     </ion-fab-button>
+    <ng-template #other>
+      <ion-fab-button color="danger" (click)="confirmAdding()">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ng-template>
   </ion-fab>
 
 </ion-content>
