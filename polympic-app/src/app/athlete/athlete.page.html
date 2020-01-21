@@ -35,7 +35,7 @@
       <ion-list>
         <ion-item-divider class="event">
           <ion-label>
-            Evenements prochians :
+            Evenements prochains :
           </ion-label>
         </ion-item-divider>
 
@@ -101,8 +101,20 @@
                   <img [src]="event.iconMap">
                 </ion-avatar>
               </ion-col>
-              <ion-col size="6">
+              <ion-col size="5">
                 {{event.name}}
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[0]==this.athlete.id">
+                🥇
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[1]==this.athlete.id">
+                🥈
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[2]==this.athlete.id">
+                🥉
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[0]!=this.athlete.id && event.podium[1]!=this.athlete.id && event.podium[2]!=this.athlete.id">
+                <ion-icon name="medal"></ion-icon>
               </ion-col>
               <ion-col size="2" align-self-center>
                 <ion-chip [color]="getEventColor(event.status)">
