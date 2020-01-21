@@ -33,7 +33,7 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 2
               }
         ],
-        Country: COUNTRIES[77],
+        Country: COUNTRIES[72],
         Members: athletesPerCountry('France')
     },
     {
@@ -57,7 +57,7 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 5
               }
         ],
-        Country: COUNTRIES[105],
+        Country: COUNTRIES[21],
         Members: athletesPerCountry('Belgium')
     },
     {
@@ -81,7 +81,7 @@ export const TEAMS_MOCKED: Team[] = [
               quantity: 3
             }
       ],
-      Country: COUNTRIES[1],
+      Country: COUNTRIES[208],
       Members: athletesPerCountry('Switzerland')
   },
     {
