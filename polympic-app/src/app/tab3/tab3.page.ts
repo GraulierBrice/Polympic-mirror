@@ -32,6 +32,7 @@ export class Tab3Page {
 
   ionViewDidEnter() {
     this.favoriteItems = this.favoriteService.getAllFavorites();
+    this.displayFavorite = this.favoriteService.getDisplayFav();
     this.addables = this.favoriteService.getAllFavorisable();
     this.filters = "all";
   }

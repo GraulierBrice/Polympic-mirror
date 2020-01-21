@@ -59,7 +59,9 @@ export class FavoriteService {
    }
 
    isFavorite(item) {
-     return this.favorite.indexOf(item) !== -1;
+      console.log("item is:");
+      console.log(item)
+     return this.favorite.includes(item);
    }
 
    hasFavoriteEvent() {
