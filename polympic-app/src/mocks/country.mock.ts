@@ -72,7 +72,6 @@ export const COUNTRIES : Country[]
   {id: 67, name: 'Estonia', flag: 'ee', category:'country'}, 
   {id: 68, name: 'Ethiopia', flag: 'et', category:'country'}, 
   {id: 69, name: 'Falkland Islands (Malvinas)', flag: 'fk', category:'country'}, 
-  {id: 69, name: 'Faroe Islands', flag: 'fo', category:'country'}, 
   {id: 70, name: 'Fiji', flag: 'fj', category:'country'}, 
   {id: 71, name: 'Finland', flag: 'fi', category:'country'}, 
   {id: 72, name: 'France', flag: 'fr', category:'country'}, 

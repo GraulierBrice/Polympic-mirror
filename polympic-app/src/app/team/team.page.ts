@@ -4,6 +4,7 @@ import { SPORTS_ICONS_MOCKED } from './../../mocks/sportIcons.mock';
 import { TeamsService } from '../services/teams/teams.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Team } from 'src/models/team.model';
 
 @Component({
   selector: 'app-team',
@@ -14,7 +15,8 @@ export class TeamPage implements OnInit {
 
   @ViewChild("pieCanvas", {static: false}) barCanvas : ElementRef;
 
-  teamId: String;
+  teamId: number;
+  country: Team;
   medalsNumber : Number;
   bronzeNumber : Number;
   silverNumber: Number;
@@ -44,13 +46,16 @@ export class TeamPage implements OnInit {
         return;
       }
       
-      const teamId = paramMap.get('teamId');
+      const teamId = Number(paramMap.get('teamId'));
       this.teamId = teamId;
+      this.country = this.teamsService.getTeam(teamId);
+      console.log(this.country)
+      this.isFavorite = this.favoriteService.isFavorite(this.country);
+      console.log(this.favoriteService.getAllFavorites())
   })
 
   this.drawChart();
   this.calculateMedalsNumber();
-  this.isFavorite = this.favoriteService.isFavorite(this.teamId);
 }
 
 calculateMedalsNumber() {

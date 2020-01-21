@@ -1,0 +1,17 @@
+<ion-content>
+  <div style="padding-top: 10px; padding-left: 10px;">
+    <ion-label>Veuillez séléctionner une date</ion-label>
+    </div>
+ 
+    
+    <ion-datetime
+    doneText = 'Valider'
+    cancelText = 'Annuler' 
+    value = "2020-02-11"
+    [(ngModel)] = "dateTimePick" placeholder="2020/02/11"></ion-datetime>
+  <div style="text-align: right;">
+    <ion-button style="display: inline-block;" fill="clear"  (click) = "cancelDate()">Annuler</ion-button>
+    <ion-button style="display: inline-block;" fill="clear"  (click) = "submitDate()">Valider</ion-button>
+  </div>
+    
+</ion-content>

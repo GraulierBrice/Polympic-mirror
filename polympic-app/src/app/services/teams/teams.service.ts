@@ -23,17 +23,17 @@ export class TeamsService {
     return this.teams;
   }
 
-  getTeam(teamId: String) {
+  getTeam(teamId: number) {
    return this.teams.find(team => {
      return team.id === teamId;
    });
  }
 
- getMembers(teamId: String): Athlete[] {
+ getMembers(teamId: number): Athlete[] {
    return this.getTeam(teamId).Members;
 }
 
-getMembersSports(teamId: String, sport: String) {
+getMembersSports(teamId: number, sport: String) {
   var members = this.getMembers(teamId);
 
   return members.filter( member => {

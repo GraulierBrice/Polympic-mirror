@@ -5,6 +5,8 @@ import { EventsService } from '../services/events/events.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, PopoverController, IonList, IonContent } from '@ionic/angular';
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
+import { FavoriteService } from '../services/favorite/favorite.service';
+import { Favoriseable } from 'src/models/favorisable.model';
 
 
 @Component({
@@ -14,38 +16,39 @@ import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
 })
 export class Tab1Page {
 
-  @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
+  @ViewChild(IonList, { read: ElementRef, static: true }) list: ElementRef;
 
   offsetTop;
   completedBottom: boolean;
   infiniteScrollCounter: Number;
   offsetTopValue: Number;
+  executedScroll: boolean
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
-    console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
-    this.offsetTopValue = 405.6000061035156;
+    this.offsetTopValue = 516;
+    this.executedScroll = false;
   }
 
   ionViewWillEnter() {
     this.getAllEvents();
-    this.scrollListVisible();
+    this.scrollListVisible(false);
   }
 
   loadEvents() {
     return this.service.loadEvents();
   }
 
-  setEvents(events: Event[]): void {
+  setEvents(events: Favoriseable[]): void {
     console.log(event);
     this.service.setEvents(events);
-    console.log(this.service.eventsLoader);
   }
 
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
+    this.service.doInfinite(infiniteScroll);
+/*     console.log('Begin async operation');
 
     setTimeout(() => {
       if(this.infiniteScrollCounter === 0) {
@@ -61,28 +64,61 @@ export class Tab1Page {
         this.service.setBottomScroll(true);
       }
       console.log('Async operation has ended');
-    }, 500);
+    }, 500); */
   }
 
-  scrollListVisible() {
-    let arr = this.list.nativeElement.children;
-    let i = 0;
-    let myEvent: Event;
+  scrollListVisible(value: boolean) {
 
-    for(let event of this.loadEvents()) {
-      if(event.status === 'En cours') {
-        myEvent = event;
-        break;
+    if(!this.executedScroll || value) {
+      let arr = this.list.nativeElement.children;
+      let i = 0;
+      let myEvent: Event;
+  
+      for(let event of this.loadEvents()) {
+        if(event.status === 'En cours') {
+          myEvent = event;
+          break;
+        }
+        i++;
       }
-      i++;
+      if(myEvent) {
+        let id = i;
+        let event = arr[id]; 
+        event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+      }
+
+      this.executedScroll = !this.executedScroll;
     }
-    let id = i;
-    let event = arr[id]; 
-    event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+  }
+
+  isTodayDate() {
+    let day = this.service.todayDate.getDate().toString() === this.service.datePicker.getDate().toString();
+    let month = this.service.todayDate.getMonth().toString() === this.service.datePicker.getMonth().toString();
+    let year = this.service.todayDate.getFullYear().toString() === this.service.datePicker.getFullYear().toString();
+
+    return day && month && year;
+  }
+
+  resetDate() {
+    this.service.setDatePicker(this.service.todayDate);
+    this.service.submitDate(this.service.datePicker);
+  }
+
+  eventEnCoursAvailable() {
+    for(let event of this.loadEvents()) {
+      if (event.status === 'En cours') {
+       return true; 
+      }
+    }
+    return false;
+  }
+
+  getCurrentDay() {
+    return this.service.getCurrentDay()
   }
 
   onScroll(e) {
-    console.log(e);
+    //console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 
@@ -97,14 +133,15 @@ export class Tab1Page {
    filterEvents(e) {
      this.service.loaderEvents();
      this.service.initializeEvents();
-    const val = e.target.value;
-    if(val && val.trim() != '') {
+     console.log(e);
+    const val = e.detail.value;
+    if(val != '') {
       this.service.filterEvents(val);
+      console.log('value'+val)
       this.service.setBottomScroll(true);
     }
     else this.service.setBottomScroll(false);
     console.log(this.loadEvents());
-    console.log(this.service.getAllEvents());
   }
 
   getBottomScroll() {
@@ -133,6 +170,7 @@ export class Tab1Page {
       case 'Terminé': return "danger"; break;
       case 'A venir': return "medium"; break;
       case 'En cours': return "success"; break;
+      case 'Bientot': return "warning"; break;
     }
   }
 

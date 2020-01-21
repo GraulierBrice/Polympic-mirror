@@ -29,6 +29,104 @@
   </table>
   <div class="horizontalLine ion-text-center"></div>
 
-  
+<!-- Events -->
+  <ion-slides>
+    <ion-slide>
+      <ion-list>
+        <ion-item-divider class="event">
+          <ion-label>
+            Evenements prochains :
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Bientot'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+          detail>
+          <ion-grid fixed>
+            <ion-row align-items-center>
+              <ion-col size="3">
+                <ion-avatar item-start>
+                  <img [src]="event.iconMap">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="6">
+                {{event.name}}
+              </ion-col>
+              <ion-col size="2" align-self-center>
+                <ion-chip [color]="getEventColor(event.status)">
+                  <ion-label>{{event.status}}</ion-label>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>   
+        
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'A venir'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+        detail>
+          <ion-grid fixed>
+            <ion-row align-items-center>
+              <ion-col size="3">
+                <ion-avatar item-start>
+                  <img [src]="event.iconMap">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="6">
+                {{event.name}}
+              </ion-col>
+              <ion-col size="2" align-self-center>
+                <ion-chip [color]="getEventColor(event.status)">
+                  <ion-label>{{event.status}}</ion-label>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>  
+      </ion-list>
+    </ion-slide>
+
+
+    <ion-slide>
+      <ion-list>
+        <ion-item-divider class="event">
+          <ion-label>
+            Evenements précédents :
+          </ion-label>
+        </ion-item-divider>
+
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Terminé'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+          detail>
+          <ion-grid fixed>
+            <ion-row align-items-center>
+              <ion-col size="3">
+                <ion-avatar item-start>
+                  <img [src]="event.iconMap">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="5">
+                {{event.name}}
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[0]==this.athlete.id">
+                🥇
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[1]==this.athlete.id">
+                🥈
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[2]==this.athlete.id">
+                🥉
+              </ion-col>
+              <ion-col size="1" *ngIf="event.podium[0]!=this.athlete.id && event.podium[1]!=this.athlete.id && event.podium[2]!=this.athlete.id">
+                <ion-icon name="medal"></ion-icon>
+              </ion-col>
+              <ion-col size="2" align-self-center>
+                <ion-chip [color]="getEventColor(event.status)">
+                  <ion-label>{{event.status}}</ion-label>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>   
+         
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

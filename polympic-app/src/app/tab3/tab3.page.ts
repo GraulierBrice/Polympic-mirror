@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { FavoriteService } from '../services/favorite/favorite.service';
 import { AthletesService } from '../services/athletes/athletes.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { SportsFavoriteService } from '../services/sports/sports-favorite.service';
+import { SportsFavoriteService } from '../services/sports-favorite/sports-favorite.service';
 import { Favoriseable } from 'src/models/favorisable.model';
 
 @Component({
@@ -22,7 +22,7 @@ export class Tab3Page {
 
   private addables: Favoriseable[];
   private favoriteItems: Favoriseable[];
-  private displayFavorite: Favoriseable[];
+  private displayFavorite: Favoriseable[] = [];
   private toAdd: Favoriseable[];
   private filters: string;
  
@@ -32,7 +32,7 @@ export class Tab3Page {
 
   ionViewDidEnter() {
     this.favoriteItems = this.favoriteService.getAllFavorites();
-    this.displayFavorite = [];
+    this.displayFavorite = this.favoriteService.getDisplayFav();
     this.addables = this.favoriteService.getAllFavorisable();
     this.filters = "all";
   }
@@ -70,6 +70,8 @@ export class Tab3Page {
       this.filters = type;
     } else {
       this.filters = 'all';
+      this.favoriteService.setDisplayFav([]);
+      this.displayFavorite = this.favoriteService.getDisplayFav();
     }
     this.favoriteService.setDisplayFav(this.displayFavorite);
   }
@@ -139,6 +141,8 @@ export class Tab3Page {
     this.displayFavorite = [];
     this.filters = 'all';
     this.removeSelectedClass("2");
+    
+    this.displayFavorite = this.favoriteService.getDisplayFav();
   }
 
   getEditButtonColor() {

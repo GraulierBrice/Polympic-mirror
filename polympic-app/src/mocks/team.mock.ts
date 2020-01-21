@@ -6,15 +6,15 @@ import { COUNTRIES } from './country.mock';
 
 export const athletesPerCountry = (countryName: String) => {
   const athletes = ATHLETES_MOCKED;
-  return athletes.filter( athlete => {
+  return athletes.filter(athlete => {
     return athlete.Country.name === countryName;
-  } )
+  })
 }
 
 export const TEAMS_MOCKED: Team[] = [
     {
       category: 'country',
-        id: '0',
+        id: 0,
         image: '../assets/teams/france.png',
         name: 'France',
         Victory: '15',
@@ -33,12 +33,12 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 2
               }
         ],
-        Country: COUNTRIES[77],
+        Country: COUNTRIES[72],
         Members: athletesPerCountry('France')
     },
     {
       category: 'country',
-        id: '1',
+        id: 1,
         image: '../assets/teams/belgium.png',
         name: 'Belgique',
         Victory: '18',
@@ -57,12 +57,12 @@ export const TEAMS_MOCKED: Team[] = [
                 quantity: 5
               }
         ],
-        Country: COUNTRIES[105],
+        Country: COUNTRIES[21],
         Members: athletesPerCountry('Belgium')
     },
     {
       category: 'country',
-      id: '2',
+      id: 2,
       image: '../assets/teams/switzerland.png',
       name: 'Switzerland',
       Victory: '18',
@@ -81,7 +81,31 @@ export const TEAMS_MOCKED: Team[] = [
               quantity: 3
             }
       ],
-      Country: COUNTRIES[1],
+      Country: COUNTRIES[208],
       Members: athletesPerCountry('Switzerland')
+  },
+    {
+      category: 'country',
+      id: 3,
+      image: '../assets/teams/germany.png',
+      name: 'Germany',
+      Victory: '18',
+      Defeat: '12',
+      Medals: [
+          {
+              type: 'Bronze',
+              quantity: 9
+            },
+            {
+              type: 'Argent',
+              quantity: 5
+            },
+            {
+              type: 'Or',
+              quantity: 3
+            }
+      ],
+      Country: COUNTRIES[79],
+      Members: athletesPerCountry('Germany')
   }
 ]

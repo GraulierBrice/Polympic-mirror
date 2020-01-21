@@ -6,6 +6,8 @@ import { COUNTRIES } from 'src/mocks/country.mock';
 import { TEAMS_MOCKED } from 'src/mocks/team.mock';
 import { EVENTS_MOCKED } from 'src/mocks/event.mock';
 import { ATHLETES_MOCKED } from 'src/mocks/athlete.mock';
+import { SPORTS_FILTERS_MOCKED } from 'src/mocks/sportFilter.mock';
+import { Event } from 'src/models/event.model'
 
 /*
 const STORAGE_KEY_COMPETITION = 'favoriteCompet';
@@ -18,7 +20,6 @@ const STORAGE_KEY_SPORT = 'favoriteSport';
 })
 export class FavoriteService {
 
-  //sportItems : any;ù
   allFavoriseable: Favoriseable[] = [];
   favorite: Favoriseable[] = [];
   displayFav: Favoriseable[] = [];
@@ -33,6 +34,9 @@ export class FavoriteService {
     ATHLETES_MOCKED.forEach(e=> {
       this.allFavoriseable.push(e);
     });
+    SPORTS_FILTERS_MOCKED.forEach(e=> {
+      this.allFavoriseable.push(e);
+    });
 
    }
    
@@ -45,7 +49,9 @@ export class FavoriteService {
    }
 
    getDisplayFav() {
-     return this.displayFav;
+     if(this.displayFav.length !== 0)
+      return this.displayFav;
+    return this.favorite;
    }
 
    setDisplayFav(list) {
@@ -53,7 +59,17 @@ export class FavoriteService {
    }
 
    isFavorite(item) {
-     return this.favorite.indexOf(item) !== -1;
+      console.log("item is:");
+      console.log(item)
+     return this.favorite.includes(item);
+   }
+
+   hasFavoriteEvent() {
+     return this.favorite.find(e=> e.category === 'event') !== undefined;
+   }
+
+   loadEvents() {
+      return this.favorite.filter(e=> e.category === 'event') as Event[];
    }
 
    addFavorite(item) {

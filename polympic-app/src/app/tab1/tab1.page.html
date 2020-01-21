@@ -1,53 +1,62 @@
 <app-header-tabs></app-header-tabs>
 
-<ion-content [scrollEvents] = "true" (ionScroll) = "onScroll($event)">
-    
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+
   <ion-row>
     <ion-col size="10">
-      <ion-searchbar
-      animated placeholder="Cherchez par nom ou sport favori..."
-      (ionInput) = "filterEvents($event)"
-      >
-     </ion-searchbar>
+      <ion-searchbar animated placeholder="Cherchez par nom ou sport favori..." (ionChange)="filterEvents($event)">
+      </ion-searchbar>
     </ion-col>
 
     <ion-col id="filterBtnColumn">
-      <a (click) = "presentPopover()" size="small" id="filterOptions">Filtrer</a>
+      <a (click)="presentPopover()" size="small" id="filterOptions">Filtrer</a>
     </ion-col>
-    
   </ion-row>
 
-  <ion-list >
+  <ion-item style = "text-align: center">
+    <span style="margin: auto">
+      {{getCurrentDay()}}
+    </span>
 
-    <ion-item class="eventItem" *ngFor = "let event of loadEvents()" [id] = "event.id">
+    <span style = "margin: auto" *ngIf = "!isTodayDate()">
+        <ion-button  fill="clear" (click) = "resetDate()">Aujourd'hui</ion-button>
+    </span>
+  </ion-item>
 
-      <app-events
-      class = "eventCard"
-      [event] = "event"
-      [routerLink] = "['./', event.id]"
-      ></app-events>
+  <ion-list>
+
+    <ion-item class="eventItem" *ngFor="let event of loadEvents()" [id]="event.id" lines="none">
+
+      <app-events class="eventCard" [event]="event" [routerLink]="['./', event.id]"></app-events>
 
     </ion-item>
     <ion-item class="noEventsAvailable" slot="fixed" *ngIf="loadEvents().length <= 0 || !loadEvents()">
-        Pas d'événement disponible.
+      Pas d'événement disponible.
     </ion-item>
 
   </ion-list>
 
   <ion-infinite-scroll *ngIf="!getBottomScroll()" (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content
-      loadingSpinner="bubbles" 
-      loadingText="Loading Events...">
-    
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement des événements...">
+
     </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+  </ion-infinite-scroll>
 
 
-  <ion-fab *ngIf = "offsetTop !== offsetTopValue" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" (click) = "scrollListVisible()">
+  <ion-fab *ngIf = "offsetTop !== offsetTopValue && eventEnCoursAvailable()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click) = "scrollListVisible(true)">
         <ion-icon *ngIf = "offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
       <ion-icon *ngIf = "offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
     </ion-fab-button>
 </ion-fab>
-
 </ion-content>
+
+<!-- <ion-footer translucent = "true" style="background-color: aquamarine;">
+  <div style="text-align: center;">
+    <ion-chip vertical="bottom" horizontal="end" slot="fixed" color="secondary">
+      <ion-icon name="compass"></ion-icon>
+      <ion-label color="dark">Lundi 20 Janvier 2020</ion-label>
+    </ion-chip>
+  </div>
+
+</ion-footer > -->
