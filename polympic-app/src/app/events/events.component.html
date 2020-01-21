@@ -64,7 +64,7 @@
       <ion-row *ngIf = "event.status !== 'Terminé'">
 
         <ion-col>
-          <ion-button *ngIf="event.status !== 'Terminé' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
+          <ion-button *ngIf="event.status !== 'Terminé' && event.status !== 'A venir' " [routerLink] = "['/tabs/tab2', event.id]" expand="block" size="large">
             M'y rendre 
             <ion-icon name="navigate"></ion-icon>
           </ion-button>
