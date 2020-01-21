@@ -14,7 +14,7 @@ export const athletesPerCountry = (countryName: String) => {
 export const TEAMS_MOCKED: Team[] = [
     {
       category: 'country',
-        id: '0',
+        id: 0,
         image: '../assets/teams/france.png',
         name: 'France',
         Victory: '15',
@@ -38,7 +38,7 @@ export const TEAMS_MOCKED: Team[] = [
     },
     {
       category: 'country',
-        id: '1',
+        id: 1,
         image: '../assets/teams/belgium.png',
         name: 'Belgique',
         Victory: '18',
@@ -62,7 +62,7 @@ export const TEAMS_MOCKED: Team[] = [
     },
     {
       category: 'country',
-      id: '2',
+      id: 2,
       image: '../assets/teams/switzerland.png',
       name: 'Switzerland',
       Victory: '18',
@@ -86,7 +86,7 @@ export const TEAMS_MOCKED: Team[] = [
   },
     {
       category: 'country',
-      id: '3',
+      id: 3,
       image: '../assets/teams/germany.png',
       name: 'Germany',
       Victory: '18',

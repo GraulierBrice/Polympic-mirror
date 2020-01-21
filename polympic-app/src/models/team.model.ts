@@ -4,7 +4,7 @@ import { Country } from './country.model';
 import { Favoriseable } from './favorisable.model';
 
 export interface Team extends Favoriseable {
-    id: String;
+    id: number;
     image: String;
     Victory: String;
     Defeat: String;

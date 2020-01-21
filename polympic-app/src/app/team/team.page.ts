@@ -14,7 +14,7 @@ export class TeamPage implements OnInit {
 
   @ViewChild("pieCanvas", {static: false}) barCanvas : ElementRef;
 
-  teamId: String;
+  teamId: number;
   medalsNumber : Number;
   bronzeNumber : Number;
   silverNumber: Number;
@@ -44,7 +44,7 @@ export class TeamPage implements OnInit {
         return;
       }
       
-      const teamId = paramMap.get('teamId');
+      const teamId = Number(paramMap.get('teamId'));
       this.teamId = teamId;
   })
 
