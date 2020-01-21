@@ -1,4 +1,5 @@
 <ion-card [ngStyle]="{'background-image':'url('+imageURL+')'}"  class="welcome-card">
+<!-- <ion-card class="welcome-card" color="gray"> -->
         
   <ion-card-header>
     <ion-row>
@@ -14,8 +15,6 @@
         </ion-chip>
       </ion-col>
     </ion-row>
-
-    
   </ion-card-header>
 
     <ion-img class="eventImage" *ngIf = "event.status === 'En cours' || event.status === 'Bientot'" [src]="event.image">
