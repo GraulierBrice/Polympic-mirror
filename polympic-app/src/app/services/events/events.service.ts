@@ -238,9 +238,10 @@ export class EventsService {
     })
   }
 
-  getAthleteEvents(athlete){
+  getAthleteEvents(athlete, status){
+    console.log(status)
     return this.events.filter(event => {
-      return event.participants.includes(athlete.id)/* && (event.status=='Bientot' || event.status=='A venir' )*/;
+      return event.participants.includes(athlete.id) && event.status==status;
     })
   }
 
