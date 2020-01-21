@@ -40,6 +40,7 @@ export class Tab2Page {
   events: Event[] = [];
   favEvents: Event[] = [];
   showFav = false;
+  mapName : String;
   // Before map is being initialized.
 
   constructor(private geolocation: Geolocation, private activatedRoute: ActivatedRoute, private eventsService: EventsService, private service: SportsFilterService) {}
@@ -49,9 +50,11 @@ export class Tab2Page {
       if (!paramMap.has('eventId')) {
         console.log('no routes')
         this.routing = false;
+        this.mapName = 'emptyMap'
         return;
       } else {
         this.routing = true;
+        this.mapName = paramMap.get('eventId') + 'map';
         const eventId = Number(paramMap.get('eventId'));
         let event = this.eventsService.getEvent(eventId);
         console.log(event)
@@ -82,7 +85,9 @@ export class Tab2Page {
         ]
       })
 
-      this.leafletMap('mapId');
+      console.log('map name :')
+      console.log(this.mapName)
+      this.leafletMap(this.mapName);
     });
   }
 
