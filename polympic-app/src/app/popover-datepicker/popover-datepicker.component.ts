@@ -20,7 +20,10 @@ export class PopoverDatepickerComponent implements OnInit {
   ngOnInit() {}
 
   submitDate() {
-    console.log(this.eventsService.getDatePicker())
+
+    this.eventsService.submitDate(this.dateTimePick);
+    this.popoverController.dismiss();
+/*     console.log(this.eventsService.getDatePicker())
     this.eventsService.setDatePicker(new Date( this.dateTimePick ));
     console.log(this.eventsService.getDatePicker())
     this.eventsService.loaderEvents();
@@ -38,7 +41,7 @@ export class PopoverDatepickerComponent implements OnInit {
       console.log('I am at ELSE');
       this.resetInfiniteScroll(false);
     }
-    console.log('After : ' + this.eventsService.bottomScroll);
+    console.log('After : ' + this.eventsService.bottomScroll); */
 
   }
 

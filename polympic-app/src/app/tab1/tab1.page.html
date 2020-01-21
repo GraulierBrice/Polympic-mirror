@@ -21,6 +21,10 @@
     <span style="margin: auto">
       {{getCurrentDay()}}
     </span>
+
+    <span style = "margin: auto" *ngIf = "!isTodayDate()">
+        <ion-button  fill="clear" (click) = "resetDate()">Aujourd'hui</ion-button>
+    </span>
   </ion-item>
 
   <ion-list>

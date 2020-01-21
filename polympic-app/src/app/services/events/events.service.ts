@@ -20,12 +20,14 @@ export class EventsService {
   bottomScroll: boolean;
   datePicker: Date = new Date(2020, 1, 11);
   infiniteScrollCounter: Number = 0;
+  todayDate: Date;
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
     this.loaderEvents();
     this.bottomScroll = false;
     this.datePicker = new Date(2020, 1, 11);
+    this.todayDate = this.datePicker;
   }
 
   doInfinite(infiniteScroll) {
@@ -46,6 +48,43 @@ export class EventsService {
       }
       console.log('Async operation has ended');
     }, 750);
+  }
+
+  submitDate(dateTimePick) {
+    console.log(this.getDatePicker())
+    this.setDatePicker(new Date( dateTimePick ));
+    console.log(this.getDatePicker())
+    this.loaderEvents();
+    console.log('Before : ' + this.bottomScroll);
+    if(this.loadEvents().length <= 0) {
+      console.log('I am at length < 0');
+      this.setEvents(this.loadEvents().concat(this.loadAvenirEvents()))
+      this.resetInfiniteScroll(true);
+    }
+    else if ( this.eventStatusChecker(this.loadEvents()) ) {
+      console.log('I am at eventStatusChecker');
+      this.resetInfiniteScroll(true);
+    }
+    else {
+      console.log('I am at ELSE');
+      this.resetInfiniteScroll(false);
+    }
+    console.log('After : ' + this.bottomScroll);
+  }
+
+  eventStatusChecker(events: Event[]): boolean {
+    let result = true;
+    console.log('EventStatusChecker : ');
+    events.forEach( event => {
+      console.log(event.status);
+      if(event.status === 'En cours' || event.status === 'Bientot') result = false;
+    } )
+    return result;
+  }
+
+  resetInfiniteScroll(bottomScroll: boolean) {
+    this.infiniteScrollCounter = 0;
+    this.setBottomScroll(bottomScroll);
   }
 
   getCurrentDay() {

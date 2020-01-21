@@ -87,8 +87,19 @@ export class Tab1Page {
 
       this.executedScroll = !this.executedScroll;
     }
+  }
 
+  isTodayDate() {
+    let day = this.service.todayDate.getDate().toString() === this.service.datePicker.getDate().toString();
+    let month = this.service.todayDate.getMonth().toString() === this.service.datePicker.getMonth().toString();
+    let year = this.service.todayDate.getFullYear().toString() === this.service.datePicker.getFullYear().toString();
 
+    return day && month && year;
+  }
+
+  resetDate() {
+    this.service.setDatePicker(this.service.todayDate);
+    this.service.submitDate(this.service.datePicker);
   }
 
   eventEnCoursAvailable() {
