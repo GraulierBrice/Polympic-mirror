@@ -42,7 +42,7 @@
               <ion-col> 
                 <ion-chip outline="true">
                   <ion-icon name="clock"></ion-icon>
-                  <ion-label>10/02 - 15h00</ion-label>
+                  <ion-label>{{event.beginDate.toDateString()}}  {{event.beginDate.getHours()}}:{{event.beginDate.getMinutes()}}</ion-label>
                 </ion-chip>
   
                 <ion-chip [color]="getEventColor(event.status)">
