@@ -96,7 +96,7 @@ export class Tab1Page {
   }
 
   onScroll(e) {
-    console.log(e);
+    //console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 

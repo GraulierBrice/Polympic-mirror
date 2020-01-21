@@ -4,8 +4,12 @@
     </div>
  
     
-    <ion-datetime displayFormat = "MM/DD/YYYY" [(ngModel)] = "dateTimePick" placeholder="2020/02/11"></ion-datetime>
+    <ion-datetime 
+    doneText = 'Valider'
+    cancelText = 'Annuler'
+    [value]="dateTimePick" [(ngModel)] = "dateTimePick" placeholder="2020/02/11"></ion-datetime>
   <div style="text-align: right;">
+    <ion-button style="display: inline-block;" fill="clear"  (click) = "submitDate()">Annuler</ion-button>
     <ion-button style="display: inline-block;" fill="clear"  (click) = "submitDate()">Valider</ion-button>
   </div>
     

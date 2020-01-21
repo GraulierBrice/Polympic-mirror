@@ -1,7 +1,7 @@
 import { Event } from './../../models/event.model';
 import { PopoverController } from '@ionic/angular';
 import { EventsService } from './../services/events/events.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-popover-datepicker',
@@ -11,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class PopoverDatepickerComponent implements OnInit {
 
   customPickerOptions: any;
-  dateTimePick
+  dateTimePick: Date;
+
 
   constructor(private eventsService: EventsService, private popoverController: PopoverController) {
     this.dateTimePick = this.eventsService.getDatePicker();
@@ -36,6 +37,10 @@ export class PopoverDatepickerComponent implements OnInit {
     }
     console.log('EVENTS : ' + this.eventsService.loadEvents())
 
+  }
+
+  cancelDate() {
+    this.popoverController.dismiss();
   }
 
   eventStatusChecker(events: Event[]): boolean {
