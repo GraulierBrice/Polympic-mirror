@@ -15,6 +15,15 @@
       </ion-row>
   </ion-grid>
 
+  <ion-item>
+      <ion-label>Sport</ion-label>
+      <ion-select multiple="true" ok-text="Valider" cancel-text="Annuler">
+        <ion-select-option *ngFor = "let sport of getAllSportsFilters()" [value] = "sport.name">
+            {{sport.name}}
+        </ion-select-option>
+      </ion-select>
+  </ion-item>
+
   <div id="mainText">Filtrez par type d'événement !</div>
   <ion-grid>
     <ion-row class="row" responsive-sm wrap>

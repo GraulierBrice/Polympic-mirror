@@ -13,6 +13,16 @@
     </ion-col>
   </ion-row>
 
+  <ion-item style = "text-align: center">
+    <span style="margin: auto">
+      {{getCurrentDay()}}
+    </span>
+
+    <span style = "margin: auto" *ngIf = "!isTodayDate()">
+        <ion-button  fill="clear" (click) = "resetDate()">Aujourd'hui</ion-button>
+    </span>
+  </ion-item>
+
   <ion-list>
 
     <ion-item class="eventItem" *ngFor="let event of loadEvents()" [id]="event.id" lines="none">
@@ -33,11 +43,20 @@
   </ion-infinite-scroll>
 
 
-  <ion-fab *ngIf="offsetTop !== offsetTopValue" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" (click)="scrollListVisible()">
-      <ion-icon *ngIf="offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
-      <ion-icon *ngIf="offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
+  <ion-fab *ngIf = "offsetTop !== offsetTopValue && eventEnCoursAvailable()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click) = "scrollListVisible(true)">
+        <ion-icon *ngIf = "offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
+      <ion-icon *ngIf = "offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
-
+</ion-fab>
 </ion-content>
+
+<!-- <ion-footer translucent = "true" style="background-color: aquamarine;">
+  <div style="text-align: center;">
+    <ion-chip vertical="bottom" horizontal="end" slot="fixed" color="secondary">
+      <ion-icon name="compass"></ion-icon>
+      <ion-label color="dark">Lundi 20 Janvier 2020</ion-label>
+    </ion-chip>
+  </div>
+
+</ion-footer > -->

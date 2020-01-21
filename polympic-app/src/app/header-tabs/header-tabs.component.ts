@@ -1,4 +1,6 @@
-import { EventsService } from '../services/events/events.service';
+import { PopoverDatepickerComponent } from './../popover-datepicker/popover-datepicker.component';
+import { NavController, PopoverController } from '@ionic/angular';
+import { EventsService } from './../services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 import { FavoriteService } from '../services/favorite/favorite.service';
 
@@ -11,7 +13,7 @@ export class HeaderTabsComponent implements OnInit {
 
   clicked: boolean;
 
-  constructor(private eventsService: EventsService, private favoriteService: FavoriteService) {
+  constructor(private eventsService: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController) {
     this.clicked = false;
    }
 
@@ -32,6 +34,14 @@ export class HeaderTabsComponent implements OnInit {
       this.clicked = false;
       this.eventsService.setClicked(false);
     }
+  }
+
+  async presentPopover() {
+    const popover = await this.popOverCtrl.create({
+      component: PopoverDatepickerComponent,
+      translucent: true
+    });
+    return await popover.present();
   }
 
 }

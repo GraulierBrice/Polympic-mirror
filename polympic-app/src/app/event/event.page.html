@@ -142,7 +142,7 @@
               detail>
 
               <ion-grid fixed>
-                <ion-row align-items-center>
+                <ion-row class="ion-align-items-center">
                   <ion-col size="3">
                     <ion-avatar item-start>
                       <img [src]="event.iconMap">
@@ -151,7 +151,7 @@
                   <ion-col size="6">
                     {{event.name}}
                   </ion-col>
-                  <ion-col size="2" align-self-center>
+                  <ion-col size="2" class="ion-align-self-center">
                     <ion-chip [color]="getEventColor(event.status)">
                       <ion-label>{{event.status}}</ion-label>
                     </ion-chip>

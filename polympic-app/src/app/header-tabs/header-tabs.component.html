@@ -4,14 +4,14 @@
 
 
       <ion-buttons slot="primary">
-          <ion-button *ngIf="favoriteService.hasFavoriteEvent()" (click) = "filterEventsByFavorites()">
+          <ion-button (click) = "filterEventsByFavorites()">
               <ion-icon *ngIf="!clicked" size="large" name="star-outline"></ion-icon>
               <ion-icon *ngIf="clicked" size="large" name="star"></ion-icon>
             </ion-button>
 
-           <!--  <ion-button (click) = "filterEventsByFavorites()">
-                <ion-icon  size="large" name="alarm"></ion-icon>
-              </ion-button> -->
+            <ion-button (click) = "presentPopover()">
+                <ion-icon  size="large" name="calendar"></ion-icon>
+              </ion-button>
             
       </ion-buttons>
     

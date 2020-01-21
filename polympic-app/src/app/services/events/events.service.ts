@@ -8,6 +8,8 @@ import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { EVENTS_MOCKED } from '../../../mocks/event.mock'
 import { IonList } from '@ionic/angular';
 import { Favoriseable } from 'src/models/favorisable.model';
+import { DAYS_DATE_MOCKED } from 'src/mocks/DaysDate.mock';
+import { MONTHS_DATE_MOCKED } from 'src/mocks/MonthsDate.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +20,93 @@ export class EventsService {
   eventsLoader: Event[];
   bottomScroll: boolean;
   clicked: boolean;
+  datePicker: Date = new Date(2020, 1, 11);
+  infiniteScrollCounter: Number = 0;
+  todayDate: Date;
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
     this.loaderEvents();
     this.bottomScroll = false;
+    this.datePicker = new Date(2020, 1, 11);
+    this.todayDate = this.datePicker;
   }
 
   setClicked(b) {
     this.clicked = b;
   }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log(`infiniteScrollCounter ${this.infiniteScrollCounter}`)
+      if(this.infiniteScrollCounter === 0) {
+        this.setEvents( this.loadEvents().concat(this.loadBientotEvents()) );
+        this.infiniteScrollCounter = +this.infiniteScrollCounter + 1;
+        infiniteScroll.target.complete();
+      }
+      else if (this.infiniteScrollCounter === 1) {
+        this.setEvents( this.loadEvents().concat(this.loadAvenirEvents()) );
+        this.infiniteScrollCounter = 0;
+        infiniteScroll.target.complete();
+        this.setBottomScroll(true);
+      }
+      console.log('Async operation has ended');
+    }, 750);
+  }
+
+  submitDate(dateTimePick) {
+    console.log(this.getDatePicker())
+    this.setDatePicker(new Date( dateTimePick ));
+    console.log(this.getDatePicker())
+    this.loaderEvents();
+    console.log('Before : ' + this.bottomScroll);
+    if(this.loadEvents().length <= 0) {
+      console.log('I am at length < 0');
+      this.setEvents(this.loadEvents().concat(this.loadAvenirEvents()))
+      this.resetInfiniteScroll(true);
+    }
+    else if ( this.eventStatusChecker(this.loadEvents()) ) {
+      console.log('I am at eventStatusChecker');
+      this.resetInfiniteScroll(true);
+    }
+    else {
+      console.log('I am at ELSE');
+      this.resetInfiniteScroll(false);
+    }
+    console.log('After : ' + this.bottomScroll);
+  }
+
+  eventStatusChecker(events: Event[]): boolean {
+    let result = true;
+    console.log('EventStatusChecker : ');
+    events.forEach( event => {
+      console.log(event.status);
+      if(event.status === 'En cours' || event.status === 'Bientot') result = false;
+    } )
+    return result;
+  }
+
+  resetInfiniteScroll(bottomScroll: boolean) {
+    this.infiniteScrollCounter = 0;
+    this.setBottomScroll(bottomScroll);
+  }
+
+  getCurrentDay() {
+    let todayDate = DAYS_DATE_MOCKED[ this.datePicker.getDay() ];
+    let monthDate = MONTHS_DATE_MOCKED[ this.datePicker.getMonth() ]
+    return `${todayDate} ${this.datePicker.getDate().toString()} ${monthDate} ${this.datePicker.getFullYear().toString()}`;
+  }
+
+  getDatePicker() {
+    return this.datePicker;
+  }
+
+  setDatePicker(dateValue: Date) {
+    this.datePicker = dateValue;
+    //this.doInfinite();
+  }  
 
   getBottomScroll() {
     return this.bottomScroll;
@@ -51,18 +130,18 @@ export class EventsService {
   loaderEvents(bottomScroll?: boolean) {
     this.eventsLoader = this.loadFinishedEvents().concat( this.loadEnCoursEvents() ) ;
 
-    if(bottomScroll) bottomScroll = bottomScroll;
+    if(bottomScroll) this.bottomScroll = bottomScroll;
   }
 
   loadAvenirEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'A venir';
+      return event.status === 'A venir' && this.eventDateChecker(event);
     } );
   }
 
   loadBientotEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'Bientot';
+      return event.status === 'Bientot' && this.eventDateChecker(event);
     } )
   }
 
@@ -75,14 +154,22 @@ export class EventsService {
 
   loadFinishedEvents() {
     return this.getAllEvents().filter( event => {
-      return event.status === 'Terminé';
+      return event.status === 'Terminé' && this.eventDateChecker(event);
     } )
+  }
+
+  eventDateChecker(event: Event) {
+    return event.beginDate.getFullYear().toString() === this.datePicker.getFullYear().toString() 
+          && event.beginDate.getMonth().toString() === this.datePicker.getMonth().toString()
+          && event.beginDate.getDate().toString() === this.datePicker.getDate().toString();
   }
 
   loadEnCoursEvents(status?) {
     return this.getAllEvents().filter( event => {
-      if(status) return event.status === 'En cours' || event.status === status;
-      else return event.status === 'En cours';
+      if(status) {
+        return (event.status === 'En cours' || event.status === status) && this.eventDateChecker(event);
+      } 
+      else return event.status === 'En cours' && this.eventDateChecker(event);
     } )
   }
 

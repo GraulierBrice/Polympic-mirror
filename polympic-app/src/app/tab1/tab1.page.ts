@@ -16,23 +16,24 @@ import { Favoriseable } from 'src/models/favorisable.model';
 })
 export class Tab1Page {
 
-  @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
+  @ViewChild(IonList, { read: ElementRef, static: true }) list: ElementRef;
 
   offsetTop;
   completedBottom: boolean;
   infiniteScrollCounter: Number;
   offsetTopValue: Number;
+  executedScroll: boolean
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
-    console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
-    this.offsetTopValue = 405.6000061035156;
+    this.offsetTopValue = 516;
+    this.executedScroll = false;
   }
 
   ionViewWillEnter() {
     this.getAllEvents();
-    this.scrollListVisible();
+    this.scrollListVisible(false);
   }
 
   loadEvents() {
@@ -42,12 +43,12 @@ export class Tab1Page {
   setEvents(events: Favoriseable[]): void {
     console.log(event);
     this.service.setEvents(events);
-    console.log(this.service.eventsLoader);
   }
 
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
+    this.service.doInfinite(infiniteScroll);
+/*     console.log('Begin async operation');
 
     setTimeout(() => {
       if(this.infiniteScrollCounter === 0) {
@@ -63,28 +64,61 @@ export class Tab1Page {
         this.service.setBottomScroll(true);
       }
       console.log('Async operation has ended');
-    }, 500);
+    }, 500); */
   }
 
-  scrollListVisible() {
-    let arr = this.list.nativeElement.children;
-    let i = 0;
-    let myEvent: Event;
+  scrollListVisible(value: boolean) {
 
-    for(let event of this.loadEvents()) {
-      if(event.status === 'En cours') {
-        myEvent = event;
-        break;
+    if(!this.executedScroll || value) {
+      let arr = this.list.nativeElement.children;
+      let i = 0;
+      let myEvent: Event;
+  
+      for(let event of this.loadEvents()) {
+        if(event.status === 'En cours') {
+          myEvent = event;
+          break;
+        }
+        i++;
       }
-      i++;
+      if(myEvent) {
+        let id = i;
+        let event = arr[id]; 
+        event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+      }
+
+      this.executedScroll = !this.executedScroll;
     }
-    let id = i;
-    let event = arr[id]; 
-    event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+  }
+
+  isTodayDate() {
+    let day = this.service.todayDate.getDate().toString() === this.service.datePicker.getDate().toString();
+    let month = this.service.todayDate.getMonth().toString() === this.service.datePicker.getMonth().toString();
+    let year = this.service.todayDate.getFullYear().toString() === this.service.datePicker.getFullYear().toString();
+
+    return day && month && year;
+  }
+
+  resetDate() {
+    this.service.setDatePicker(this.service.todayDate);
+    this.service.submitDate(this.service.datePicker);
+  }
+
+  eventEnCoursAvailable() {
+    for(let event of this.loadEvents()) {
+      if (event.status === 'En cours') {
+       return true; 
+      }
+    }
+    return false;
+  }
+
+  getCurrentDay() {
+    return this.service.getCurrentDay()
   }
 
   onScroll(e) {
-    console.log(e);
+    //console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 
