@@ -93,7 +93,6 @@ export class EventPage implements OnInit {
       this.podium = this.eventsService.getPodiumAthlete(eventId);
       this.podium.shift();
       this.ended = (this.event.status === 'Terminé');
-      console.log(!this.ended)
       // this.results = this.eventsService.getResultsAthlete(eventId);
       this.results = this.eventsService.getResultsAthlete(eventId);
 

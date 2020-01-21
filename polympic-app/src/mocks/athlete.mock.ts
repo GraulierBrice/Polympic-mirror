@@ -28,7 +28,7 @@ export const ATHLETES_MOCKED: Athlete[] = [{
         quantity: 3
       }
     ],
-    Country: COUNTRIES[77]
+    Country: COUNTRIES[72]
 
   },
   {
@@ -54,7 +54,7 @@ export const ATHLETES_MOCKED: Athlete[] = [{
         quantity: 2
       }
     ],
-    Country: COUNTRIES[1]
+    Country: COUNTRIES[72]
 
   },
   {
@@ -80,7 +80,7 @@ export const ATHLETES_MOCKED: Athlete[] = [{
         quantity: 0
       }
     ],
-    Country: COUNTRIES[74]
+    Country: COUNTRIES[72]
   },
   {
     category: 'athlete',
@@ -105,7 +105,7 @@ export const ATHLETES_MOCKED: Athlete[] = [{
         quantity: 0
       }
     ],
-    Country: COUNTRIES[77]
+    Country: COUNTRIES[72]
   },
   {
     category: 'athlete',
