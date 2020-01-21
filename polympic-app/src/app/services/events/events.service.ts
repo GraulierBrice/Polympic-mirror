@@ -60,8 +60,17 @@ export class EventsService {
     console.log(this.getDatePicker())
     this.setDatePicker(new Date( dateTimePick ));
     console.log(this.getDatePicker())
+    this.doLoadingEvents();
+
+  }
+
+  doLoadingEvents() {
     this.loaderEvents();
     console.log('Before : ' + this.bottomScroll);
+    console.log('Events loader : ' + this.loadEvents().length) 
+    this.loadEvents().forEach( event => {
+      console.log(event.status);
+    } )
     if(this.loadEvents().length <= 0) {
       console.log('I am at length < 0');
       this.setEvents(this.loadEvents().concat(this.loadAvenirEvents()))
