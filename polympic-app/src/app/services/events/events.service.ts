@@ -70,7 +70,7 @@ export class EventsService {
     if (this.clicked) {
       return this.favoriteService.loadEvents();
     }
-    return EVENTS_MOCKED;
+    return this.eventsLoader;
   }
 
   loadFinishedEvents() {
@@ -163,10 +163,11 @@ export class EventsService {
 
   filterEvents(searchTerm: String) {
     if(searchTerm !== '') {
-      this.eventsLoader = this.events.filter( event => {
+      this.eventsLoader = EVENTS_MOCKED.filter( event => {
         return (event.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || 
                (event.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1); 
       } )
+      console.log("events: "+this.eventsLoader)
     }
   }
 

@@ -20,7 +20,8 @@
       </ion-segment-button>
       <ion-segment-button value="1">
         <!--         <ion-label>Participants</ion-label>  -->
-        <ion-icon name="trophy"></ion-icon>
+        <ion-icon name="trophy" *ngIf="event.status=='Terminé'"></ion-icon>
+        <ion-icon name="people" *ngIf="event.status!='Terminé'"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="2">
         <!--         <ion-label>Lieux</ion-label>   -->
