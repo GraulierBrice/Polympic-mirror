@@ -7,6 +7,7 @@ import { AthletesService } from '../athletes/athletes.service';
 import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { EVENTS_MOCKED } from '../../../mocks/event.mock'
 import { IonList } from '@ionic/angular';
+import { Favoriseable } from 'src/models/favorisable.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,16 @@ export class EventsService {
   events: Event[];
   eventsLoader: Event[];
   bottomScroll: boolean;
+  clicked: boolean;
 
   constructor(private athletesService : AthletesService, private teamsService : TeamsService, private favoriteService: FavoriteService) { 
     this.initializeEvents();
     this.loaderEvents();
     this.bottomScroll = false;
+  }
+
+  setClicked(b) {
+    this.clicked = b;
   }
 
   getBottomScroll() {
@@ -61,8 +67,10 @@ export class EventsService {
   }
 
   loadEvents() {
-    
-    return this.eventsLoader;
+    if (this.clicked) {
+      return this.favoriteService.loadEvents();
+    }
+    return EVENTS_MOCKED;
   }
 
   loadFinishedEvents() {
@@ -78,8 +86,8 @@ export class EventsService {
     } )
   }
 
-  setEvents(events: Event[]): void {
-    this.eventsLoader = events;
+  setEvents(events: Favoriseable[]): void {
+    this.eventsLoader = events as Event[];
   }
 
   getRelatedEvents(eventsId){
@@ -140,6 +148,12 @@ export class EventsService {
   getWinner(winnerId: Number) {
     return this.athletesService.getAthletes().find(athlete => {
       return athlete.id === winnerId;
+    })
+  }
+
+  getAthleteEvents(athlete){
+    return this.events.filter(event => {
+      return event.participants.includes(athlete.id) && (event.status=='Bientot' || event.status=='A venir');
     })
   }
 

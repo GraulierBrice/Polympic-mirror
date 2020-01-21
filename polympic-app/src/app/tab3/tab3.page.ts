@@ -22,7 +22,7 @@ export class Tab3Page {
 
   private addables: Favoriseable[];
   private favoriteItems: Favoriseable[];
-  private displayFavorite: Favoriseable[];
+  private displayFavorite: Favoriseable[] = [];
   private toAdd: Favoriseable[];
   private filters: string;
  
@@ -32,7 +32,6 @@ export class Tab3Page {
 
   ionViewDidEnter() {
     this.favoriteItems = this.favoriteService.getAllFavorites();
-    this.displayFavorite = [];
     this.addables = this.favoriteService.getAllFavorisable();
     this.filters = "all";
   }
@@ -139,6 +138,8 @@ export class Tab3Page {
     this.displayFavorite = [];
     this.filters = 'all';
     this.removeSelectedClass("2");
+    
+    this.displayFavorite = this.favoriteService.getDisplayFav();
   }
 
   getEditButtonColor() {

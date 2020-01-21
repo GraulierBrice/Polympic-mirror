@@ -25,8 +25,9 @@
 
 <!--Display of Sport-->
 <ion-item-sliding *ngIf="favorite.category === 'sport'">
-  <ion-item [routerLink] = "['/sports', favorite.id]">
-    <ion-icon slot="start" name="football"></ion-icon><ion-label>{{favorite.name}}</ion-label>
+  <ion-item (click)="openLink(favorite)">
+    <ion-icon slot="start" name="football"></ion-icon>
+    <ion-label>{{favorite.name}}</ion-label>
   </ion-item>
   
   <ion-item-options side="end">
