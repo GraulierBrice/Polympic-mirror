@@ -27,7 +27,7 @@ export class Tab1Page {
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
-    this.offsetTopValue = 516;
+    this.offsetTopValue = 518.4000244140625;
     this.executedScroll = false;
   }
 
@@ -87,7 +87,7 @@ export class Tab1Page {
         event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
       }
 
-      this.executedScroll = !this.executedScroll;
+      this.executedScroll = true;
     }
   }
 

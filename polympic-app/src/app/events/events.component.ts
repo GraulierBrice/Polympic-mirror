@@ -26,12 +26,17 @@ export class EventsComponent implements OnInit {
     else if(this.event.status === 'A venir') this.imageURL = './../../assets/AVenir.png';
     else this.imageURL = `./../../assets/${this.event.status}.png`;
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.latitude = resp.coords.latitude;
-      this.longitude = resp.coords.longitude;
+      this.latitude = 48.8859922;
+      //this.longitude = resp.coords.longitude;
+      this.longitude = 2.3067176;
       //this.currentPosition = resp;
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+  }
+
+  doNothing() {
+    console.log('Do nothing');
   }
 
 

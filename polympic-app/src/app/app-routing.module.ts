@@ -7,6 +7,20 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'events',
+    children: [
+      {
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full'
+      },
+      {
+        path: ':eventId',
+        loadChildren: () => import('./event/event.module').then(m => m.EventPageModule)
+      } 
+    ]
+  },
+  {
     path: 'athletes',
     children: [
       {

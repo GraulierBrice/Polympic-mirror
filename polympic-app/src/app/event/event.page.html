@@ -138,7 +138,7 @@
                 Evenements associes :
               </ion-label>
             </ion-item-divider>
-            <ion-item *ngFor="let event of this.relatedEvents; let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+            <ion-item *ngFor="let event of this.relatedEvents; let i = index" [routerLink]="['/events/', event.id]"
               detail>
 
               <ion-grid fixed>

@@ -20,7 +20,7 @@ export class EventsService {
   eventsLoader: Event[];
   bottomScroll: boolean;
   clicked: boolean;
-  datePicker: Date = new Date(2020, 1, 11);
+  datePicker: Date = new Date(2020, 0, 22);
   infiniteScrollCounter: Number = 0;
   todayDate: Date;
 
@@ -28,7 +28,7 @@ export class EventsService {
     this.initializeEvents();
     this.loaderEvents();
     this.bottomScroll = false;
-    this.datePicker = new Date(2020, 1, 11);
+    this.datePicker = new Date(2020, 0, 22);
     this.todayDate = this.datePicker;
   }
 

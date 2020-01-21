@@ -39,7 +39,7 @@
           </ion-label>
         </ion-item-divider>
 
-        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Bientot'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Bientot'); let i = index" [routerLink]="['/events/', event.id]"
           detail>
           <ion-grid fixed>
             <ion-row align-items-center>
@@ -60,7 +60,7 @@
           </ion-grid>
         </ion-item>   
         
-        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'A venir'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'A venir'); let i = index" [routerLink]="['/events/', event.id]"
         detail>
           <ion-grid fixed>
             <ion-row align-items-center>
@@ -92,7 +92,7 @@
           </ion-label>
         </ion-item-divider>
 
-        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Terminé'); let i = index" [routerLink]="['/tabs/tab1/', event.id]"
+        <ion-item *ngFor="let event of this.eventService.getAthleteEvents(this.athlete,'Terminé'); let i = index" [routerLink]="['/events/', event.id]"
           detail>
           <ion-grid fixed>
             <ion-row align-items-center>

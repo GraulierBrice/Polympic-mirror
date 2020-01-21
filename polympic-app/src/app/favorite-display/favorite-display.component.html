@@ -1,6 +1,6 @@
 <!-- Display of event -->
 <ion-item-sliding *ngIf="favorite.category === 'event'">
-  <ion-item [routerLink] = "['/tabs/tab1', favorite.id]">
+  <ion-item [routerLink] = "['/events/', favorite.id]">
     <ion-icon slot="start" name="calendar"></ion-icon>
     <ion-label>{{favorite.name}}</ion-label>
     <ion-chip slot="end" color={{getEventColor(favorite.status)}}>

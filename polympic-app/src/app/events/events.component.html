@@ -72,7 +72,7 @@
         </ion-col>
         </ion-row>
         <ion-col>
-          <ion-item  *ngIf="event.status === 'Terminé' " class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
+          <ion-item  *ngIf="event.status === 'Terminé' " click="doNothing()" class="winner" [routerLink] = "['/athletes/', getEventWinner(event).id]">
             <ion-avatar slot="start">
               <ion-img [src]="getEventWinner(event).image"> </ion-img>
             </ion-avatar >

@@ -3,13 +3,9 @@
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
   <ion-row>
-    <ion-col size="10">
-      <ion-searchbar animated placeholder="Cherchez par nom ou sport favori..." (ionChange)="filterEvents($event)">
-      </ion-searchbar>
-    </ion-col>
-
-    <ion-col id="filterBtnColumn">
-      <a (click)="presentPopover()" size="small" id="filterOptions">Filtrer</a>
+    <ion-col>
+        <ion-searchbar animated = "true"  placeholder="Cherchez par nom ou sport favori..." (ionChange)="filterEvents($event)">
+        </ion-searchbar>
     </ion-col>
   </ion-row>
 
