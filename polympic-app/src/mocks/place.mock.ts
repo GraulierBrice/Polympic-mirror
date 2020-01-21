@@ -4,8 +4,8 @@ export const PLACES_MOCKED: Place[] = [
     {
         //0
         name: 'Tour Eiffel',
-        longitude: 2.2945,
-        latitude: 48.8584,
+        longitude: 2.293280,
+        latitude: 48.859048,
     },
     {
         //1
@@ -16,20 +16,20 @@ export const PLACES_MOCKED: Place[] = [
     {
         //2
         name: 'Grand Palais',
-        longitude: 2.31376,
-        latitude: 48.8661,
+        longitude: 2.313826,
+        latitude: 48.866142,
     },
     {
         //3
         name: 'Esplanade des Invalides',
-        longitude: 2.31291,
-        latitude: 48.8603,
+        longitude: 2.312933,
+        latitude: 48.858412,
     },
     {
         //4
         name: 'Château de Versailles',
-        longitude: 2.12137,
-        latitude: 48.8045,
+        longitude: 2.122873,
+        latitude: 48.805036,
     },
     {
         //5

@@ -47,7 +47,7 @@ export class AthletePage implements OnInit {
       
       this.isFavorite = this.favoriteService.isFavorite(this.athlete);
       console.log(this.isFavorite);
-      console.log(this.eventService.getAthleteEvents(this.athlete));
+      console.log(this.eventService.getAthleteEvents(this.athlete,'A Venir'));
     });
 
 /*     setTimeout( () => {

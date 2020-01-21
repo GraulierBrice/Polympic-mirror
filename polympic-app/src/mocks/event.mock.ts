@@ -52,14 +52,14 @@ export const EVENTS_MOCKED: Event[] = [
         id: 2,
         podium: [11,7,6],
         results: [
-            {id : 11, res : "9s73"},
-            {id : 7, res : "9s86"},
-            {id : 6, res : "9s97"},
-            {id : 1, res : "10s08"},
-            {id : 3, res : "10s16"},
-            {id : 8, res : "10s75"},
-            {id : 2, res : "10s85"},
-            {id : 0, res : "11s01"},
+            {id : 11, res : "9 s 73"},
+            {id : 7, res : "9 s 86"},
+            {id : 6, res : "9 s 97"},
+            {id : 1, res : "10 s 08"},
+            {id : 3, res : "10 s 16"},
+            {id : 8, res : "10 s 75"},
+            {id : 2, res : "10 s 85"},
+            {id : 0, res : "11 s 01"},
         ],
         relatedContent: [
             3, 5, 6
@@ -84,14 +84,14 @@ export const EVENTS_MOCKED: Event[] = [
             0, 3, 1
         ],
         results: [
-            {id : 0, res : "12s80"},
-            {id : 3, res : "12s86"},
-            {id : 1, res : "12s98"},
-            {id : 11, res : "13s08"},
-            {id : 6, res : "13s10"},
-            {id : 7, res : "13s25"},
-            {id : 2, res : "13s55"},
-            {id : 8, res : "13s75"},
+            {id : 0, res : "12 s 80"},
+            {id : 3, res : "12 s 86"},
+            {id : 1, res : "12 s 98"},
+            {id : 11, res : "13 s 08"},
+            {id : 6, res : "13 s 10"},
+            {id : 7, res : "13 s 25"},
+            {id : 2, res : "13 s 55"},
+            {id : 8, res : "13 s 75"},
         ],
         relatedContent: [
             2, 5, 6

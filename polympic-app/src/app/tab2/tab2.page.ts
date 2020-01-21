@@ -65,7 +65,8 @@ export class Tab2Page {
     });
     
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.myPos = [resp.coords.latitude, resp.coords.longitude]
+      //this.myPos = [resp.coords.latitude, resp.coords.longitude]
+      this.myPos = [48.8859922, 2.3067176]
       console.log('place how i am: ')
       console.log(this.myPos)
     }).catch((error) => {
