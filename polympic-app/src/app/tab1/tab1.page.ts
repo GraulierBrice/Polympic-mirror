@@ -14,23 +14,24 @@ import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
 })
 export class Tab1Page {
 
-  @ViewChild(IonList, { read: ElementRef, static: false }) list: ElementRef;
+  @ViewChild(IonList, { read: ElementRef, static: true }) list: ElementRef;
 
   offsetTop;
   completedBottom: boolean;
   infiniteScrollCounter: Number;
   offsetTopValue: Number;
+  executedScroll: boolean
   
   constructor(private service: EventsService, private navCtrl: NavController, private popOverCtrl: PopoverController, private localNotifications: LocalNotifications) {
-    console.log('Consutrctor');
     this.completedBottom = false;
     this.infiniteScrollCounter = 0;
     this.offsetTopValue = 468;
+    this.executedScroll = false;
   }
 
   ionViewWillEnter() {
     this.getAllEvents();
-    this.scrollListVisible();
+    this.scrollListVisible(false);
   }
 
   loadEvents() {
@@ -40,12 +41,10 @@ export class Tab1Page {
   setEvents(events: Event[]): void {
     console.log(event);
     this.service.setEvents(events);
-    console.log(this.service.eventsLoader);
   }
 
 
   doInfinite(infiniteScroll) {
-    console.log(typeof infiniteScroll)
     this.service.doInfinite(infiniteScroll);
 /*     console.log('Begin async operation');
 
@@ -66,23 +65,29 @@ export class Tab1Page {
     }, 500); */
   }
 
-  scrollListVisible() {
-    let arr = this.list.nativeElement.children;
-    let i = 0;
-    let myEvent: Event;
+  scrollListVisible(value: boolean) {
 
-    for(let event of this.loadEvents()) {
-      if(event.status === 'En cours') {
-        myEvent = event;
-        break;
+    if(!this.executedScroll || value) {
+      let arr = this.list.nativeElement.children;
+      let i = 0;
+      let myEvent: Event;
+  
+      for(let event of this.loadEvents()) {
+        if(event.status === 'En cours') {
+          myEvent = event;
+          break;
+        }
+        i++;
       }
-      i++;
+      if(myEvent) {
+        let id = i;
+        let event = arr[id]; 
+        event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
+      }
+
+      this.executedScroll = !this.executedScroll;
     }
-    if(myEvent) {
-      let id = i;
-      let event = arr[id]; 
-      event.scrollIntoView( {behavior: 'smooth', block: 'start' } );
-    }
+
 
   }
 

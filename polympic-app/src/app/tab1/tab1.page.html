@@ -17,7 +17,7 @@
     
   </ion-row>
 
-  <ion-list >
+  <ion-list>
 
     <ion-item class="eventItem" *ngFor = "let event of loadEvents()" [id] = "event.id">
 
@@ -44,7 +44,7 @@
 
 
   <ion-fab *ngIf = "offsetTop !== offsetTopValue && eventEnCoursAvailable()" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" (click) = "scrollListVisible()">
+    <ion-fab-button size="small" (click) = "scrollListVisible(true)">
         <ion-icon *ngIf = "offsetTop > offsetTopValue" name="arrow-round-up"></ion-icon>
       <ion-icon *ngIf = "offsetTop < offsetTopValue" name="arrow-round-down"></ion-icon>
     </ion-fab-button>
