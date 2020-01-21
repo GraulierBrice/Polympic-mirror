@@ -254,13 +254,19 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 10, 12, 30),
         type: 'Natation',
         participants: [5, 9, 10, 3, 6],
-        status: 'A venir',
+        status: 'Terminé',
         score : undefined,
-        winner: undefined,
+        winner: 5,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 11,
-        podium: [],
-        results: undefined,
+        podium: [5, 3, 6],
+        results: [
+            {id : 5, res : "9 s 73"},
+            {id : 3, res : "9 s 86"},
+            {id : 6, res : "9 s 97"},
+            {id : 9, res : "10 s 08"},
+            {id : 10, res : "10 s 16"}
+        ],
         relatedContent: [
             9,10,12
         ]
@@ -275,7 +281,7 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 10, 10, 30),
         type: 'Natation',
         participants: [5, 9, 10, 3, 6],
-        status: 'A venir',
+        status: 'Términé',
         score : undefined,
         winner: undefined,
         eventType: EVENTSTYPES_MOCKED[1],
@@ -317,13 +323,21 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 10, 9, 0),
         type: 'Judo',
         participants: [0, 1, 2, 3, 6, 7, 8, 11],
-        status: 'A venir',
-        winner: undefined,
+        status: 'Terminé',
+        winner: 3,
         score : undefined,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 14,
-        podium: [],
-        results: undefined,
+        podium: [3, 0, 11],
+        results: [
+            {id : 3, res : "9 s 73"},
+            {id : 0, res : "9 s 86"},
+            {id : 11, res : "9 s 97"},
+            {id : 1, res : "10 s 08"},
+            {id : 2, res : "10 s 16"},
+            {id : 6, res : "10 s 16"},
+            {id : 7, res : "10 s 16"}
+        ],
         relatedContent: [
             13,15,16,17
         ]
@@ -380,13 +394,18 @@ export const EVENTS_MOCKED: Event[] = [
         beginDate: new Date(2020, 1, 10, 10, 0),
         type: 'Escrime',
         participants: [1, 2, 3, 4],
-        status: 'En cours',
+        status: 'Terminé',
         score : undefined,
-        winner: undefined,
+        winner: 2,
         eventType: EVENTSTYPES_MOCKED[1],
         id: 17,
-        podium: [],
-        results: undefined,
+        podium: [2, 1, 4],
+        results: [
+            {id : 2, res : "10 s 16"},
+            {id : 1, res : "10 s 09"},
+            {id : 4, res : "10 s 05"},
+            {id : 3, res : "10 s 01"}
+        ],
         relatedContent: [
             13,14,15,16
         ]

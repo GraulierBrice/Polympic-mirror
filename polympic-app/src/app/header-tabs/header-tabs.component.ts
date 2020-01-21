@@ -26,13 +26,17 @@ export class HeaderTabsComponent implements OnInit {
       this.eventsService.filterEventsByFavorites();
       this.clicked = true;
       this.eventsService.setClicked(true);
+      this.eventsService.resetInfiniteScroll(true);
     }
 
     else {
-      this.eventsService.loaderEvents(false);
-      this.eventsService.initializeEvents();
       this.clicked = false;
       this.eventsService.setClicked(false);
+      
+      //this.eventsService.loaderEvents(false);
+      this.eventsService.doLoadingEvents();
+      this.eventsService.initializeEvents();
+
     }
   }
 
