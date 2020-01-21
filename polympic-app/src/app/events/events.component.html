@@ -35,7 +35,7 @@
       <ion-row *ngIf = "event.status !== 'Terminé'" class="ion-no-padding">
         <ion-col size="auto">                
           <span>
-               <strong id="eventPlace" >{{getBeginDate()}}</strong>
+               <strong id="eventPlace" >{{event.beginDate.toDateString()}}  {{event.beginDate.getHours()}}:{{event.beginDate.getMinutes()}}</strong>
           </span>
         </ion-col >
       </ion-row>
