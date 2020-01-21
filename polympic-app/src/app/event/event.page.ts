@@ -132,8 +132,13 @@ export class EventPage implements OnInit {
     console.log('the map :');
     console.log(this.map);
 
+    // if(this.map) {
+    //   this.map.remove();
+    // }
+
     //if (!this.firstEnter){
-      this.map = new Map('map').setView([this.eventPos[0], this.eventPos[1]], 10);
+      let mapName = this.event.name + 'map' ;
+      this.map = new Map(mapName).setView([this.eventPos[0], this.eventPos[1]], 10);
       this.firstEnter = true;
     //}
 
@@ -191,7 +196,9 @@ export class EventPage implements OnInit {
   }
 
   ionViewDidLeave() {
-    this.map.remove();
+    if(this.map) {
+      this.map.remove();
+    }
   }
 
   ngOnDestroy() {
