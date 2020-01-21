@@ -69,6 +69,7 @@ export class Tab3Page {
       this.filters = type;
     } else {
       this.filters = 'all';
+      this.displayFavorite = this.favoriteService.getDisplayFav();
     }
     this.favoriteService.setDisplayFav(this.displayFavorite);
   }
