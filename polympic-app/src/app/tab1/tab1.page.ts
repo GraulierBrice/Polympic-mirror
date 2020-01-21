@@ -99,14 +99,15 @@ export class Tab1Page {
    filterEvents(e) {
      this.service.loaderEvents();
      this.service.initializeEvents();
-    const val = e.target.value;
-    if(val && val.trim() != '') {
+     console.log(e);
+    const val = e.detail.value;
+    if(val != '') {
       this.service.filterEvents(val);
+      console.log('value'+val)
       this.service.setBottomScroll(true);
     }
     else this.service.setBottomScroll(false);
     console.log(this.loadEvents());
-    console.log(this.service.getAllEvents());
   }
 
   getBottomScroll() {
