@@ -5,6 +5,8 @@ import { EventsService } from '../services/events/events.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, PopoverController, IonList, IonContent } from '@ionic/angular';
 import { SPORTS_ICONS_MOCKED } from '../../mocks/sportIcons.mock'
+import { FavoriteService } from '../services/favorite/favorite.service';
+import { Favoriseable } from 'src/models/favorisable.model';
 
 
 @Component({
@@ -37,7 +39,7 @@ export class Tab1Page {
     return this.service.loadEvents();
   }
 
-  setEvents(events: Event[]): void {
+  setEvents(events: Favoriseable[]): void {
     console.log(event);
     this.service.setEvents(events);
     console.log(this.service.eventsLoader);

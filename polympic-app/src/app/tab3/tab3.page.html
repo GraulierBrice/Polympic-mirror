@@ -21,7 +21,14 @@
   </ion-toolbar>
 
   <ion-list>
-    <app-favorite-display *ngFor="let fav of displayFavorite" class="item" [favorite]="fav" (toDisplay)="update($event)"></app-favorite-display>
+    <div *ngIf="displayFavorite.length === 0; else notEmpty" class="emptyMes">
+      <ion-label>Vous n'avez pas encore de favoris.</ion-label>
+      <br/>
+      <ion-label>Vous pouvez appuyer sur "<ion-icon name="add-circle-outline"></ion-icon>" afin d'ajouter des favoris.</ion-label> 
+    </div>
+    <ng-template #notEmpty>
+      <app-favorite-display *ngFor="let fav of displayFavorite" class="item" [favorite]="fav" (toDisplay)="update($event)"></app-favorite-display>
+    </ng-template>
   </ion-list> 
 
 </ion-content>

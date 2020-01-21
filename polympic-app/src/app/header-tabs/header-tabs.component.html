@@ -4,7 +4,7 @@
 
 
       <ion-buttons slot="primary">
-          <ion-button (click) = "filterEventsByFavorites()">
+          <ion-button *ngIf="favoriteService.hasFavoriteEvent()" (click) = "filterEventsByFavorites()">
               <ion-icon *ngIf="!clicked" size="large" name="star-outline"></ion-icon>
               <ion-icon *ngIf="clicked" size="large" name="star"></ion-icon>
             </ion-button>
