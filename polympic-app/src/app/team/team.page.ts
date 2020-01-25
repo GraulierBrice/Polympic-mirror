@@ -49,9 +49,7 @@ export class TeamPage implements OnInit {
       const teamId = Number(paramMap.get('teamId'));
       this.teamId = teamId;
       this.country = this.teamsService.getTeam(teamId);
-      console.log(this.country)
       this.isFavorite = this.favoriteService.isFavorite(this.country);
-      console.log(this.favoriteService.getAllFavorites())
   })
 
   this.drawChart();

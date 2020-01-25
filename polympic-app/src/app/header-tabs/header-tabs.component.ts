@@ -22,8 +22,6 @@ export class HeaderTabsComponent implements OnInit {
 
   filterEventsByFavorites() {
     if(!this.clicked) {
-      console.log('Im in header tabs');
-      this.eventsService.filterEventsByFavorites();
       this.clicked = true;
       this.eventsService.setClicked(true);
       this.eventsService.resetInfiniteScroll(true);

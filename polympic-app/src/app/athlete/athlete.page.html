@@ -21,7 +21,7 @@
   <ion-img  [src]="athlete.image"></ion-img>
 
   <div class="ion-text-center basicInfo">
-    <ion-icon name="{{athlete.sexe}}"></ion-icon> &nbsp;{{athlete.age}} ans <div [routerLink] = "[pathOnClick, athlete.Country.id]" [class]="getAthleteCountryFlag(athlete.Country.flag)"></div>&nbsp; <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>&nbsp;{{athlete.sport}}
+    <ion-icon name="{{athlete.sexe}}"></ion-icon> &nbsp;{{athlete.age}} ans <div [class]="getAthleteCountryFlag(athlete.Country.flag)"></div>&nbsp; <fa-icon [icon]="getSportIcon(athlete.sport)"></fa-icon>&nbsp;{{athlete.sport}}
   </div>
   <div class="horizontalLine ion-text-center"></div>
   <table class="medals">

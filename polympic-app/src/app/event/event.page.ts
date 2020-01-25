@@ -86,9 +86,6 @@ export class EventPage implements OnInit {
       const eventId = Number(paramMap.get('eventId'));
       this.event = this.eventsService.getEvent(eventId);
 
-      console.log('The event : ')
-      console.log(this.event)
-
       this.participants = this.eventsService.getParticipantsToEvent(eventId);
       this.winner = this.eventsService.getWinner(this.event.winner);
       this.podium = this.eventsService.getPodiumAthlete(eventId);
@@ -100,17 +97,8 @@ export class EventPage implements OnInit {
       this.firstAth = this.results[0];
       this.secondAth = this.results[1];
       this.thirdAth = this.results[2];
-      console.log(this.firstAth)
-      console.log(this.secondAth)
-      console.log(this.thirdAth)
-
-      console.log('related content id :')
-      console.log(this.event.relatedContent)
 
       this.relatedEvents = this.eventsService.getRelatedEvents(this.event.relatedContent)
-
-      console.log('related : ')
-      console.log(this.relatedEvents);
 
       if (this.event.eventType.name === 'Solo') this.pathOnClick = '/athletes';
       else if (this.event.eventType.name === 'Team') this.pathOnClick = '/teams';
@@ -128,28 +116,15 @@ export class EventPage implements OnInit {
   loadMap() {
     this.eventPos = [this.event.place.latitude, this.event.place.longitude];
     
-
-    console.log('the map :');
-    console.log(this.map);
-
-    // if(this.map) {
-    //   this.map.remove();
-    // }
-
-    //if (!this.firstEnter){
       let mapName = this.event.name + 'map' ;
       this.map = new Map(mapName).setView([this.eventPos[0], this.eventPos[1]], 10);
       this.firstEnter = true;
-    //}
+    
 
     this.map
       .on('mousedown', function () {
-        // console.log('down') 
-        // this.slider.lockSwipes(true);
       })
       .on('mouseup', function () {
-        //  console.log('up') 
-        //  this.slider.lockSwipes(false);
       });
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

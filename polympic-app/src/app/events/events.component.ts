@@ -31,12 +31,7 @@ export class EventsComponent implements OnInit {
       this.longitude = 2.3067176;
       //this.currentPosition = resp;
     }).catch((error) => {
-      console.log('Error getting location', error);
     });
-  }
-
-  doNothing() {
-    console.log('Do nothing');
   }
 
 
@@ -64,9 +59,6 @@ export class EventsComponent implements OnInit {
     } );
   }
 
-  filterEventsByFavorites() {
-    this.service.filterEventsByFavorites();
-  }
 
 getBackgroundColor(status: String) {
   switch(status) {

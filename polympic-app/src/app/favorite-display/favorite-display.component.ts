@@ -51,7 +51,6 @@ export class FavoriteDisplayComponent implements OnInit {
           role: 'cancel',
           cssClass: 'danger',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
@@ -66,7 +65,6 @@ export class FavoriteDisplayComponent implements OnInit {
   
     await alert.present();
     let result = await alert.onDidDismiss();
-    console.log(result);
   }
 
 }

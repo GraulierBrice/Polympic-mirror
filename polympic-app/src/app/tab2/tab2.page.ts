@@ -48,7 +48,6 @@ export class Tab2Page {
   ionViewDidEnter() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       if (!paramMap.has('eventId')) {
-        console.log('no routes')
         this.routing = false;
         this.mapName = 'emptyMap'
         return;
@@ -57,26 +56,19 @@ export class Tab2Page {
         this.mapName = paramMap.get('eventId') + 'map';
         const eventId = Number(paramMap.get('eventId'));
         let event = this.eventsService.getEvent(eventId);
-        console.log(event)
+        
         this.posTo = [event.place.latitude, event.place.longitude];
-        console.log('place to go : ')
-        console.log(this.posTo)
+        
       }
     });
     
     this.geolocation.getCurrentPosition().then((resp) => {
-      //this.myPos = [resp.coords.latitude, resp.coords.longitude]
       this.myPos = [48.8859922, 2.3067176]
-      console.log('place how i am: ')
-      console.log(this.myPos)
     }).catch((error) => {
-      console.log('Error getting location', error);
     }).then(() => {
-      console.log('lauching mat init');
 
       if (this.route){
         this.map.removeControl(this.route);
-        console.log('route removed')
       }
 
       this.route = Routing.control({
@@ -85,9 +77,6 @@ export class Tab2Page {
           latLng(this.posTo[0], this.posTo[1])
         ]
       })
-
-      console.log('map name :')
-      console.log(this.mapName)
       this.leafletMap(this.mapName);
     });
   }
@@ -97,7 +86,6 @@ export class Tab2Page {
       const found: Event = this.events.find(e => { 
         return event.place === e.place;
       });
-      //console.log(found);
       if (found) {
         if(found.beginDate > event.beginDate && event.status === 'Terminé') {
           const ind = this.events.indexOf(found);
@@ -108,7 +96,6 @@ export class Tab2Page {
         this.events.push(event);
         this.favEvents.push(event);
     }
-    //console.log(this.events);
   }
 
 
@@ -119,9 +106,6 @@ export class Tab2Page {
   leafletMap(mapId) {
     // In setView add latLng and zoom
     if (!this.map){
-      console.log(this.map)
-      console.log('INIT MAP')
-      //this.map.remove();
       this.map = new Map(mapId, {
         minZoom: 5,
         maxZoom: 17,
@@ -130,36 +114,15 @@ export class Tab2Page {
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
-      // console.log('still ok')
       this.myPosMarker = marker([this.myPos[0], this.myPos[1]]).addTo(this.map);
-      //this.setViewMyPos();
-      // console.log('not ok')
     }
 
     if (this.routing) {
-      console.log('trying to make route')
-      console.log(this.route)
       this.route.addTo(this.map);
-
-      console.log('route supposed to be made')
     } else {
       if (this.route){
-        //this.route.spliceWaypoints(0, 2); // <-- removes your route
-        //this.map.removeControl(this.route);
       }
     }
-
-
-    // let watch = this.geolocation.watchPosition();
-    // watch.subscribe((data) => {
-    //   //this.map.removeLayer(this.myPosMarker);
-    //   this.myPos = [data.coords.longitude, data.coords.latitude];
-    //   this.myPosMarker = this.setMarker(this.myPos[0], this.myPos[1], '../assets/icon/football.png', 'My pos');
-    //   console.log('place how i am now: ' + this.posTo)
-    //   // data can be a set of coordinates, or an error (if an error occurred).
-    //   // data.coords.latitude
-    //   // data.coords.longitude
-    // });
   
     var markersCluster = new MarkerClusterGroup({
         iconCreateFunction: function(cluster) {
@@ -186,15 +149,11 @@ export class Tab2Page {
         map.closePopup();
       })
       .on('mouseup', function () {
-        console.log("dragend");
         map.dragging.enable();
         map.setZoom(zoom);
       })
       .on('popupclose', function () {});
-    //var testMarker2 = marker([48.9267792, 2.3600645], {icon: mapIcon2}).addTo(this.map)
   }
-
-  //var x = 48.9244592, y = 2.3601645
   setMarker(x = 0, y = 0, iconImage, popupText, className) {
     var mapIcon = icon({
       iconUrl: iconImage,
@@ -219,12 +178,10 @@ export class Tab2Page {
         zoom = map.getZoom();
         map.flyTo(eventMarker.getLatLng(),Math.max(map.getZoom()+1,14),{duration:0.5})
         .dragging.disable();
-        console.log("mousedown! ");
       })
       .on('click',function () {
         map.flyTo(eventMarker.getLatLng(),zoom,{duration:0.5})
         eventMarker.openPopup();
-        console.log("clicked! ");
       });
 
     
@@ -249,14 +206,5 @@ export class Tab2Page {
 
   /** Remove map when we have multiple map object */
   ionViewWillLeave() {
-    //this.routing = false;
-    // if (this.route){
-    //   this.route.spliceWaypoints(0, 2); // <-- removes your route
-    // }
-    // if (this.route){
-    //   this.map.removeControl(this.route);
-    //   console.log('route removed')
-    // }
-    //this.map.remove();
   }
 }

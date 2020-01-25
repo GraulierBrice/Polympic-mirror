@@ -46,46 +46,8 @@ export class AthletePage implements OnInit {
       this.athlete = this.athletesService.getAthlete(athleteId);
       
       this.isFavorite = this.favoriteService.isFavorite(this.athlete);
-      console.log(this.isFavorite);
-      console.log(this.eventService.getAthleteEvents(this.athlete,'A Venir'));
     });
 
-/*     setTimeout( () => {
-      this.barChart = new Chart(this.barCanvas.nativeElement, {
-        type: "pie",
-        data: {
-          labels: ["Bronze", "Argent", "Or"],
-          datasets: [
-            {
-              label: "# of Votes",
-              data: [this.bronzeNumber, this.silverNumber, this.goldNumber],
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)"
-              ],
-              borderColor: [
-                "rgba(255,99,132,1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)"
-              ],
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
-        }
-      });
-    }, 1000 ) */
 
     this.medalsNumber = this.calculateMedalsNumber();
   }
@@ -103,7 +65,6 @@ export class AthletePage implements OnInit {
   calculateMedalsNumber() {
     let number: any = 0;
     this.athlete.Medals.forEach(medal => {
-      //console.log(medal.quantity)
       number += medal.quantity;
     })
 
@@ -118,7 +79,6 @@ export class AthletePage implements OnInit {
     this.goldNumber = this.athlete.Medals.find(medal => {
       return medal.type === 'Or'
     }).quantity
-    //console.log(number)
     return number;
   }
 

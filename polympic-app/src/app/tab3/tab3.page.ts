@@ -77,7 +77,6 @@ export class Tab3Page {
   }
 
   onSearchChange(input) {
-    console.log(input.detail.value);
     if(this.addingFavorite) {
       this.addables = this.favoriteService.getAllFavorisable().filter(e=> {
         return e.name.toLocaleLowerCase().includes(input.detail.value.toLocaleLowerCase());

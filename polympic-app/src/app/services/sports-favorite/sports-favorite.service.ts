@@ -34,13 +34,10 @@ export class SportsFavoriteService {
  }
 
  isFavorite(sport: SportFavorite) {
-  console.log(this.favoriteService.getAllFavorites());
    return this.favoriteService.isFavorite(sport);
  }
 
  unfavorite(sportId: String) {
-   console.log(this.getSport(sportId));
    this.getSport(sportId).clicked = !this.getSport(sportId).clicked;
-   console.log(this.getSport(sportId));
  }
 }

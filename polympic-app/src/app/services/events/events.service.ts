@@ -36,11 +36,12 @@ export class EventsService {
     this.clicked = b;
   }
 
+
+  //The method that sccrolls the list of events directly to the 1st live event.
+  //@infiniteScroll: $event object
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
 
     setTimeout(() => {
-      console.log(`infiniteScrollCounter ${this.infiniteScrollCounter}`)
       if(this.infiniteScrollCounter === 0) {
         this.setEvents( this.loadEvents().concat(this.loadBientotEvents()) );
         this.infiniteScrollCounter = +this.infiniteScrollCounter + 1;
@@ -52,51 +53,45 @@ export class EventsService {
         infiniteScroll.target.complete();
         this.setBottomScroll(true);
       }
-      console.log('Async operation has ended');
     }, 750);
   }
 
+
+  //Filter the list of events by selected date
+  //@dateTimePick : Date object
   submitDate(dateTimePick) {
-    console.log(this.getDatePicker())
     this.setDatePicker(new Date( dateTimePick ));
-    console.log(this.getDatePicker())
     this.doLoadingEvents();
 
   }
 
+
+  //Main method to load the events in the main page.
   doLoadingEvents() {
     this.loaderEvents();
-    console.log('Before : ' + this.bottomScroll);
-    console.log('Events loader : ' + this.loadEvents().length) 
-    this.loadEvents().forEach( event => {
-      console.log(event.status);
-    } )
     if(this.loadEvents().length <= 0) {
-      console.log('I am at length < 0');
       this.setEvents(this.loadEvents().concat(this.loadAvenirEvents()))
       this.resetInfiniteScroll(true);
     }
     else if ( this.eventStatusChecker(this.loadEvents()) ) {
-      console.log('I am at eventStatusChecker');
       this.resetInfiniteScroll(true);
     }
     else {
-      console.log('I am at ELSE');
       this.resetInfiniteScroll(false);
     }
-    console.log('After : ' + this.bottomScroll);
   }
 
+
+  //To check if the events parameter includes either only Finished events or only 'A venir' events.
   eventStatusChecker(events: Event[]): boolean {
     let result = true;
-    console.log('EventStatusChecker : ');
     events.forEach( event => {
-      console.log(event.status);
       if(event.status === 'En cours' || event.status === 'Bientot') result = false;
     } )
     return result;
   }
 
+  
   resetInfiniteScroll(bottomScroll: boolean) {
     this.infiniteScrollCounter = 0;
     this.setBottomScroll(bottomScroll);
@@ -136,6 +131,7 @@ export class EventsService {
     })
   }
 
+  
   loaderEvents(bottomScroll?: boolean) {
     this.eventsLoader = this.loadFinishedEvents().concat( this.loadEnCoursEvents() ) ;
 
@@ -167,6 +163,8 @@ export class EventsService {
     } )
   }
 
+
+  //the method to filter each event by date.
   eventDateChecker(event: Event) {
     return event.beginDate.getFullYear().toString() === this.datePicker.getFullYear().toString() 
           && event.beginDate.getMonth().toString() === this.datePicker.getMonth().toString()
@@ -194,6 +192,8 @@ export class EventsService {
     return res;
   }
 
+
+  //Returns a list of athletes that participate to the event parameter.
   getParticipantsToEvent(eventId: Number) {
     const event = this.getEvent(eventId);
     var arr;
@@ -212,6 +212,7 @@ export class EventsService {
     return arr;
   }
 
+  // returns the 3 first winners of an event.
   getPodiumAthlete(eventId) {
     const event = this.getEvent(eventId);
     var res = [];
@@ -223,6 +224,8 @@ export class EventsService {
     return res;
   }
 
+
+  //Returns the results of an event.
   getResultsAthlete(eventId) {
     const event = this.getEvent(eventId);
     var res = []
@@ -248,7 +251,6 @@ export class EventsService {
   }
 
   getAthleteEvents(athlete, status){
-    console.log(status)
     return this.events.filter(event => {
       return event.participants.includes(athlete.id) && event.status==status;
     })
@@ -264,42 +266,11 @@ export class EventsService {
         return (event.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) || 
                (event.type.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1); 
       } )
-      console.log("events: "+this.eventsLoader)
     }
   }
+ 
 
-  filterEventsByFavorites() {
-    /*
-    let arrayOfSports: String[] = [];
-    this.favoriteService.getFavorite().then( sport => {
-
-      sport.forEach( s => {
-        //if(!arrayOfSports.includes(s.name))
-        arrayOfSports.push(s.name);
-      } )
-
-    } )
-    console.log('Array Of Sports : ' + arrayOfSports);
-    this.favoriteService.getAllCompetFavorite().then ( compet => {
-      console.log(arrayOfSports);
-      if(compet.length || arrayOfSports.length) {
-        this.eventsLoader = this.events.filter( event => {
-          console.log(event.type);
-          return compet.includes(event.id) || arrayOfSports.includes(event.type);
-        } )
-      }
-      else {
-        this.eventsLoader = [];
-      } 
-    })
-
-    console.log(this.eventsLoader.length);
-/*         return compet.map(eventId => {
-          console.log(`event.id : ${event.id} // eventId : ${eventId}`);
-          return event.id === eventId;
-        }) */
-      } 
-
+  //sorts events from "Finished" to "A venir"
       sortEvents() {
 
         this.events.sort( (a,b) => {

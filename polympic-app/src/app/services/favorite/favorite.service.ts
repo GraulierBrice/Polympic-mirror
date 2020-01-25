@@ -59,8 +59,6 @@ export class FavoriteService {
    }
 
    isFavorite(item) {
-      console.log("item is:");
-      console.log(item)
      return this.favorite.includes(item);
    }
 

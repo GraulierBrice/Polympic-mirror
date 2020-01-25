@@ -41,30 +41,12 @@ export class Tab1Page {
   }
 
   setEvents(events: Favoriseable[]): void {
-    console.log(event);
     this.service.setEvents(events);
   }
 
 
   doInfinite(infiniteScroll) {
     this.service.doInfinite(infiniteScroll);
-/*     console.log('Begin async operation');
-
-    setTimeout(() => {
-      if(this.infiniteScrollCounter === 0) {
-        this.setEvents( this.loadEvents().concat(this.service.loadBientotEvents()) );
-        this.infiniteScrollCounter = +this.infiniteScrollCounter + 1;
-        infiniteScroll.target.complete();
-      }
-      else if (this.infiniteScrollCounter === 1) {
-        this.setEvents( this.loadEvents().concat(this.service.loadAvenirEvents()) );
-        this.infiniteScrollCounter = 0;
-        infiniteScroll.target.complete();
-        infiniteScroll.target.disable = true;
-        this.service.setBottomScroll(true);
-      }
-      console.log('Async operation has ended');
-    }, 500); */
   }
 
   scrollListVisible(value: boolean) {
@@ -118,7 +100,6 @@ export class Tab1Page {
   }
 
   onScroll(e) {
-    //console.log(e);
     this.offsetTop = e.detail.scrollTop;
   }
 
@@ -133,15 +114,12 @@ export class Tab1Page {
    filterEvents(e) {
      this.service.loaderEvents();
      this.service.initializeEvents();
-     console.log(e);
     const val = e.detail.value;
     if(val != '') {
       this.service.filterEvents(val);
-      console.log('value'+val)
       this.service.setBottomScroll(true);
     }
     else this.service.setBottomScroll(false);
-    console.log(this.loadEvents());
   }
 
   getBottomScroll() {

@@ -50,7 +50,6 @@ export class SportsFilterService {
     
     if(!sport.clicked) {
       this.sportsSelected.push(sport);
-      console.log(`Sports Selected : ${this.sportsSelected}`);
       this.launchFilter();
     }
     else {
@@ -70,7 +69,6 @@ export class SportsFilterService {
     let selectedTypes = this.eventsTypeSelected.map( eventType => { return eventType.name; })
 
     this.eventsService.initializeEvents();
-    console.log(selectedValues);
 
     if(selectedTypes.length) {
       this.eventsService.events = this.eventsService.events.filter( event => {
@@ -80,7 +78,7 @@ export class SportsFilterService {
 
     if(selectedValues.length) {
       this.eventsService.events = this.eventsService.events.filter( event => {
-        console.log(event.type);
+        
         return selectedValues.includes(event.type);
       } )
     }

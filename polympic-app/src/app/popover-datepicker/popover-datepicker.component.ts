@@ -23,26 +23,6 @@ export class PopoverDatepickerComponent implements OnInit {
 
     this.eventsService.submitDate(this.dateTimePick);
     this.popoverController.dismiss();
-/*     console.log(this.eventsService.getDatePicker())
-    this.eventsService.setDatePicker(new Date( this.dateTimePick ));
-    console.log(this.eventsService.getDatePicker())
-    this.eventsService.loaderEvents();
-    console.log('Before : ' + this.eventsService.bottomScroll);
-    if(this.eventsService.loadEvents().length <= 0) {
-      console.log('I am at length < 0');
-      this.eventsService.setEvents(this.eventsService.loadEvents().concat(this.eventsService.loadAvenirEvents()))
-      this.resetInfiniteScroll(true);
-    }
-    else if ( this.eventStatusChecker(this.eventsService.loadEvents()) ) {
-      console.log('I am at eventStatusChecker');
-      this.resetInfiniteScroll(true);
-    }
-    else {
-      console.log('I am at ELSE');
-      this.resetInfiniteScroll(false);
-    }
-    console.log('After : ' + this.eventsService.bottomScroll); */
-
   }
 
   cancelDate() {
@@ -51,9 +31,7 @@ export class PopoverDatepickerComponent implements OnInit {
 
   eventStatusChecker(events: Event[]): boolean {
     let result = true;
-    console.log('EventStatusChecker : ');
     events.forEach( event => {
-      console.log(event.status);
       if(event.status === 'En cours' || event.status === 'Bientot') result = false;
     } )
     return result;

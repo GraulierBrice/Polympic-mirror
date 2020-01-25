@@ -11,12 +11,6 @@ export class SportsFavoritePage implements OnInit {
   constructor(private sportFavoriteService: SportsFavoriteService) { }
 
   ngOnInit() {
-    /*
-    this.getSports().forEach(sport => {
-      this.sportFavoriteService.isFavorite(sport).then(response => {
-        console.log(`For ${sport.name} : ${response}`);
-      });
-    })*/
   }
 
   getSports() {
